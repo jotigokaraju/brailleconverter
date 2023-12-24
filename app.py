@@ -27,11 +27,9 @@ def word_to_braille(text):
     return converted_phrase
 
 if st.button("Recognize from Audio File"):
-    uploaded_file = st.file_uploader("Choose an audio file", type=["mp3", "wav"])
+    uploaded_file = st.file_uploader("Choose an audio file", type=["mp3"])
     if uploaded_file is not None:
-        with open("temp_audio_file.wav", "wb") as f:
-            f.write(uploaded_file.getvalue())
-        text = recognize_speech_from_file("temp_audio_file.wav")
+        text = recognize_speech_from_file("uploaded_file")
         print("We translated:", text)
 
 if st.button("Convert to Braille"):
