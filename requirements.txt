@@ -1,4 +1,1 @@
 streamlit
-pybraille
-SpeechRecognition
-streamlit-audiorec
