@@ -1,4 +1,3 @@
-import speech_recognition as sr
 import streamlit as st
 import pybraille
 from streamlit_mic_recorder import mic_recorder,speech_to_text
