@@ -1,13 +1,30 @@
 import streamlit as st
 import pybraille
-from st_audiorec import st_audiorec
+from streamlit_mic_recorder import mic_recorder,speech_to_text
 
-wav_audio_data = st_audiorec()
+TIME = 5
+state=st.session_state
 
-if wav_audio_data is not None:
-    st.audio(wav_audio_data, format='audio/wav')
+def recognize_speech():
   
-'''
+    if 'text_received' not in state:
+        state.text_received=[]
+
+    c1,c2=st.columns(2)
+    with c1:
+        st.write("Convert speech to text:")
+    with c2:
+        text=speech_to_text(language='en',use_container_width=True,just_once=True,key='STT')
+
+    if text:       
+        state.text_received.append(text)
+
+    for text in state.text_received:
+        st.text(text)
+    
+    return state.text_received
+
+
 def word_to_braille(text):
     converted_phrase = []
     for word in text:
@@ -24,6 +41,3 @@ if st.button("Convert to Braille"):
     text = text.strip()
     braille_instructions = word_to_braille(text)
     print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
-    
-'''
-    
