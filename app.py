@@ -1,28 +1,29 @@
 import speech_recognition as sr
 import streamlit as st
 import pybraille
-import pyaudio
+from streamlit_mic_recorder import mic_recorder,speech_to_text
 
 TIME = 5
-
+state=st.session_state
 
 def recognize_speech():
-  r = sr.Recognizer()
-  with sr.Microphone() as source:
-    print("Say something!")
-    try:
-        audio = r.listen(source, timeout=TIME)
-        print("Recording completed.")
-        print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
-    except sr.WaitTimeoutError:
-        print("Speech recognition timed out. No speech detected in 5 seconds.")
-    except sr.RequestError as e:
-        print(f"Could not request results from Google Speech Recognition service; {e}")
-    except sr.UnknownValueError:
-        print("Sorry, could not understand audio.")
-    else:
-        return r.recognize_google(audio)
+  
+    if 'text_received' not in state:
+        state.text_received=[]
 
+    c1,c2=st.columns(2)
+    with c1:
+        st.write("Convert speech to text:")
+    with c2:
+        text=speech_to_text(language='en',use_container_width=True,just_once=True,key='STT')
+
+    if text:       
+        state.text_received.append(text)
+
+    for text in state.text_received:
+        st.text(text)
+    
+    return state.text_received
 
 
 def word_to_braille(text):
@@ -41,4 +42,7 @@ if st.button("Convert to Braille"):
     text = text.strip()
     braille_instructions = word_to_braille(text)
     print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
+    
+
+
     
