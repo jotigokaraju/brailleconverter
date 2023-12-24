@@ -1,0 +1,3 @@
+pybraille
+SpeechRecognition
+streamlit-audiorec
