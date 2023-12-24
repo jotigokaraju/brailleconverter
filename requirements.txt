@@ -1,3 +1,4 @@
 streamlit
 pybraille
 SpeechRecognition
+pyaudio
