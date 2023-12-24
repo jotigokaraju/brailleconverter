@@ -1,6 +1,6 @@
 import streamlit as st
 import pybraille
-from streamlit-mic-recorder import mic_recorder,speech_to_text
+from streamlit_mic_recorder import mic_recorder,speech_to_text
 
 TIME = 5
 state=st.session_state
