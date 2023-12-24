@@ -1,4 +1,1 @@
-pybraille
-SpeechRecognition
-streamlit_mic_recorder
-streamlit-mic-recorder
+
