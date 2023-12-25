@@ -3,10 +3,36 @@ import pybraille
 from streamlit_mic_recorder import mic_recorder, speech_to_text
 import time
 
-# Set up Streamlit session state
-TIME = 5
 state = st.session_state
 word = []
+braille_mapping = {
+    '⠁': [1, 0, 0, 0, 0, 0],  # Braille Letter A
+    '⠃': [1, 1, 0, 0, 0, 0],  # Braille Letter B
+    '⠉': [1, 0, 0, 1, 0, 0],  # Braille Letter C
+    '⠙': [1, 0, 0, 1, 1, 0],  # Braille Letter D
+    '⠑': [1, 0, 0, 0, 1, 0],  # Braille Letter E
+    '⠋': [1, 1, 0, 1, 0, 0],  # Braille Letter F
+    '⠛': [1, 1, 0, 1, 1, 0],  # Braille Letter G
+    '⠓': [1, 1, 0, 0, 1, 0],  # Braille Letter H
+    '⠊': [0, 1, 0, 1, 0, 0],  # Braille Letter I
+    '⠚': [0, 1, 0, 1, 1, 0],  # Braille Letter J
+    '⠅': [1, 0, 1, 0, 0, 0],  # Braille Letter K
+    '⠇': [1, 1, 1, 0, 0, 0],  # Braille Letter L
+    '⠍': [1, 0, 1, 1, 0, 0],  # Braille Letter M
+    '⠝': [1, 0, 1, 1, 1, 0],  # Braille Letter N
+    '⠕': [1, 0, 1, 0, 1, 0],  # Braille Letter O
+    '⠏': [1, 1, 1, 1, 0, 0],  # Braille Letter P
+    '⠟': [1, 1, 1, 1, 1, 0],  # Braille Letter Q
+    '⠗': [1, 1, 1, 0, 1, 0],  # Braille Letter R
+    '⠎': [0, 1, 1, 1, 0, 0],  # Braille Letter S
+    '⠞': [0, 1, 1, 1, 1, 0],  # Braille Letter T
+    '⠥': [1, 0, 1, 0, 0, 1],  # Braille Letter U
+    '⠧': [1, 1, 1, 0, 0, 1],  # Braille Letter V
+    '⠺': [0, 1, 0, 1, 1, 1],  # Braille Letter W
+    '⠭': [1, 0, 1, 1, 0, 1],  # Braille Letter X
+    '⠽': [1, 0, 1, 1, 1, 1],  # Braille Letter Y
+    '⠵': [1, 0, 1, 0, 1, 1],  # Braille Letter Z
+}
 
 #Title Formatting
 st.title("Live Speech to Braille Translator")
