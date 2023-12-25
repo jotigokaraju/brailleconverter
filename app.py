@@ -19,7 +19,7 @@ def recognize(state):
     with c1:
         st.write("Convert speech to text:")
     with c2:
-        text = speech_to_text(language='en', start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True, just_once=True, callback=callback, key='STT')
+        text = speech_to_text(language='en', start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True, just_once=True,key='STT',callback=callback)
 
     if text:
         state.text_received.append(text)
@@ -34,6 +34,7 @@ def word_to_braille(text):
 
 if st.button("Speak"):
     returned_text = recognize(state)
+    callback()
     st.write("We think you said: ")
     for text in state.text_received:
         st.write(text)
