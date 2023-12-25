@@ -6,22 +6,21 @@ TIME = 5
 state=st.session_state
 word = []
 
-       
-def recognize(state):
-    if 'text_received' not in state:
-        state.text_received=[]
 
-    c1,c2=st.columns(2)
+if 'text_received' not in state:
+    state.text_received=[]
 
-    with c1:
-        st.write("Convert speech to text:")
-    with c2:
-        text=speech_to_text(language='en',start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True,just_once=True,key='STT')
+c1,c2=st.columns(2)
 
-    if text:       
-        state.text_received.append(text)
-        st.write(state.text_recieved)
-        return state.text_recieved
+with c1:
+    st.write("Convert speech to text:")
+with c2:
+    text=speech_to_text(language='en',start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True,just_once=True,key='STT')
+
+if text:       
+    state.text_received.append(text)
+    st.write(state.text_recieved)
+    
 
 def word_to_braille(text):
     converted_phrase = []
@@ -32,16 +31,11 @@ def word_to_braille(text):
 
 
 
-if st.button("Speak"):
-    returnedtext = recognize(state)
-    st.write("We think you said: ")
-    word = st.session_state.STT_output
-    print(word)
+
 
 if st.button("Convert to Braille"):
-    brailletext = word
-    braille_instructions = word_to_braille(brailletext)
-    print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
+    braille_instructions = word_to_braille(state.text_recieved)
+    print(f"Braille instructions for ''{state.text_recieved}'' are: {braille_instructions}")
 
     
 
