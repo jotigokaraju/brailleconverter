@@ -15,14 +15,15 @@ def recognize_speech():
         st.write("Convert speech to text:")
     with c2:
         text=speech_to_text(language='en',use_container_width=True,just_once=True,key='STT')
-
+        st.write(text)
+      
     if text:       
         state.text_received.append(text)
 
     for text in state.text_received:
         st.text(text)
     
-    return state.text_received
+    return text
 
 
 def word_to_braille(text):
