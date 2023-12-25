@@ -21,7 +21,7 @@ def recognize(state):
     if text:       
         state.text_received.append(text)
         st.write(state.text_recieved)
-    return state.text_recieved
+        return state.text_recieved
 
 def word_to_braille(text):
     converted_phrase = []
