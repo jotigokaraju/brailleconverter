@@ -19,7 +19,12 @@ with c2:
 
 if text:       
     state.text_received.append(text)
-    st.write(state.text_received)
+    st.write("We translated this from your recording: ")
+
+
+for text in state.text_reveived:
+    st.write(text)
+    word.append(text)
     
 
 def word_to_braille(text):
@@ -34,7 +39,7 @@ def word_to_braille(text):
 
 
 if st.button("Convert to Braille"):
-    braille_instructions = word_to_braille(state.text_recieved)
+    braille_instructions = word_to_braille(word)
     print(f"Braille instructions for ''{state.text_recieved}'' are: {braille_instructions}")
 
     
