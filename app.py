@@ -19,7 +19,7 @@ with c2:
 
 if text:       
     state.text_received.append(text)
-    st.write(state.text_recieved)
+    st.write(state.text_received)
     
 
 def word_to_braille(text):
