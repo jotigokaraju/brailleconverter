@@ -35,13 +35,13 @@ def word_to_braille(text):
 if st.button("Speak"):
     returnedtext = recognize(state)
     st.write("We think you said: ")
-    for text in returnedtext:
-        st.write(text)
-        word.append(text)
-        
+    word = st.session_state.STT_output
+    print(word)
 
 if st.button("Convert to Braille"):
     brailletext = word
     braille_instructions = word_to_braille(brailletext)
     print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
+
+    
 
