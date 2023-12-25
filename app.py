@@ -4,39 +4,48 @@ from streamlit_mic_recorder import mic_recorder,speech_to_text
 
 TIME = 5
 state=st.session_state
+word = []
+
+def recognize(state):
+    if 'text_received' not in state:
+        state.text_received=[]
+
+    c1,c2=st.columns(2)
+
+    with c1:
+        st.write("Convert speech to text:")
+    with c2:
+        text=speech_to_text(language='en',start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True,just_once=True,key='STT')
+
+    if text:       
+        state.text_received.append(text)
+        return state.text_recieved
 
 
-if 'text_received' not in state:
-    state.text_received=[]
 
-c1,c2=st.columns(2)
-with c1:
-    st.write("Convert speech to text:")
-with c2:
-    text=speech_to_text(language='en',use_container_width=True,just_once=True,key='STT')
 
-if text:       
-    state.text_received.append(text)
 
-for text in state.text_received:
-    st.text(text)
-
-'''
 def word_to_braille(text):
     converted_phrase = []
     for word in text:
         braille_instructions = pybraille.convertText(word)
         converted_phrase.append(braille_instructions)
     return converted_phrase
-'''
 
-#if st.button("Speak"):
-  #recognize_speech()
-  #print(state.recognized_text)
-  #print("We translated:", text)
-'''
+
+
+if st.button("Speak"):
+    returnedtext = recognize(state)
+    st.write("We think you said: ")
+    for text in state.text_received:
+        st.write(text)
+        word.append(text)
+        
+
 if st.button("Convert to Braille"):
-    text = text.strip()
-    braille_instructions = word_to_braille(text)
+    brailletext = word
+    braille_instructions = word_to_braille(brailletext)
     print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
-'''
+
+    
+
