@@ -40,7 +40,7 @@ def word_to_braille(text):
 
 if st.button("Convert to Braille"):
     braille_instructions = word_to_braille(word)
-    print(f"Braille instructions for ''{state.text_recieved}'' are: {braille_instructions}")
+    print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
 
     
 
