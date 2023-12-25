@@ -16,8 +16,8 @@ st.divider()
 # Braille conversion function
 def word_to_braille(text):
     converted_phrase = []
-    for word in text:
-        braille_instructions = pybraille.convertText(word)
+    for words in text:
+        braille_instructions = pybraille.convertText(words)
         converted_phrase.append(braille_instructions)
     return converted_phrase
 
@@ -41,9 +41,9 @@ with c1:
         state.text_received.append(text)
         st.success("Speech recognized successfully!")
         st.write("Translated text:")
-        for translated_text in state.text_received:
-            st.write(translated_text)
-            word.append(translated_text)
+    for translated_text in state.text_received:
+        st.write(translated_text)
+        word.append(translated_text)
 
 # Column 2: Braille conversion
 with c2:
@@ -54,7 +54,7 @@ with c2:
     if st.button("Convert to Braille"):
         braille_instructions = word_to_braille(word)
         with st.spinner('Wait for it...'):
-            time.sleep(3)
+            time.sleep(2)
         st.success(f"Braille instructions for {word} are: {braille_instructions}")
 
 
