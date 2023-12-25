@@ -6,6 +6,10 @@ TIME = 5
 state=st.session_state
 word = []
 
+def callback()
+    if st.session_state.STT_output:
+        st.write(st.session_state.STT_output)
+        
 def recognize(state):
     if 'text_received' not in state:
         state.text_received=[]
@@ -15,11 +19,12 @@ def recognize(state):
     with c1:
         st.write("Convert speech to text:")
     with c2:
-        text=speech_to_text(language='en',start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True,just_once=True,key='STT')
+        text=speech_to_text(language='en',start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True,just_once=True, callback=callback,key='STT')
 
     if text:       
         state.text_received.append(text)
         return state.text_recieved
+
 
 
 
