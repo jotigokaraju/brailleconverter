@@ -22,21 +22,22 @@ def recognize_speech():
     for text in state.text_received:
         st.text(text)
 
-
+'''
 def word_to_braille(text):
     converted_phrase = []
     for word in text:
         braille_instructions = pybraille.convertText(word)
         converted_phrase.append(braille_instructions)
     return converted_phrase
-
+'''
 
 if st.button("Speak"):
-  text = recognize_speech()
-  print(state.recognized_text)
-  print("We translated:", text)
-  
+  recognize_speech()
+  #print(state.recognized_text)
+  #print("We translated:", text)
+'''
 if st.button("Convert to Braille"):
     text = text.strip()
     braille_instructions = word_to_braille(text)
     print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
+'''
