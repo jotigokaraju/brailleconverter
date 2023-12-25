@@ -39,6 +39,9 @@ def word_to_braille(text):
 
 
 if st.button("Convert to Braille"):
+    print(word)
+    word = word.strip()
+    print(word)
     braille_instructions = word_to_braille(word)
     print(f"Braille instructions for ''{word}'' are: {braille_instructions}")
 
