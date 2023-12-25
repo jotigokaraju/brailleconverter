@@ -22,7 +22,7 @@ if text:
     st.write("We translated this from your recording: ")
 
 
-for text in state.text_reveived:
+for text in state.text_received:
     st.write(text)
     word.append(text)
     
