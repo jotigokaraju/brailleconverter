@@ -13,7 +13,7 @@ def recognize_speech():
     with c2:
         text=speech_to_text(language='en',use_container_width=True,just_once=True,key='STT')
         st.write(text)   
-        return text
+        state.recognized_text = text
 
 
 def word_to_braille(text):
@@ -26,6 +26,7 @@ def word_to_braille(text):
 
 if st.button("Speak"):
   text = recognize_speech()
+  print(state.recognized_text)
   print("We translated:", text)
   
 if st.button("Convert to Braille"):
