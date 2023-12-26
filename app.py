@@ -104,8 +104,8 @@ st.write("Convert selected text to Braille.")
 
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
-    global braille_instructions
-    braille_instructions = word_to_braille(selected_text)
+    global braille_instructionstext
+    braille_instructionstext = word_to_braille(selected_text)
     with st.spinner('Wait for it...'):
         time.sleep(1)
     st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
@@ -117,7 +117,8 @@ st.header("Send to Device")
 st.write("Send Translation Instructions to Device")
 
 if st.button("Send"):
-    instructions_list = braille_to_instructions(braille_instructions)
+    global braille_instructionstext
+    instructions_list = braille_to_instructions(braille_instructionstext)
 
     # Get content
     response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
@@ -129,7 +130,7 @@ if st.button("Send"):
     current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
 
     #For Debugging
-    st.write(braille_instructions)
+    st.write(braille_instructionstext)
     st.write(instructions_list)
     # Update content
     new_content = ','.join(['{:.2f}'.format(i) if type(i) == float else str(i) for i in instructions_list])
