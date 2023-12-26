@@ -111,7 +111,7 @@ with c3:
         response = requests.put(
             github_url,
             data='\n'.join(map(str, instructions_list)),
-            headers={'Authorization': 'token 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'}
+            headers={'Authorization': 'token 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'}
         )
         if response.status_code == 200:
             st.success("Instructions sent to GitHub file!")
