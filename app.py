@@ -39,7 +39,7 @@ braille_mapping = {
 }
 
 # Title Formatting
-st.title("Live Speech to Braille Translator")
+st.title("Livess Speech to Braille Translator")
 st.subheader("Joti Gokaraju")
 st.divider()
 
