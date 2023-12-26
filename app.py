@@ -2,7 +2,9 @@ import streamlit as st
 import pybraille
 from streamlit_mic_recorder import mic_recorder, speech_to_text
 import time
+import requests
 
+github_url = "https://raw.githubusercontent.com/jotigokaraju/brailleconverter/main/instructions.txt"
 state = st.session_state
 word = []
 braille_mapping = {
@@ -79,14 +81,13 @@ with c1:
             st.write(f"{i + 1}. {translated_text}")
             word.append(translated_text)
 
-# Column 2: Dropdown for selecting recorded text
-with c2:
+
     st.header("Select Recorded Text")
     if state.text_received:
         selected_text = st.selectbox("Select recorded text:", state.text_received)
 
-# Column 3: Braille conversion
-with c3:
+# Column 2: Braille conversion
+with c2:
     st.header("Braille Conversion")
     st.write("Convert selected text to Braille.")
 
@@ -95,10 +96,25 @@ with c3:
         braille_instructions = word_to_braille(selected_text)
         instructions_list = braille_to_instructions(braille_instructions)
         with st.spinner('Wait for it...'):
-            time.sleep(2)
+            time.sleep(1)
         st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
-        st.success(instructions_list)
 
+
+# Column 3: Send to Github File
+with c3:
+    st.header("Send to Device")
+    st.write("Send Translation Instructions to Device")
+    if st.button("Send"):
+        instructions_list = braille_to_instructions(braille_instructions)
+        response = requests.put(github_url, data='\n'.join(map(str, instructions_list)))
+        if response.status_code == 200:
+            st.success("Instructions sent to GitHub file!")
+        else:
+            st.error(f"Failed to send instructions. Status code: {response.status_code}")
+
+        
+        
+        
 # Footer
 st.markdown("---")
 st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
