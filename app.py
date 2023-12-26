@@ -106,6 +106,7 @@ st.write("Convert selected text to Braille.")
 if st.button("Convert to Braille") and selected_text:
     global braille_instructionstext
     braille_instructionstext = word_to_braille(selected_text)
+
     with st.spinner('Wait for it...'):
         time.sleep(1)
     st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
@@ -117,7 +118,6 @@ st.header("Send to Device")
 st.write("Send Translation Instructions to Device")
 
 if st.button("Send"):
-    global braille_instructionstext
     instructions_list = braille_to_instructions(braille_instructionstext)
 
     # Get content
