@@ -18,7 +18,7 @@ access_token = "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"
 
 state = st.session_state
 word = []
-braille_instructions = []
+
 
 braille_mapping = {
     '⠁': [1, 0, 0, 0, 0, 0],  # Braille Letter A
