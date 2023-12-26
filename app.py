@@ -66,9 +66,8 @@ def word_to_braille(text):
 def braille_to_instructions(braille_instructions):
     instructions_list = []
     for word in braille_instructions:
-        for braille_char in word:
-            if braille_char in braille_mapping:
-                instructions_list.append(braille_mapping[braille_char])
+        if word in braille_mapping:
+            instructions_list.append(braille_mapping[word])
     return instructions_list
 
 
