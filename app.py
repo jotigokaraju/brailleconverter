@@ -3,8 +3,10 @@ import pybraille
 from streamlit_mic_recorder import mic_recorder, speech_to_text
 import time
 import requests
+import base64
 
-github_url = "https://github.com/jotigokaraju/brailleconverter/blob/main/instructions.txt"
+github_api_url = "https://api.github.com/repos/jotigokaraju/brailleconverter/contents/instructions.txt"
+
 state = st.session_state
 word = []
 braille_instructions = []
@@ -39,7 +41,7 @@ braille_mapping = {
 }
 
 # Title Formatting
-st.title("Livess Speech to Braille Translator")
+st.title("Live Speech to Braille Translator")
 st.subheader("Joti Gokaraju")
 st.divider()
 
@@ -83,7 +85,6 @@ with c1:
             st.write(f"{i + 1}. {translated_text}")
             word.append(translated_text)
 
-
     st.header("Select Recorded Text")
     if state.text_received:
         selected_text = st.selectbox("Select recorded text:", state.text_received)
@@ -101,26 +102,41 @@ with c2:
             time.sleep(1)
         st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
 
-
 # Column 3: Send to Github File
 with c3:
     st.header("Send to Device")
     st.write("Send Translation Instructions to Device")
     if st.button("Send"):
         instructions_list = braille_to_instructions(braille_instructions)
+
+        # Get the current content of the file
+        response = requests.get(github_api_url)
+        response.raise_for_status()
+        current_content = response.json()["content"]
+        current_content = base64.b64decode(current_content).decode("utf-8")
+
+        # Update the content with new instructions
+        updated_content = current_content + "\n" + "\n".join(map(str, instructions_list))
+
+        # Prepare the payload
+        payload = {
+            "message": "Update instructions",
+            "content": base64.b64encode(updated_content.encode("utf-8")).decode("utf-8"),
+            "sha": response.json()["sha"]
+        }
+
+        # Make the PUT request to update the file
         response = requests.put(
-            github_url,
-            data='\n'.join(map(str, instructions_list)),
-            headers={'Authorization': 'token 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'}
+            github_api_url,
+            headers={'Authorization': 'token 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'},
+            json=payload
         )
+
         if response.status_code == 200:
             st.success("Instructions sent to GitHub file!")
         else:
             st.error(f"Failed to send instructions. Status code: {response.status_code}")
 
-        
-        
-        
 # Footer
 st.markdown("---")
 st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
