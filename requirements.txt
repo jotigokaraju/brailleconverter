@@ -2,3 +2,4 @@ streamlit
 pybraille
 SpeechRecognition
 streamlit-mic-recorder
+requests
