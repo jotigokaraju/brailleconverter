@@ -7,6 +7,8 @@ import requests
 github_url = "https://raw.githubusercontent.com/jotigokaraju/brailleconverter/main/instructions.txt"
 state = st.session_state
 word = []
+braille_instructions = []
+
 braille_mapping = {
     '⠁': [1, 0, 0, 0, 0, 0],  # Braille Letter A
     '⠃': [1, 1, 0, 0, 0, 0],  # Braille Letter B
