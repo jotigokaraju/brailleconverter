@@ -122,20 +122,12 @@ st.write("Send Translation Instructions to Device")
 if st.button("Send"):
     instructions_list = braille_to_instructions(braille_instructions)
 
+    instructions_list_str = '\n'.join(map(str, instructions_list))
+    new_content_encoded = base64.b64encode(instructions_list_str.encode("utf-8")).decode("utf-8")
+
     # Get content
     response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
     response_data = response.json()
-
-    # Extract content
-    current_content = response_data["content"]
-    current_content_decoded = current_content.encode("utf-8")
-    current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-
-    # Update content
-    new_content = f"{instructions_list}"
-
-    # Encode new content
-    new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
 
     # Prepare data
     data = {
@@ -151,6 +143,7 @@ if st.button("Send"):
         st.success("Sent!")
     else:
         st.error(f"Error updating file. Status code: {update_response.status_code}")
+
 
 st.divider()
 # Footer
