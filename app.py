@@ -108,7 +108,11 @@ with c3:
     st.write("Send Translation Instructions to Device")
     if st.button("Send"):
         instructions_list = braille_to_instructions(braille_instructions)
-        response = requests.put(github_url, data='\n'.join(map(str, instructions_list)))
+        response = requests.put(
+            github_url,
+            data='\n'.join(map(str, instructions_list)),
+            headers={'Authorization': 'token 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'}
+        )
         if response.status_code == 200:
             st.success("Instructions sent to GitHub file!")
         else:
