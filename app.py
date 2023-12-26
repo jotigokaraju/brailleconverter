@@ -132,7 +132,7 @@ if st.button("Send"):
     current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
 
     # Update content
-    new_content = instructions_list
+    new_content = f"{instructions_list}"
 
     # Encode new content
     new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
