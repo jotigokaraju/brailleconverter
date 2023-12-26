@@ -18,6 +18,7 @@ access_token = "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"
 
 state = st.session_state
 word = []
+global braille_instructions
 braille_instructions = []
 
 braille_mapping = {
@@ -103,7 +104,6 @@ st.write("Convert selected text to Braille.")
 
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
-    global braille_instructions
     braille_instructions = word_to_braille(selected_text)
     with st.spinner('Wait for it...'):
         time.sleep(1)
