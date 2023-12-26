@@ -103,6 +103,7 @@ st.write("Convert selected text to Braille.")
 
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
+    global braille_instructions
     braille_instructions = word_to_braille(selected_text)
     with st.spinner('Wait for it...'):
         time.sleep(1)
