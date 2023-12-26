@@ -132,8 +132,9 @@ if st.button("Send") and selected_text:
     #For Debugging
     st.write(braille_instructionstext)
     st.write(instructions_list)
+    
     # Update content
-    new_content = ','.join(['{:.2f}'.format(i) if type(i) == float else str(i) for i in instructions_list])
+    new_content = f"{instructions_list}"
 
     # Encode new content
     new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
