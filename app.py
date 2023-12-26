@@ -47,6 +47,14 @@ def word_to_braille(text):
         converted_phrase.append(braille_instructions)
     return converted_phrase
 
+# Function to convert braille_instructions to instructions list
+def braille_to_instructions(braille_instructions):
+    instructions_list = []
+    for braille_char in braille_instructions:
+        if braille_char in braille_mapping:
+            instructions_list.extend(braille_mapping[braille_char])
+    return instructions_list
+
 # Check if 'text_received' is in the session state
 if 'text_received' not in state:
     state.text_received = []
@@ -85,9 +93,11 @@ with c3:
     # Convert to Braille button
     if st.button("Convert to Braille") and selected_text:
         braille_instructions = word_to_braille(selected_text)
+        instructions_list = braille_to_instructions(braille_instructions)
         with st.spinner('Wait for it...'):
             time.sleep(2)
-        st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
+        st.success(f"Braille instructions for {selected_text} are: {instructions_list}")
+        st.success(instructions_list)
 
 # Footer
 st.markdown("---")
