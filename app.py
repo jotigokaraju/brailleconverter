@@ -81,7 +81,7 @@ st.header("Speech-to-Text Converter")
 st.write("Record and transcribe your speech.")
 
 # Speech-to-text recorder
-text = speech_to_text(language='en', start_prompt="Start ⏺️", stop_prompt="Stop ⏹️", use_container_width=True, just_once=True, key='STT')
+text = speech_to_text(language='en', start_prompt="Start 🔴", stop_prompt="Stop 🟥", use_container_width=True, just_once=True, key='STT')
 
 # If text is recognized, add it to session state and display translation
 if text:
@@ -128,10 +128,6 @@ if st.button("Send") and selected_text:
     current_content = response_data["content"]
     current_content_decoded = current_content.encode("utf-8")
     current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-
-    #For Debugging
-    st.write(braille_instructionstext)
-    st.write(instructions_list)
     
     # Update content
     new_content = f"{instructions_list}"
@@ -155,6 +151,7 @@ if st.button("Send") and selected_text:
         st.error(f"Error updating file. Status code: {update_response.status_code}")
 
 st.divider()
+
 # Footer
 st.divider()
 st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
