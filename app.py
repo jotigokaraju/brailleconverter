@@ -16,7 +16,6 @@ api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file
 # Personal access token
 access_token = "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"
 
-
 state = st.session_state
 word = []
 braille_instructions = []
@@ -75,11 +74,7 @@ def braille_to_instructions(braille_instructions):
 if 'text_received' not in state:
     state.text_received = []
 
-
-
-st.divider()
-
-#Recorder and Transcriber
+# Recorder and Transcriber
 st.header("Speech-to-Text Converter")
 st.write("Record and transcribe your speech.")
 
@@ -101,7 +96,7 @@ if state.text_received:
 
 st.divider()
 
-#Braille conversion
+# Braille conversion
 st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
 
@@ -122,12 +117,22 @@ st.write("Send Translation Instructions to Device")
 if st.button("Send"):
     instructions_list = braille_to_instructions(braille_instructions)
 
-    instructions_list_str = '\n'.join(map(str, instructions_list))
-    new_content_encoded = base64.b64encode(instructions_list_str.encode("utf-8")).decode("utf-8")
-
     # Get content
     response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
     response_data = response.json()
+
+    # Extract content
+    current_content = response_data["content"]
+    current_content_decoded = current_content.encode("utf-8")
+    current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+
+    #For Debugging
+    st.write(instructions_list)
+    # Update content
+    new_content = ','.join(['{:.2f}'.format(i) if type(i) == float else str(i) for i in instructions_list])
+
+    # Encode new content
+    new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
 
     # Prepare data
     data = {
@@ -143,7 +148,6 @@ if st.button("Send"):
         st.success("Sent!")
     else:
         st.error(f"Error updating file. Status code: {update_response.status_code}")
-
 
 st.divider()
 # Footer
