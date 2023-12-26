@@ -5,7 +5,17 @@ import time
 import requests
 import base64
 
-github_api_url = "https://api.github.com/repos/jotigokaraju/brailleconverter/contents/instructions.txt"
+# GitHub repository details
+repo_owner = "jotigokaraju"
+repo_name = "brailleconverter"
+file_path = "instructions.txt"
+
+# GitHub API URL
+api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+
+# Personal access token
+access_token = "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"
+
 
 state = st.session_state
 word = []
@@ -109,33 +119,35 @@ with c3:
     if st.button("Send"):
         instructions_list = braille_to_instructions(braille_instructions)
 
-        # Get the current content of the file
-        response = requests.get(github_api_url)
-        response.raise_for_status()
-        current_content = response.json()["content"]
-        current_content = base64.b64decode(current_content).decode("utf-8")
-
-        # Update the content with new instructions
-        updated_content = current_content + "\n" + "\n".join(map(str, instructions_list))
-
-        # Prepare the payload
-        payload = {
-            "message": "Update instructions",
-            "content": base64.b64encode(updated_content.encode("utf-8")).decode("utf-8"),
-            "sha": response.json()["sha"]
+        # Get content
+        response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
+        response_data = response.json()
+    
+        # Extract content
+        current_content = response_data["content"]
+        current_content_decoded = current_content.encode("utf-8")
+        current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+    
+        # Update content
+        new_content = instructions_list
+    
+        # Encode new content
+        new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+    
+        # Prepare data
+        data = {
+            "message": "Update instructions.txt",
+            "content": new_content_encoded,
+            "sha": response_data["sha"]
         }
-
-        # Make the PUT request to update the file
-        response = requests.put(
-            github_api_url,
-            headers={'Authorization': 'token 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'},
-            json=payload
-        )
-
-        if response.status_code == 200:
-            st.success("Instructions sent to GitHub file!")
+    
+        # Update
+        update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+    
+        if update_response.status_code == 200:
+            st.success("Sent!")
         else:
-            st.error(f"Failed to send instructions. Status code: {response.status_code}")
+            st.error(f"Error updating file. Status code: {update_response.status_code}")
 
 # Footer
 st.markdown("---")
