@@ -34,7 +34,7 @@ braille_mapping = {
     '⠵': [1, 0, 1, 0, 1, 1],  # Braille Letter Z
 }
 
-#Title Formatting
+# Title Formatting
 st.title("Live Speech to Braille Translator")
 st.subheader("Joti Gokaraju")
 st.divider()
@@ -52,13 +52,13 @@ if 'text_received' not in state:
     state.text_received = []
 
 # Create columns for layout
-c1, c2 = st.columns(2)
+c1, c2, c3 = st.columns(3)
 
 # Column 1: Display recorder and translation
 with c1:
     st.header("Speech-to-Text Converter")
     st.write("Record and transcribe your speech.")
-    
+
     # Speech-to-text recorder
     text = speech_to_text(language='en', start_prompt="⏺️", stop_prompt="⏹️", use_container_width=True, just_once=True, key='STT')
 
@@ -67,22 +67,28 @@ with c1:
         state.text_received.append(text)
         st.success("Speech recognized successfully!")
         st.write("Translated text:")
-    for translated_text in state.text_received:
-        st.write(translated_text)
-        word.append(translated_text)
+        for i, translated_text in enumerate(state.text_received):
+            st.write(f"{i + 1}. {translated_text}")
+            word.append(translated_text)
 
-# Column 2: Braille conversion
+# Column 2: Dropdown for selecting recorded text
 with c2:
+    st.header("Select Recorded Text")
+    if state.text_received:
+        selected_text = st.selectbox("Select recorded text:", state.text_received)
+
+# Column 3: Braille conversion
+with c3:
     st.header("Braille Conversion")
-    st.write("Convert translated text to Braille.")
+    st.write("Convert selected text to Braille.")
 
     # Convert to Braille button
-    if st.button("Convert to Braille"):
-        braille_instructions = word_to_braille(word)
+    if st.button("Convert to Braille") and selected_text:
+        braille_instructions = word_to_braille(selected_text)
         with st.spinner('Wait for it...'):
             time.sleep(2)
-        st.success(f"Braille instructions for {word} are: {braille_instructions}")
+        st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
 
-
-st.markdown("---")  
+# Footer
+st.markdown("---")
 st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
