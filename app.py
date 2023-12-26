@@ -65,10 +65,12 @@ def word_to_braille(text):
 # Function to convert braille_instructions to instructions list
 def braille_to_instructions(braille_instructions):
     instructions_list = []
-    for braille_char in braille_instructions:
-        if braille_char in braille_mapping:
-            instructions_list.append(braille_mapping[braille_char])
+    for word in braille_instructions:
+        for braille_char in word:
+            if braille_char in braille_mapping:
+                instructions_list.append(braille_mapping[braille_char])
     return instructions_list
+
 
 # Check if 'text_received' is in the session state
 if 'text_received' not in state:
