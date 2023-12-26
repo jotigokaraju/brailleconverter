@@ -4,7 +4,7 @@ from streamlit_mic_recorder import mic_recorder, speech_to_text
 import time
 import requests
 
-github_url = "https://raw.githubusercontent.com/jotigokaraju/brailleconverter/main/instructions.txt"
+github_url = "https://github.com/jotigokaraju/brailleconverter/blob/main/instructions.txt"
 state = st.session_state
 word = []
 braille_instructions = []
