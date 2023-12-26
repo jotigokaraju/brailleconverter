@@ -104,52 +104,53 @@ st.write("Convert selected text to Braille.")
 
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
+    global braille_instructions
     braille_instructions = word_to_braille(selected_text)
     with st.spinner('Wait for it...'):
         time.sleep(1)
     st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
 
-    st.divider()
-    
-    # Send to Github File
-    st.header("Send to Device")
-    st.write("Send Translation Instructions to Device")
-    
-    if st.button("Send"):
-        instructions_list = braille_to_instructions(braille_instructions)
-    
-        # Get content
-        response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
-        response_data = response.json()
-    
-        # Extract content
-        current_content = response_data["content"]
-        current_content_decoded = current_content.encode("utf-8")
-        current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-    
-        #For Debugging
-        st.write(braille_instructions)
-        st.write(instructions_list)
-        # Update content
-        new_content = ','.join(['{:.2f}'.format(i) if type(i) == float else str(i) for i in instructions_list])
-    
-        # Encode new content
-        new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-    
-        # Prepare data
-        data = {
-            "message": "Update instructions.txt",
-            "content": new_content_encoded,
-            "sha": response_data["sha"]
-        }
-    
-        # Update
-        update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-    
-        if update_response.status_code == 200:
-            st.success("Sent!")
-        else:
-            st.error(f"Error updating file. Status code: {update_response.status_code}")
+st.divider()
+
+# Send to Github File
+st.header("Send to Device")
+st.write("Send Translation Instructions to Device")
+
+if st.button("Send"):
+    instructions_list = braille_to_instructions(braille_instructions)
+
+    # Get content
+    response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
+    response_data = response.json()
+
+    # Extract content
+    current_content = response_data["content"]
+    current_content_decoded = current_content.encode("utf-8")
+    current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+
+    #For Debugging
+    st.write(braille_instructions)
+    st.write(instructions_list)
+    # Update content
+    new_content = ','.join(['{:.2f}'.format(i) if type(i) == float else str(i) for i in instructions_list])
+
+    # Encode new content
+    new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+
+    # Prepare data
+    data = {
+        "message": "Update instructions.txt",
+        "content": new_content_encoded,
+        "sha": response_data["sha"]
+    }
+
+    # Update
+    update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+
+    if update_response.status_code == 200:
+        st.success("Sent!")
+    else:
+        st.error(f"Error updating file. Status code: {update_response.status_code}")
 
 st.divider()
 # Footer
