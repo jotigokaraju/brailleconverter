@@ -97,7 +97,7 @@ with c3:
         with st.spinner('Wait for it...'):
             time.sleep(2)
         st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
-        st.success(instructions_list, len(instructions_list))
+        st.success(instructions_list)
 
 # Footer
 st.markdown("---")
