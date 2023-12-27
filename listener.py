@@ -15,7 +15,7 @@ file_path = "instructions.txt"
 # GitHub API URL
 api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
-# Personal access token
+# HIDE
 access_token = "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"
 
 servo_pins = [1, 2, 3, 4, 5]
