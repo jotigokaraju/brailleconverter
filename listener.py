@@ -72,7 +72,7 @@ while True:
     
             # Prepare data
             data = {
-                "message": "Update instructions.txt",
+                "message": "Update instructions.txt remove existing instructions",
                 "content": new_content_encoded,
                 "sha": response_data["sha"]
             }
