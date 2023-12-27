@@ -49,40 +49,43 @@ def handle(current_content_list):
                 
 
 while True:
-    
-    # Get content
-    response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
-    response_data = response.json()
 
-    # Extract content
-    current_content = response_data["content"]
-    current_content_decoded = base64.b64decode(current_content).decode("utf-8")
-    current_content_list = json.loads(current_content_decoded)
-    if current_content_list != "":
+    try:
         
-        handle(current_content_list)
-        
-        # Update content
-        new_content = ""
-
-        # Encode new content
-        new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-
-        # Prepare data
-        data = {
-            "message": "Update instructions.txt",
-            "content": new_content_encoded,
-            "sha": response_data["sha"]
-        }
-
-        # Update
-        update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-
-        if update_response.status_code == 200:
-            print("Sent!")
-        else:
-            print(f"Error updating file. Status code: {update_response.status_code}")
+        # Get content
+        response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
+        response_data = response.json()
     
-    time.sleep(DELAY_LISTENER)
-
-#Include SERV.cleanup()
+        # Extract content
+        current_content = response_data["content"]
+        current_content_decoded = base64.b64decode(current_content).decode("utf-8")
+        current_content_list = json.loads(current_content_decoded)
+        if current_content_list != "":
+            
+            handle(current_content_list)
+            
+            # Update content
+            new_content = ""
+    
+            # Encode new content
+            new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+    
+            # Prepare data
+            data = {
+                "message": "Update instructions.txt",
+                "content": new_content_encoded,
+                "sha": response_data["sha"]
+            }
+    
+            # Update
+            update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+    
+            if update_response.status_code == 200:
+                print("Sent!")
+            else:
+                print(f"Error updating file. Status code: {update_response.status_code}")
+        
+        time.sleep(DELAY_LISTENER)
+        
+    except KeyboardInterrupt:
+        SERV.cleanup()
