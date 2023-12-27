@@ -13,7 +13,7 @@ file_path = "instructions.txt"
 # GitHub API URL
 api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
-# Personal access token
+# HIDE
 access_token = "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"
 
 state = st.session_state
@@ -64,9 +64,9 @@ def word_to_braille(text):
     return converted_phrase
 
 # Function to convert braille_instructions to instructions list
-def braille_to_instructions(braille_instruction1):
+def braille_to_instructions(commands):
     instructions_list = []
-    for word in braille_instruction1:
+    for word in commands:
         if word in braille_mapping:
             instructions_list.append(braille_mapping[word])
     return instructions_list
@@ -107,9 +107,6 @@ if st.button("Convert to Braille") and selected_text:
     with st.spinner('Processing...'):
         braille_instructions = word_to_braille(selected_text)
         time.sleep(1)
-    
-
-    
     st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
 
 st.divider()
@@ -119,8 +116,8 @@ st.header("Send to Device")
 st.write("Send Translation Instructions to Device")
 
 if st.button("Send") and selected_text:
-    braille_instructionstext = word_to_braille(selected_text)
-    instructions_list = braille_to_instructions(braille_instructionstext)
+    send_braille_commands = word_to_braille(selected_text)
+    instructions_list = braille_to_instructions(send_braille_commands)
 
     # Get content
     response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
@@ -139,7 +136,7 @@ if st.button("Send") and selected_text:
 
     # Prepare data
     data = {
-        "message": "Update instructions.txt",
+        "message": "Update instructions.txt with instructions",
         "content": new_content_encoded,
         "sha": response_data["sha"]
     }
