@@ -50,10 +50,19 @@ braille_mapping = {
     '⠵': [1, 0, 1, 0, 1, 1],  # Braille Letter Z
 }
 
-# Title Formatting
-st.title("Live Speech to Braille")
-st.subheader("Joti Gokaraju")
-st.divider()
+def verification_popup():
+    verification_code = st.text_input("Enter verification code:")
+    submit_button = st.button("Submit Code")
+
+    if submit_button:
+        if verification_code == "2024":
+            st.success("Verification successful! Access granted.")
+            return True
+        else:
+            st.error("Incorrect verification code. Please try again.")
+            return False
+    else:
+        return False
 
 # Braille conversion function
 def word_to_braille(text):
@@ -70,87 +79,96 @@ def braille_to_instructions(commands):
         if word in braille_mapping:
             instructions_list.append(braille_mapping[word])
     return instructions_list
-
-
-# Check if 'text_received' is in the session state
-if 'text_received' not in state:
-    state.text_received = []
-
-# Recorder and Transcriber
-st.header("Speech-to-Text Converter")
-st.write("Record and transcribe your speech.")
-
-# Speech-to-text recorder
-text = speech_to_text(language='en', start_prompt="Start 🔴", stop_prompt="Stop 🟥", use_container_width=True, just_once=True, key='STT')
-
-# If text is recognized, add it to session state and display translation
-if text:
-    state.text_received.append(text)
-    st.success("Speech recognized successfully!")
-    st.write("Translated text:")
-    for i, translated_text in enumerate(state.text_received):
-        st.write(f"{i + 1}. {translated_text}")
-        word.append(translated_text)
-
-st.header("Select Recorded Text")
-if state.text_received:
-    selected_text = st.selectbox("Select recorded text:", state.text_received)
-
-st.divider()
-
-# Braille conversion
-st.header("Braille Conversion")
-st.write("Convert selected text to Braille.")
-
-# Convert to Braille button
-if st.button("Convert to Braille") and selected_text:
-    with st.spinner('Processing...'):
-        braille_instructions = word_to_braille(selected_text)
-        time.sleep(1)
-    st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
-
-st.divider()
-
-# Send to Github File
-st.header("Send to Device")
-st.write("Send Translation Instructions to Device")
-
-if st.button("Send") and selected_text:
-    send_braille_commands = word_to_braille(selected_text)
-    instructions_list = braille_to_instructions(send_braille_commands)
-
-    # Get content
-    response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
-    response_data = response.json()
-
-    # Extract content
-    current_content = response_data["content"]
-    current_content_decoded = current_content.encode("utf-8")
-    current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+        
+if not verification_popup():
+    st.stop()
+else:
+    # Title Formatting
+    st.title("Live Speech to Braille")
+    st.subheader("Joti Gokaraju")
+    st.divider()
     
-    # Update content
-    new_content = f"{instructions_list}"
-
-    # Encode new content
-    new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-
-    # Prepare data
-    data = {
-        "message": "Update instructions.txt with instructions",
-        "content": new_content_encoded,
-        "sha": response_data["sha"]
-    }
-
-    # Update
-    update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-
-    if update_response.status_code == 200:
-        st.success("Sent!")
-    else:
-        st.error(f"Error updating file. Status code: {update_response.status_code}")
-
-st.divider()
-
-# Footer
-st.divider()
-st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
+       
+    
+    # Check if 'text_received' is in the session state
+    if 'text_received' not in state:
+        state.text_received = []
+    
+    # Recorder and Transcriber
+    st.header("Speech-to-Text Converter")
+    st.write("Record and transcribe your speech.")
+    
+    # Speech-to-text recorder
+    text = speech_to_text(language='en', start_prompt="Start 🔴", stop_prompt="Stop 🟥", use_container_width=True, just_once=True, key='STT')
+    
+    # If text is recognized, add it to session state and display translation
+    if text:
+        state.text_received.append(text)
+        st.success("Speech recognized successfully!")
+        st.write("Translated text:")
+        for i, translated_text in enumerate(state.text_received):
+            st.write(f"{i + 1}. {translated_text}")
+            word.append(translated_text)
+    
+    st.header("Select Recorded Text")
+    if state.text_received:
+        selected_text = st.selectbox("Select recorded text:", state.text_received)
+    
+    st.divider()
+    
+    # Braille conversion
+    st.header("Braille Conversion")
+    st.write("Convert selected text to Braille.")
+    
+    # Convert to Braille button
+    if st.button("Convert to Braille") and selected_text:
+        with st.spinner('Processing...'):
+            braille_instructions = word_to_braille(selected_text)
+            time.sleep(1)
+        st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
+    
+    st.divider()
+    
+    # Send to Github File
+    st.header("Send to Device")
+    st.write("Send Translation Instructions to Device")
+    
+    if st.button("Send") and selected_text:
+        send_braille_commands = word_to_braille(selected_text)
+        instructions_list = braille_to_instructions(send_braille_commands)
+    
+        # Get content
+        response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
+        response_data = response.json()
+    
+        # Extract content
+        current_content = response_data["content"]
+        current_content_decoded = current_content.encode("utf-8")
+        current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+        
+        # Update content
+        new_content = f"{instructions_list}"
+    
+        # Encode new content
+        new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+    
+        # Prepare data
+        data = {
+            "message": "Update instructions.txt with instructions",
+            "content": new_content_encoded,
+            "sha": response_data["sha"]
+        }
+    
+        # Update
+        update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+    
+        if update_response.status_code == 200:
+            st.success("Sent!")
+        else:
+            st.error(f"Error updating file. Status code: {update_response.status_code}")
+    
+    st.divider()
+    
+    # Footer
+    st.divider()
+    st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
