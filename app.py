@@ -74,12 +74,13 @@ st.subheader("Comprehensive Braille to Speech System")
 st.divider()
 
 with st.expander("About the System"):
-    st.write(\"\"\"
+    st.write("""
         This App was Designed to Assist the DeafBlind Community, a traditionally underserved demographic. 
         The App Translates Live Speech into Braille Instructions that are read out by the TouchTalk Device.
-        The Goal of this App is provide a low-cost novel method to traditional communicatione methods used by the DeafBlind.
+        The Goal of this App is provide a low-cost novel method to traditional communication methods used by the DeafBlind.
         It makes everyday communication easier, less invasive, and universal - preventing both the cost and knowledge barriers that exist with current methods. 
-    \"\"\")
+    """)
+
 
 st.divider()
 
