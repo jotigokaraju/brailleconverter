@@ -68,9 +68,40 @@ def braille_to_instructions(commands):
     return instructions_list
         
 
-# Title Formatting
-st.title("TouchTalk")
-st.subheader("Comprehensive Braille to Speech System")
+# Title Formatting with banner blue background
+st.markdown(
+    """
+    <style>
+        .title {
+            background-color: #3498db;
+            padding: 0.5em;
+            color: white;
+            text-align: center;
+            border-radius: 0.25em;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+st.markdown('<p class="title">TouchTalk</p>', unsafe_allow_html=True)
+
+# Sub-header Formatting with banner blue background
+st.markdown(
+    """
+    <style>
+        .subheader {
+            background-color: #3498db;
+            padding: 0.5em;
+            color: white;
+            text-align: center;
+            border-radius: 0.25em;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+st.markdown('<p class="subheader">Comprehensive Braille to Speech System</p>', unsafe_allow_html=True)
+
 st.divider()
 
 with st.expander("About the System"):
