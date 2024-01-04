@@ -72,10 +72,7 @@ def braille_to_instructions(commands):
 st.title("TouchTalk")
 st.header("A Comprehensive Speech to Braille Platform")
 
-
-st.divider()
-
-with st.expander("About the System"):
+with st.expander("About"):
     st.write("""
         This App was Designed to Assist the DeafBlind Community, a traditionally underserved demographic. 
         The App Translates Live Speech into Braille Instructions that are read out by the TouchTalk Device.
