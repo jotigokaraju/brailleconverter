@@ -102,8 +102,8 @@ if text:
     state.text_received.append(text)
     st.success("Speech recognized successfully!")
     st.write("Translated text:")
-    for i, translated_text in enumerate(state.text_received):
-        st.write(f"{i + 1}. {translated_text}")
+    for index, translated_text in enumerate(state.text_received):
+        st.write(f"{index + 1}. {translated_text}")
         word.append(translated_text)
 
 
