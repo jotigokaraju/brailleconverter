@@ -72,7 +72,19 @@ def braille_to_instructions(commands):
 st.title("TouchTalk")
 st.header("A Comprehensive Speech to Braille Platform")
 
-st.divider()
+with st.expander("About"):
+    st.markdown("""
+        This app is designed to assist the DeafBlind community, a traditionally underserved demographic. 
+        The app translates live speech into Braille instructions that are read out by the TouchTalk device.
+        
+        **Goals:**
+        - Provide a low-cost novel method for traditional communication used by the DeafBlind.
+        - Make everyday communication easier, less invasive, and universal.
+        - Eliminate cost and knowledge barriers associated with current methods. 
+
+        This innovative approach aims to empower the DeafBlind community, offering a more accessible and inclusive means of communication.
+    """)
+
 
 # Check if 'text_received' is in the session state
 if 'text_received' not in state:
@@ -94,8 +106,9 @@ if text:
         st.write(f"{i + 1}. {translated_text}")
         word.append(translated_text)
 
-st.header("Select Recorded Text")
+
 if state.text_received:
+    st.header("Select Recorded Text")
     selected_text = st.selectbox("Select recorded text:", state.text_received)
 
 st.divider()
@@ -150,21 +163,6 @@ if st.button("Send") and selected_text:
         st.success("Sent!")
     else:
         st.error(f"Error updating file. Status code: {update_response.status_code}")
-
-st.divider()
-
-with st.expander("About"):
-    st.markdown("""
-        This app is designed to assist the DeafBlind community, a traditionally underserved demographic. 
-        The app translates live speech into Braille instructions that are read out by the TouchTalk device.
-        
-        **Goals:**
-        - Provide a low-cost novel method for traditional communication used by the DeafBlind.
-        - Make everyday communication easier, less invasive, and universal.
-        - Eliminate cost and knowledge barriers associated with current methods. 
-
-        This innovative approach aims to empower the DeafBlind community, offering a more accessible and inclusive means of communication.
-    """)
 
 # Footer
 st.divider()
