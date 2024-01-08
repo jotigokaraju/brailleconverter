@@ -70,8 +70,9 @@ def braille_to_instructions(commands):
 
 # Title Formatting with banner blue background
 st.title("TouchTalk")
-
-with st.expander("<h2>A Comprehensive Speech to Braille Platform</h2>", unsafe_allow_html=True):
+st.header("A Comprehensive Speech to Braille Platform")
+st.divider()
+with st.expander("***About***"):
     st.markdown("""
         This app is designed to assist the DeafBlind community, a traditionally underserved demographic. 
         The app translates live speech into Braille instructions that are read out by the TouchTalk device.
@@ -85,6 +86,7 @@ with st.expander("<h2>A Comprehensive Speech to Braille Platform</h2>", unsafe_a
         Made by Joti Gokaraju
     """)
 
+st.divider()
 
 # Check if 'text_received' is in the session state
 if 'text_received' not in state:
