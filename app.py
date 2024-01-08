@@ -72,15 +72,6 @@ def braille_to_instructions(commands):
 st.title("TouchTalk")
 st.header("A Comprehensive Speech to Braille Platform")
 
-with st.expander("About"):
-    st.write("""
-        This App was Designed to Assist the DeafBlind Community, a traditionally underserved demographic. 
-        The App Translates Live Speech into Braille Instructions that are read out by the TouchTalk Device.
-        The Goal of this App is provide a low-cost novel method to traditional communication methods used by the DeafBlind.
-        It makes everyday communication easier, less invasive, and universal - preventing both the cost and knowledge barriers that exist with current methods. 
-    """)
-
-
 st.divider()
 
 # Check if 'text_received' is in the session state
@@ -161,6 +152,19 @@ if st.button("Send") and selected_text:
         st.error(f"Error updating file. Status code: {update_response.status_code}")
 
 st.divider()
+
+with st.expander("About"):
+    st.markdown("""
+        This app is designed to assist the DeafBlind community, a traditionally underserved demographic. 
+        The app translates live speech into Braille instructions that are read out by the TouchTalk device.
+        
+        **Goals:**
+        - Provide a low-cost novel method for traditional communication used by the DeafBlind.
+        - Make everyday communication easier, less invasive, and universal.
+        - Eliminate cost and knowledge barriers associated with current methods. 
+
+        This innovative approach aims to empower the DeafBlind community, offering a more accessible and inclusive means of communication.
+    """)
 
 # Footer
 st.divider()
