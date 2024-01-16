@@ -141,7 +141,7 @@ while True:
                 print(f"Error updating file. Status code: {update_response.status_code}")
 
         for instruction_set in current_content_list:
-            handler(values_list1, values_list 2, instruction_set)
+            handler(values_list1, values_list2, instruction_set)
             
         time.sleep(DELAY_LISTENER)
     
