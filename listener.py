@@ -115,12 +115,12 @@ while True:
         current_content = response_data["content"]
         current_content_decoded = base64.b64decode(current_content).decode("utf-8")
         current_content_list = json.loads(current_content_decoded)
-        if current_content_list != "":
+        if current_content_list != [0]:
             
             handle(current_content_list)
             
             # Update content
-            new_content = ""
+            new_content = "[0]"
     
             # Encode new content
             new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
