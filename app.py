@@ -22,32 +22,32 @@ global braille_instructions
 braille_instructions = []
 
 braille_mapping = {
-    '⠁': [1, 0, 0, 0, 0, 0],  # Braille Letter A
-    '⠃': [1, 1, 0, 0, 0, 0],  # Braille Letter B
-    '⠉': [1, 0, 0, 1, 0, 0],  # Braille Letter C
-    '⠙': [1, 0, 0, 1, 1, 0],  # Braille Letter D
-    '⠑': [1, 0, 0, 0, 1, 0],  # Braille Letter E
-    '⠋': [1, 1, 0, 1, 0, 0],  # Braille Letter F
-    '⠛': [1, 1, 0, 1, 1, 0],  # Braille Letter G
-    '⠓': [1, 1, 0, 0, 1, 0],  # Braille Letter H
-    '⠊': [0, 1, 0, 1, 0, 0],  # Braille Letter I
-    '⠚': [0, 1, 0, 1, 1, 0],  # Braille Letter J
-    '⠅': [1, 0, 1, 0, 0, 0],  # Braille Letter K
-    '⠇': [1, 1, 1, 0, 0, 0],  # Braille Letter L
-    '⠍': [1, 0, 1, 1, 0, 0],  # Braille Letter M
-    '⠝': [1, 0, 1, 1, 1, 0],  # Braille Letter N
-    '⠕': [1, 0, 1, 0, 1, 0],  # Braille Letter O
-    '⠏': [1, 1, 1, 1, 0, 0],  # Braille Letter P
-    '⠟': [1, 1, 1, 1, 1, 0],  # Braille Letter Q
-    '⠗': [1, 1, 1, 0, 1, 0],  # Braille Letter R
-    '⠎': [0, 1, 1, 1, 0, 0],  # Braille Letter S
-    '⠞': [0, 1, 1, 1, 1, 0],  # Braille Letter T
-    '⠥': [1, 0, 1, 0, 0, 1],  # Braille Letter U
-    '⠧': [1, 1, 1, 0, 0, 1],  # Braille Letter V
-    '⠺': [0, 1, 0, 1, 1, 1],  # Braille Letter W
-    '⠭': [1, 0, 1, 1, 0, 1],  # Braille Letter X
-    '⠽': [1, 0, 1, 1, 1, 1],  # Braille Letter Y
-    '⠵': [1, 0, 1, 0, 1, 1],  # Braille Letter Z
+    '⠁': [1, 0],  # Braille Letter A
+    '⠃': [2, 0],  # Braille Letter B
+    '⠉': [1, 1],  # Braille Letter C
+    '⠙': [1, 2],  # Braille Letter D
+    '⠑': [1, 7],  # Braille Letter E
+    '⠋': [2, 1],  # Braille Letter F
+    '⠛': [2, 2],  # Braille Letter G
+    '⠓': [2, 7],  # Braille Letter H
+    '⠊': [7, 1],  # Braille Letter I
+    '⠚': [7, 2],  # Braille Letter J
+    '⠅': [5, 0],  # Braille Letter K
+    '⠇': [3, 0],  # Braille Letter L
+    '⠍': [5, 1],  # Braille Letter M
+    '⠝': [5, 2],  # Braille Letter N
+    '⠕': [5, 7],  # Braille Letter O
+    '⠏': [3, 1],  # Braille Letter P
+    '⠟': [3, 2],  # Braille Letter Q
+    '⠗': [3, 7],  # Braille Letter R
+    '⠎': [4, 1],  # Braille Letter S
+    '⠞': [4, 2],  # Braille Letter T
+    '⠥': [5, 6],  # Braille Letter U
+    '⠧': [3, 6],  # Braille Letter V
+    '⠺': [7, 3],  # Braille Letter W
+    '⠭': [5, 5],  # Braille Letter X
+    '⠽': [5, 3],  # Braille Letter Y
+    '⠵': [5, 4],  # Braille Letter Z
 }
 
 
