@@ -22,7 +22,7 @@ access_token = "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"
 #Stepper Motor 1
 in1 = 17
 in2 = 18
-in3 = 27
+in3 = 23
 in4 = 22
 
 
