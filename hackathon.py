@@ -14,19 +14,26 @@ api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file
 # HIDE
 access_token = "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"
 
-move_count = st.slider('How old are you?', 0, 100, 5)
-st.write("Move the robot", move_count, 'times')
+st.title("MineBot")
+st.header("A Mini-Robot System to Tackle Clumping in Potash Storage Bins")
+st.divider()
 
-list = []
+st.header("Number of Rotations")
+move_count = st.slider('Choose How Many Times You Want the Motor To Hit', 0, 100, 5)
+st.write("Move the motor", move_count, 'times')
+
+st.divider()
+
+lister = [[0, 0]]
 
 for _ in range(move_count):
-  list.append([7, 7], [0, 0])
+    lister.extend([[7, 7], [0, 0]])
 
-st.header("Send to Device")
-st.write("Send Instructions to Device")
+st.header("Activate!")
+st.write("Send Precise Instructions to Device")
 
 if st.button("Send"):
-    instructions_list = list
+    instructions_list = lister
 
     # Get content
     response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
@@ -60,4 +67,4 @@ if st.button("Send"):
 
 # Footer
 st.divider()
-st.write("All Recordings are Immediately Deleted Upon Refreshing the Page to Prevent Data Leaks")
+st.write("Joti Gokaraju, Abhinav Menon, Arbe Chumala")
