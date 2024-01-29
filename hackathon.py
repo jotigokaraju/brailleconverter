@@ -12,7 +12,7 @@ file_path = "instructions.txt"
 api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
 # HIDE
-access_token = "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"
+access_token = "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"
 
 st.title("MineBot")
 st.header("A Mini-Robot System to Tackle Clumping in Potash Storage Bins")
