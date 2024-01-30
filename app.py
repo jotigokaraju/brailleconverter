@@ -63,8 +63,8 @@ def check_for_items():
     current_content_decoded = current_content.encode("utf-8")
     current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
 
-    if current_content_decoded != []:
-        st.write(current_content_decoded)
+    if current_content_decoded != "[]":
+        st.success(current_content_decoded)
     
         # Update content
         new_content = "[]"
@@ -81,7 +81,8 @@ def check_for_items():
     
         # Update
         update_response = requests.put(api_url_commands, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-    
+    else:
+        st.success("Nothing to see here for now")
 
 # Braille conversion function
 def word_to_braille(text):
