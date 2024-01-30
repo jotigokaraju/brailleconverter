@@ -14,7 +14,7 @@ file_path = "instructions.txt"
 api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
 
 # HIDE
-access_token = "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"
+access_token = "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"
 
 state = st.session_state
 word = []
