@@ -122,14 +122,13 @@ with st.expander("***Instructions***"):
     st.markdown("""
         Please view the following instructions before you attempt to use the app. 
         
-        *Sending information to the device.*
-        
-        **Step-by-Step:**
+        **Sending information to the device.**
+
         1. Press Start and Begin Recording Yourself. When You Finish, Press Stop. The App Will Automatically Return a Transcription of Your Speech 
         2. Select the Convert to Braille Button to Translate Your Speech into Braille Letters
         3. Select the Send to Device Button to Have the App Turn the Letters into Instructions and Have the Device Execute
 
-        *Receiving information from the device.*
+        **Receiving information from the device.**
 
         1. Scroll to the Bottom of the Page
         2. Click on the Check Button to See If There Is Any Text
