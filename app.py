@@ -5,16 +5,19 @@ import time
 import requests
 import base64
 
-# GitHub repository details
+#Repo Details
 repo_owner = "jotigokaraju"
 repo_name = "brailleconverter"
-file_path = "instructions.txt"
+file_path_instructions = "instructions.txt"
+file_path_reciever = "recieve.txt"
 
 # GitHub API URL
-api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}"
+api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_instructions}"
+api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
 
-# HIDE
+#HIDE
 access_token = "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"
+
 
 state = st.session_state
 word = []
@@ -50,6 +53,35 @@ braille_mapping = {
     '⠵': [5, 4],  # Braille Letter Z
 }
 
+def check_for_items():
+    # Get content
+    response = requests.get(api_url_commands, headers={"Authorization": f"Bearer {access_token}"})
+    response_data = response.json()
+
+    # Extract content
+    current_content = response_data["content"]
+    current_content_decoded = current_content.encode("utf-8")
+    current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+
+    if current_content_decoded != []:
+        st.write(current_content_decoded)
+    
+        # Update content
+        new_content = "[]"
+    
+        # Encode new content
+        new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+    
+        # Prepare data
+        data = {
+            "message": "Update instructions.txt with instructions",
+            "content": new_content_encoded,
+            "sha": response_data["sha"]
+        }
+    
+        # Update
+        update_response = requests.put(api_url_commands, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+    
 
 # Braille conversion function
 def word_to_braille(text):
@@ -165,6 +197,15 @@ if st.button("Send") and selected_text:
         st.success("Sent!")
     else:
         st.error(f"Error updating file. Status code: {update_response.status_code}")
+
+
+#Divider
+st.divider()
+st.header("Recieve from Device")
+st.write("Any Translations Sent from the Device to the App will be Displayed Here")
+
+if st.button("Check"):
+    check_for_items()
 
 # Footer
 st.divider()
