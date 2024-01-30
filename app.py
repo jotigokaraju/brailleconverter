@@ -102,7 +102,7 @@ def braille_to_instructions(commands):
 
 # Title Formatting with banner blue background
 st.title("TouchTalk")
-st.header("A Comprehensive Speech to Braille Platform")
+st.header("A Comprehensive Speech to Braille Platform for the DeafBlind")
 st.divider()
 with st.expander("***About***"):
     st.markdown("""
