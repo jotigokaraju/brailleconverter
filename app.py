@@ -224,7 +224,7 @@ st.divider()
 st.header("Recieve from Device")
 st.write("Any Translations Sent from the Device to the App will be Displayed Here")
 
-if st.button("Check"):
+if st.button("Check", type="primary"):
     check_for_items()
 
 # Footer
