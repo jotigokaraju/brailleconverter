@@ -25,32 +25,32 @@ global braille_instructions
 braille_instructions = []
 
 braille_mapping = {
-    '⠁': [1, 0],  # Braille Letter A
-    '⠃': [2, 0],  # Braille Letter B
-    '⠉': [1, 1],  # Braille Letter C
-    '⠙': [1, 2],  # Braille Letter D
-    '⠑': [1, 7],  # Braille Letter E
-    '⠋': [2, 1],  # Braille Letter F
-    '⠛': [2, 2],  # Braille Letter G
-    '⠓': [2, 7],  # Braille Letter H
-    '⠊': [7, 1],  # Braille Letter I
-    '⠚': [7, 2],  # Braille Letter J
-    '⠅': [5, 0],  # Braille Letter K
-    '⠇': [3, 0],  # Braille Letter L
-    '⠍': [5, 1],  # Braille Letter M
-    '⠝': [5, 2],  # Braille Letter N
-    '⠕': [5, 7],  # Braille Letter O
-    '⠏': [3, 1],  # Braille Letter P
-    '⠟': [3, 2],  # Braille Letter Q
-    '⠗': [3, 7],  # Braille Letter R
-    '⠎': [4, 1],  # Braille Letter S
-    '⠞': [4, 2],  # Braille Letter T
-    '⠥': [5, 6],  # Braille Letter U
-    '⠧': [3, 6],  # Braille Letter V
-    '⠺': [7, 3],  # Braille Letter W
-    '⠭': [5, 5],  # Braille Letter X
-    '⠽': [5, 3],  # Braille Letter Y
-    '⠵': [5, 4],  # Braille Letter Z
+    '⠁': [5, 4],  # Braille Letter A
+    '⠃': [7, 4],  # Braille Letter B
+    '⠉': [5, 3],  # Braille Letter C
+    '⠙': [5, 1],  # Braille Letter D
+    '⠑': [5, 7],  # Braille Letter E
+    '⠋': [7, 3],  # Braille Letter F
+    '⠛': [7, 1],  # Braille Letter G
+    '⠓': [7, 7],  # Braille Letter H
+    '⠊': [1, 3],  # Braille Letter I
+    '⠚': [1, 1],  # Braille Letter J
+    '⠅': [3, 4],  # Braille Letter K
+    '⠇': [0, 4],  # Braille Letter L
+    '⠍': [3, 3],  # Braille Letter M
+    '⠝': [3, 1],  # Braille Letter N
+    '⠕': [3, 7],  # Braille Letter O
+    '⠏': [0, 3],  # Braille Letter P
+    '⠟': [0, 1],  # Braille Letter Q
+    '⠗': [0, 7],  # Braille Letter R
+    '⠎': [2, 3],  # Braille Letter S
+    '⠞': [2, 1],  # Braille Letter T
+    '⠥': [3, 2],  # Braille Letter U
+    '⠧': [0, 2],  # Braille Letter V
+    '⠺': [1, 0],  # Braille Letter W
+    '⠭': [3, 5],  # Braille Letter X
+    '⠽': [3, 0],  # Braille Letter Y
+    '⠵': [3, 6],  # Braille Letter Z
 }
 
 def check_for_items():
