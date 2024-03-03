@@ -24,7 +24,7 @@ word = []
 global braille_instructions
 braille_instructions = []
 
-braille_mapping_swapped = {
+braille_mapping = {
     '⠁': [6, 4],  # Braille Letter A
     '⠃': [2, 4],  # Braille Letter B
     '⠉': [6, 5],  # Braille Letter C
