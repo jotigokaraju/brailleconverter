@@ -25,32 +25,32 @@ global braille_instructions
 braille_instructions = []
 
 braille_mapping_swapped = {
-    '⠁': [4, 5],  # Braille Letter A
-    '⠃': [4, 7],  # Braille Letter B
-    '⠉': [3, 5],  # Braille Letter C
-    '⠙': [1, 5],  # Braille Letter D
-    '⠑': [7, 5],  # Braille Letter E
-    '⠋': [3, 7],  # Braille Letter F
-    '⠛': [1, 7],  # Braille Letter G
-    '⠓': [7, 7],  # Braille Letter H
-    '⠊': [3, 1],  # Braille Letter I
-    '⠚': [1, 1],  # Braille Letter J
-    '⠅': [4, 3],  # Braille Letter K
-    '⠇': [4, 0],  # Braille Letter L
-    '⠍': [3, 3],  # Braille Letter M
-    '⠝': [1, 3],  # Braille Letter N
-    '⠕': [7, 3],  # Braille Letter O
-    '⠏': [3, 0],  # Braille Letter P
-    '⠟': [1, 0],  # Braille Letter Q
-    '⠗': [7, 0],  # Braille Letter R
-    '⠎': [3, 2],  # Braille Letter S
-    '⠞': [1, 2],  # Braille Letter T
-    '⠥': [2, 3],  # Braille Letter U
-    '⠧': [2, 0],  # Braille Letter V
-    '⠺': [0, 1],  # Braille Letter W
-    '⠭': [5, 3],  # Braille Letter X
-    '⠽': [0, 3],  # Braille Letter Y
-    '⠵': [6, 3],  # Braille Letter Z
+    '⠁': [6, 4],  # Braille Letter A
+    '⠃': [2, 4],  # Braille Letter B
+    '⠉': [6, 5],  # Braille Letter C
+    '⠙': [6, 7],  # Braille Letter D
+    '⠑': [6, 1],  # Braille Letter E
+    '⠋': [2, 5],  # Braille Letter F
+    '⠛': [2, 7],  # Braille Letter G
+    '⠓': [2, 1],  # Braille Letter H
+    '⠊': [1, 5],  # Braille Letter I
+    '⠚': [1, 7],  # Braille Letter J
+    '⠅': [3, 4],  # Braille Letter K
+    '⠇': [0, 4],  # Braille Letter L
+    '⠍': [3, 5],  # Braille Letter M
+    '⠝': [3, 7],  # Braille Letter N
+    '⠕': [3, 1],  # Braille Letter O
+    '⠏': [0, 5],  # Braille Letter P
+    '⠟': [0, 7],  # Braille Letter Q
+    '⠗': [0, 1],  # Braille Letter R
+    '⠎': [7, 5],  # Braille Letter S
+    '⠞': [7, 7],  # Braille Letter T
+    '⠥': [3, 6],  # Braille Letter U
+    '⠧': [0, 6],  # Braille Letter V
+    '⠺': [1, 0],  # Braille Letter W
+    '⠭': [3, 3],  # Braille Letter X
+    '⠽': [3, 0],  # Braille Letter Y
+    '⠵': [3, 2],  # Braille Letter Z
 }
 
 
