@@ -16,7 +16,7 @@ api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file
 api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
 
 #HIDE
-access_token = "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"
+access_token = "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"
 
 
 state = st.session_state
