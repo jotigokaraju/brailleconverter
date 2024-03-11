@@ -7,9 +7,7 @@ import base64
 from gtts import gTTS
 from io import BytesIO
 
-sound_file = BytesIO()
-tts = gTTS('hello', lang='en')
-tts.write_to_fp(sound_file)
+
 
 #Repo Details
 repo_owner = "jotigokaraju"
@@ -115,6 +113,11 @@ def braille_to_instructions(commands):
 st.title("TouchTalk")
 st.header("A Comprehensive Speech to Braille Platform for the DeafBlind")
 st.divider()
+
+sound_file = BytesIO()
+tts = gTTS('hello', lang='en')
+tts.write_to_fp(sound_file)
+
 with st.expander("***About***"):
     st.markdown("""
         This app is designed to assist the DeafBlind community, a traditionally underserved demographic. 
