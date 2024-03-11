@@ -7,6 +7,10 @@ import base64
 from gtts import gTTS
 from io import BytesIO
 
+sound_file = BytesIO()
+tts = gTTS('hello', lang='en')
+tts.write_to_fp(sound_file)
+
 #Repo Details
 repo_owner = "jotigokaraju"
 repo_name = "brailleconverter"
