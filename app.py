@@ -4,6 +4,8 @@ from streamlit_mic_recorder import mic_recorder, speech_to_text
 import time
 import requests
 import base64
+from gtts import gTTS
+from io import BytesIO
 
 #Repo Details
 repo_owner = "jotigokaraju"
@@ -66,6 +68,9 @@ def check_for_items():
 
 
     st.success(current_content_decoded)
+    sound_file = BytesIO()
+    tts = gTTS(current_content_decoded, lang='en')
+    tts.write_to_fp(sound_file)
     
     # Update content
     new_content = "Nothing to see here for now!"
