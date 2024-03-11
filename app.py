@@ -66,11 +66,12 @@ def check_for_items():
     current_content_decoded = current_content.encode("utf-8")
     current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
 
-
-    st.success(current_content_decoded)
     sound_file = BytesIO()
     tts = gTTS(current_content_decoded, lang='en')
     tts.write_to_fp(sound_file)
+    st.write('hi')
+    st.success(current_content_decoded)
+    
     
     # Update content
     new_content = "Nothing to see here for now!"
