@@ -71,7 +71,7 @@ def check_for_items():
     sound_file = BytesIO()
     tts = gTTS(current_content_decoded, lang='en')
     tts.write_to_fp(sound_file)
-    st.write('hi')
+    st.audio(sound_file)
     st.success(current_content_decoded)
     
     
@@ -114,9 +114,6 @@ st.title("TouchTalk")
 st.header("A Comprehensive Speech to Braille Platform for the DeafBlind")
 st.divider()
 
-sound_file = BytesIO()
-tts = gTTS('hello', lang='en')
-tts.write_to_fp(sound_file)
 
 with st.expander("***About***"):
     st.markdown("""
