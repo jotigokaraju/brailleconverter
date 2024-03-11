@@ -3,3 +3,5 @@ pybraille
 SpeechRecognition
 streamlit-mic-recorder
 requests
+gTTS
+io
