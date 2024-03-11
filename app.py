@@ -72,7 +72,7 @@ def check_for_items():
         sound_file = BytesIO()
         tts = gTTS(current_content_decoded, lang='en')
         tts.write_to_fp(sound_file)
-        st.audio(sound_file, format='audio/mp3', autoplay=True)
+        st.audio(sound_file)
 
     
     st.success(current_content_decoded)
