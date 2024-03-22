@@ -165,10 +165,10 @@ st.write("Record and transcribe your speech.")
 # Speech-to-text recorder
 text = speech_to_text(
     language='en',
-    start_prompt="Start",
-    stop_prompt="Stop",
+    start_prompt="Start Recording",
+    stop_prompt="Stop Recording",
     just_once=False,
-    use_container_width=False,
+    use_container_width=True,
     callback=None,
     args=(),
     kwargs={},
