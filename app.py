@@ -162,6 +162,7 @@ st.header("Speech-to-Text Converter")
 st.write("Record and transcribe your speech.")
 
 # Speech-to-text recorder
+# Speech-to-text recorder
 text = speech_to_text(
     language='en',
     start_prompt="Start",
@@ -174,14 +175,19 @@ text = speech_to_text(
     key=None
 )
 
-# If text is recognized, add it to session state and display translation
-if text:
+# Always render the speech_to_text component
+if text is not None:
     state.text_received.append(text)
+
+# Display recognition status and translated text
+st.write("Translated text:")
+for index, translated_text in enumerate(state.text_received):
+    st.write(f"{index + 1}. {translated_text}")
+    word.append(translated_text)
+
+# Display success message if text is recognized
+if text:
     st.success("Speech recognized successfully!")
-    st.write("Translated text:")
-    for index, translated_text in enumerate(state.text_received):
-        st.write(f"{index + 1}. {translated_text}")
-        word.append(translated_text)
 
 
 if state.text_received:
