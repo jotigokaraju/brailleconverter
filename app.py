@@ -162,11 +162,7 @@ st.header("Speech-to-Text Converter")
 st.write("Record and transcribe your speech.")
 
 # Speech-to-text recorder
-c1, c2 = st.columns(2)
-with c1:
-    st.write("Convert speech to text:")
-with c2:
-    text = speech_to_text(language='en', use_container_width=True, just_once=True, key='STT')
+text = speech_to_text(language='en', use_container_width=False, just_once=True, key='STT')
 
 
 st.write('Speech-to-Text')
