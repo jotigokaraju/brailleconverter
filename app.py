@@ -162,18 +162,7 @@ st.header("Speech-to-Text Converter")
 st.write("Record and transcribe your speech.")
 
 # Speech-to-text recorder
-# Speech-to-text recorder
-text = speech_to_text(
-    language='en',
-    start_prompt="Start Recording",
-    stop_prompt="Stop Recording",
-    just_once=False,
-    use_container_width=True,
-    callback=None,
-    args=(),
-    kwargs={},
-    key=None
-)
+text = speech_to_text(language='en', start_prompt="Start 🔴", stop_prompt="Stop 🟥", use_container_width=True, just_once=True, key='STT')
 
 # Always render the speech_to_text component
 if text is not None:
