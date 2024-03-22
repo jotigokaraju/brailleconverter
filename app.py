@@ -164,6 +164,7 @@ st.write("Record and transcribe your speech.")
 
 # Speech-to-text recorder
 text = speech_to_text(language='en', start_prompt="Start 🔴", stop_prompt="Stop 🟥", use_container_width=True, just_once=True, key='STT')
+st.write('Speech-to-Text')
 
 # If text is recognized, add it to session state and display translation
 if text:
