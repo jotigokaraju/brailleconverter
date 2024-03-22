@@ -26,8 +26,7 @@ access_token = "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"
 state = st.session_state
 if 'text_received' not in state:
     state.text_received = []
-if 'selected_text' not in state:
-    state.selected_text = ""
+
 word = []
 global braille_instructions
 braille_instructions = []
@@ -163,7 +162,11 @@ st.header("Speech-to-Text Converter")
 st.write("Record and transcribe your speech.")
 
 # Speech-to-text recorder
-text = speech_to_text(language='en', start_prompt="Start 🔴", stop_prompt="Stop 🟥", use_container_width=True, just_once=False, key='STT')
+c1, c2 = st.columns(2)
+with c1:
+    st.write("Convert speech to text:")
+with c2:
+    text = speech_to_text(language='en', use_container_width=True, just_once=True, key='STT')
 
 
 st.write('Speech-to-Text')
