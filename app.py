@@ -6,13 +6,6 @@ import requests
 import base64
 from gtts import gTTS
 from io import BytesIO
-import torch
-from transformers import GPT2LMHeadModel, GPT2Tokenizer
-
-# Load pre-trained GPT-2 model and tokenizer
-model_name = 'gpt2-medium'  # You can choose different sizes like 'gpt2', 'gpt2-medium', 'gpt2-large', etc.
-tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-model = GPT2LMHeadModel.from_pretrained(model_name)
 
 
 
@@ -108,19 +101,7 @@ def check_for_items():
 
     return current_content_decoded
     
-def grammer_check(input, output):
-    # Input text for generation
-    input_text = "The user typed in: " + input + ". The next user responded back with: " + output + ". Fix any grammer or meaning mistakes in the output, if there are none, just type back what they responded with."
 
-    # Tokenize input text
-    input_ids = tokenizer.encode(input_text, return_tensors='pt')
-
-    # Generate output
-    output = model.generate(input_ids, max_length=100, num_return_sequences=1, temperature=0.7)
-
-    # Decode and print generated text
-    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
-    return str(generated_text)
     
 # Braille conversion function
 def word_to_braille(text):
@@ -267,9 +248,8 @@ st.header("Recieve from Device")
 st.write("Any Translations Sent from the Device to the App will be Displayed Here")
 
 if st.button("Check", type="primary"):
-    output = check_for_items()
-    x = grammer_check(selected_text, output)
-    st.success(x)
+    check_for_items()
+
 
 # Footer
 st.divider()
