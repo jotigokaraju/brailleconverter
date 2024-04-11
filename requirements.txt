@@ -5,6 +5,4 @@ streamlit-mic-recorder
 requests
 gTTS
 pandas
-nrclex
-textblob
-
+nltk
