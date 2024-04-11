@@ -9,10 +9,7 @@ from io import BytesIO
 import pandas as pd
 from nrclex import NRCLex
 import subprocess
-
-
-
-subprocess.run(["python", "-m", "textblob.download_corpora"], check=True)
+from textblob import download_corpora
 
 
 txt_transcript = "Hello"
