@@ -6,4 +6,5 @@ requests
 gTTS
 pandas
 nrclex
+textblob
 
