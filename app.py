@@ -7,12 +7,6 @@ import base64
 from gtts import gTTS
 from io import BytesIO
 import pandas as pd
-import nltk
-from nltk.sentiment import SentimentIntensityAnalyzer
-sia = SentimentIntensityAnalyzer()
-text = sia.polarity_scores("Wow, NLTK is really powerful!")
-st.write(text)
-
 
 
 
