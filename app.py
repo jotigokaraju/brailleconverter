@@ -8,6 +8,12 @@ from gtts import gTTS
 from io import BytesIO
 import pandas as pd
 from nrclex import NRCLex
+import subprocess
+
+
+
+subprocess.run(["python", "-m", "textblob.download_corpora"], check=True)
+
 
 txt_transcript = "Hello"
 emotion = NRCLex(txt_transcript)
