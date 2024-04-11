@@ -6,6 +6,14 @@ import requests
 import base64
 from gtts import gTTS
 from io import BytesIO
+import pandas as pd
+from nrclex import NRCLex
+
+txt_transcript = "Hello"
+emotion = NRCLex(txt_transcript)
+df = pd.DataFrame(emotion.top_emotions,columns=["Sentiment", "Score"])
+st.title("Emotion/Sentiment Analysis From Audio File 🙂")
+st.dataframe(df)
 
 
 
