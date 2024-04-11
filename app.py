@@ -7,23 +7,9 @@ import base64
 from gtts import gTTS
 from io import BytesIO
 import pandas as pd
-from nrclex import NRCLex
-import subprocess
-from textblob import TextBlob
 import nltk
 
-# Check if corpora are downloaded
-if not nltk.data.find('corpora/wordnet.zip'):
-    # Download the corpora
-    TextBlob('').download_corpora()
-
-
-txt_transcript = "Hello"
-emotion = NRCLex(txt_transcript)
-df = pd.DataFrame(emotion.top_emotions,columns=["Sentiment", "Score"])
-st.title("Emotion/Sentiment Analysis From Audio File 🙂")
-st.dataframe(df)
-
+nltk.download()
 
 
 
