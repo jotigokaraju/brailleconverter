@@ -4,4 +4,6 @@ SpeechRecognition
 streamlit-mic-recorder
 requests
 gTTS
+pandas
+nrclex
 
