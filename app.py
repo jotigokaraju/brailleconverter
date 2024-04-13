@@ -170,6 +170,7 @@ st.divider()
 
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
+selected_text = None
 tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1:
@@ -197,6 +198,7 @@ with tab1:
     
     if state.text_received:
         st.header("Select Recorded Text")
+        global selected_text
         selected_text = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
@@ -214,6 +216,7 @@ with tab2:
         st.image(image, caption="Uploaded Image", use_column_width=True)
         if st.button("Generate Caption") and image is not None:
             captions = caption(image)
+            global selected_text
             selected_text = captions[0]['generated_text']
             st.write(captions[0]['generated_text'])
     
