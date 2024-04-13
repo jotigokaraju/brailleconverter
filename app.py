@@ -32,11 +32,16 @@ access_token = "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"
 
 
 state = st.session_state
+
 if 'text_received' not in state:
     state.text_received = []
 
 if 'img_received' not in state:
     state.img_received = []
+
+if "selected_tab" not in st.session_state:
+    st.session_state.selected_tab = "AI Speech Transcription"
+
 
 word = []
 global braille_instructions
@@ -174,7 +179,9 @@ st.write("Speech-to-Braille or Image-to-Braille")
 selected_text = None
 tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
-with tab1:
+with tab1: 
+    
+    st.session_state.selected_tab = "AI Speech Transcription"
     
     selected_text1 = None
     
@@ -208,6 +215,8 @@ with tab1:
 
 
 with tab2:
+
+    st.session_state.selected_tab = "AI Image Captioning"
     
     selected_text2 = None
     caption_of_image = None
