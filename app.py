@@ -212,7 +212,7 @@ elif genre == 'AI Image Captioning':
         st.image(image, caption="Uploaded Image", use_column_width=True)
         if st.button("Generate Caption"):
             captions = caption(image)
-            selected_text = captions[0]['generated_text]
+            selected_text = captions[0]['generated_text']
             st.write("The AI generated caption is: ")
             st.write(selected_text) 
     
