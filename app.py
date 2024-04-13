@@ -128,7 +128,8 @@ def braille_to_instructions(commands):
         if word in braille_mapping:
             instructions_list.append(braille_mapping[word])
     return instructions_list
-        
+
+def tab1():
 
 # Title Formatting with banner blue background
 st.title("TouchTalk")
@@ -180,7 +181,6 @@ tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1: 
 
-    tracker.append(1)
     
    # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
@@ -208,13 +208,14 @@ with tab1:
         st.header("Select Text")
         global selected_text1
         selected_text1 = st.selectbox("Select recorded text:", state.text_received)
+        tracker.append(1)
 
     st.divider()
 
 
 with tab2:
 
-    tracker.append(2)
+    
     
     caption_of_image = None
     
@@ -246,6 +247,7 @@ with tab2:
         st.header("Select Caption")
         global selected_text2
         selected_text2 = st.selectbox("Select Caption:", state.img_received)
+        tracker.append(2)
         
     st.divider()
 
