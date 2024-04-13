@@ -12,7 +12,7 @@ from PIL import Image
 caption = None
 
 @st.cache(allow_output_mutation=True)
-def load_model():
+def load_model_caption():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
 
@@ -204,7 +204,7 @@ with tab1:
 
 with tab2:
     if caption is None:
-        caption = load_model()
+        caption = load_model_caption()
     # Recorder and Transcriber
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
