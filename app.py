@@ -15,8 +15,6 @@ caption = None
 def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
-tracker = 0
-
 #Repo Details
 repo_owner = "jotigokaraju"
 repo_name = "brailleconverter"
@@ -206,8 +204,7 @@ with tab1:
     
     if state.text_received:
         st.header("Select Text")
-        global selected_text1
-        selected_text1 = st.selectbox("Select recorded text:", state.text_received)
+        selected_text = st.selectbox("Select recorded text:", state.text_received)
         
 
     st.divider()
@@ -232,7 +229,6 @@ with tab2:
         st.image(image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("Generate Caption") and image is not None:
-            tracker = 2
             captions = caption(image) 
             caption_of_image = str(captions[0]['generated_text'])
             st.success(caption_of_image)
@@ -246,8 +242,7 @@ with tab2:
     
     if state.img_received:
         st.header("Select Caption")
-        global selected_text2
-        selected_text2 = st.selectbox("Select Caption:", state.img_received)
+        selected_text = st.selectbox("Select Caption:", state.img_received)
         
         
     st.divider()
@@ -263,11 +258,7 @@ st.write("Convert selected text to Braille.")
     
 # Convert to Braille button
 if st.button("Convert to Braille"):
-    if tracker == 1:
-        selected_text = selected_text1
-    else:
-        selected_text = selected_text2
-    st.write(tracker)
+    
     with st.spinner('Processing...'):
 
         braille_instructions = word_to_braille(selected_text)
