@@ -7,12 +7,13 @@ import base64
 from gtts import gTTS
 import torch
 from PIL import Image
-from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
+from transformers import ViTImageProcessor, AutoTokenizer, VisionEncoderDecoderModel
+
 
 
 loc = "ydshieh/vit-gpt2-coco-en"
 
-feature_extractor = ViTFeatureExtractor.from_pretrained(loc)
+feature_extractor = ViTImageProcessor.from_pretrained(loc)
 tokenizer = AutoTokenizer.from_pretrained(loc)
 model = VisionEncoderDecoderModel.from_pretrained(loc)
 model.eval()
