@@ -5,8 +5,6 @@ import time
 import requests
 import base64
 from gtts import gTTS
-from io import BytesIO
-import pandas as pd
 from transformers import pipeline
 from PIL import Image
 
