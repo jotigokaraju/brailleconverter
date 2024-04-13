@@ -6,4 +6,4 @@ requests
 gTTS
 pillow
 transformers
-
+torch
