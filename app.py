@@ -220,7 +220,7 @@ with tab1:
         max_score_label = max(model_outputs[0], key=lambda x: x['score'])
         label = max_score_label['label']
         st.success(label)
-        selected_text += f"{stext} /{label[:2]}"
+        selected_text = f"{stext} /{label[:2]}"
         st.write(selected_text)
         
     st.divider()
