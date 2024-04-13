@@ -6,6 +6,5 @@ requests
 gTTS
 Pillow
 transformers
-tf-keras
 torch
 torchvision
