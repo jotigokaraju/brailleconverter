@@ -215,6 +215,7 @@ with tab1:
     
     if state.text_received:
         st.header("Select Text")
+        global selected_text1
         selected_text1 = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
@@ -253,6 +254,7 @@ with tab2:
     
     if state.img_received:
         st.header("Select Caption")
+        global selected_text2
         selected_text2 = st.selectbox("Select Caption:", state.img_received)
         
     st.divider()
@@ -266,8 +268,10 @@ st.write("Convert selected text to Braille.")
     
 # Convert to Braille button
 if st.button("Convert to Braille"):
-    
+   
     with st.spinner('Processing...'):
+        global selected_text1
+        global selected_text2
         st.write(st.session_state.selected_tab)
         if st.session_state.selected_tab == "AI Speech Transcription":
             selected_text = selected_text1
