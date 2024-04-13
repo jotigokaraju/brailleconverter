@@ -5,14 +5,15 @@ import time
 import requests
 import base64
 from gtts import gTTS
-import torch
+from transformers import pipeline
 from PIL import Image
-from transformers import ViTImageProcessor, AutoTokenizer, VisionEncoderDecoderModel
 
+# Load the pipeline outside Streamlit script
+caption = None
 
-
-
-
+@st.cache(allow_output_mutation=True)
+def load_model():
+    return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
 
 
@@ -202,7 +203,8 @@ with tab1:
     st.divider()
 
 with tab2:
-
+    if caption is None:
+        caption = load_model()
     # Recorder and Transcriber
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
@@ -211,8 +213,9 @@ with tab2:
     if photo is not None:
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
-        if st.button("Generate Caption"):
-            st.write("The AI generated caption is: ")
+        if st.button("Caption") and image is not None:
+            captions = caption(image)
+            st.write(captions[0]['generated_text'])
     
     st.divider()
 
