@@ -17,7 +17,6 @@ def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
 @st.cache_resource
-@st.cache_resources
 def sentiment_model():
     return pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", top_k=None)
 
