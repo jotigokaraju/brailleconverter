@@ -209,12 +209,13 @@ with tab2:
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
     
-    photo = st.camera_input("Take a Picture")
+    photo = st.camera_input("Take a Photo")
     if photo is not None:
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
-        if st.button("Caption") and image is not None:
+        if st.button("Generate Caption") and image is not None:
             captions = caption(image)
+            selected_text = captions[0]['generated_text']
             st.write(captions[0]['generated_text'])
     
     st.divider()
