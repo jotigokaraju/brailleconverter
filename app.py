@@ -5,12 +5,30 @@ import time
 import requests
 import base64
 from gtts import gTTS
-from transformers import pipeline
+import torch
 from PIL import Image
+from transformers import ViTFeatureExtractor, AutoTokenizer, VisionEncoderDecoderModel
 
-#Load Image Captioning Model
 
-caption = pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
+loc = "ydshieh/vit-gpt2-coco-en"
+
+feature_extractor = ViTFeatureExtractor.from_pretrained(loc)
+tokenizer = AutoTokenizer.from_pretrained(loc)
+model = VisionEncoderDecoderModel.from_pretrained(loc)
+model.eval()
+
+
+def predict(image):
+
+    pixel_values = feature_extractor(images=image, return_tensors="pt").pixel_values
+
+    with torch.no_grad():
+        output_ids = model.generate(pixel_values, max_length=16, num_beams=4, return_dict_in_generate=True).sequences
+
+    preds = tokenizer.batch_decode(output_ids, skip_special_tokens=True)
+    preds = [pred.strip() for pred in preds]
+
+    return preds
 
 #Repo Details
 repo_owner = "jotigokaraju"
@@ -209,8 +227,8 @@ elif genre == 'AI Image Captioning':
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
         if st.button("Generate Caption"):
-            captions = caption(image)
-            selected_text = captions[0]['generated_text']
+            captions = predict(image)
+            selected_text = captions
             st.write("The AI generated caption is: ")
             st.write(selected_text) 
     
