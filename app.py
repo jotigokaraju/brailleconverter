@@ -221,7 +221,7 @@ with tab1:
         label = max_score_label['label']
         st.success(label)
         selected_text = f"{stext} /{label[:2]}"
-        st.write(selected_text)
+        st.success(selected_text)
         
     st.divider()
 
