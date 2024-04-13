@@ -11,6 +11,7 @@ from PIL import Image
 # Load the pipeline outside Streamlit script
 caption = None
 sentiment = None
+selected_text = None
 
 @st.cache_resource
 def load_model():
