@@ -129,7 +129,7 @@ def braille_to_instructions(commands):
             instructions_list.append(braille_mapping[word])
     return instructions_list
 
-def tab1():
+
 
 # Title Formatting with banner blue background
 st.title("TouchTalk")
