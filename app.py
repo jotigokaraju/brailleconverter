@@ -264,6 +264,7 @@ if st.button("Convert to Braille"):
         selected_text = selected_text1
     else:
         selected_text = selected_text2
+    st.write(tracker)
     with st.spinner('Processing...'):
 
         braille_instructions = word_to_braille(selected_text)
