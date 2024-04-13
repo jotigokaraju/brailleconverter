@@ -170,7 +170,7 @@ st.divider()
 
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
-
+selected_text = None
 tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1:
