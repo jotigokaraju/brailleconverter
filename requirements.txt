@@ -1,11 +1,10 @@
 streamlit==1.31.0
 pybraille
-SpeechRecognition
 streamlit-mic-recorder
 requests
 gTTS
 Pillow
+transformers
 tf-keras
-transformers==4.40.0
 torch
 torchvision
