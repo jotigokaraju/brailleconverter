@@ -10,7 +10,7 @@ from PIL import Image
 
 # Load the pipeline outside Streamlit script
 caption = None
-s_text = ''
+
 @st.cache_resource
 def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
@@ -34,6 +34,9 @@ access_token = "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"
 state = st.session_state
 if 'text_received' not in state:
     state.text_received = []
+
+if 'img_received' not in state:
+    state.img_received = []
 
 word = []
 global braille_instructions
@@ -107,8 +110,6 @@ def check_for_items():
 
     return current_content_decoded
     
-
-    
 # Braille conversion function
 def word_to_braille(text):
     converted_phrase = []
@@ -174,6 +175,7 @@ selected_text = None
 tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1:
+    
    # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
     st.write("Record and transcribe your speech.")
@@ -197,30 +199,43 @@ with tab1:
     
     
     if state.text_received:
-        st.header("Select Recorded Text")
+        st.header("Select Text")
         s_text = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
 
+
 with tab2:
+    
     if caption is None:
         caption = load_model()
-    # Recorder and Transcriber
+        
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
     
     photo = st.camera_input("Take a Photo")
+    
     if photo is not None:
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
+        
         if st.button("Generate Caption") and image is not None:
             captions = caption(image) 
-            st.write(captions[0]['generated_text'])
-            s_text = str(captions[0]['generated_text'])
+            caption_of_image = str(captions[0]['generated_text'])
+            st.success(caption_of_image)
+
+    if caption_of_image is not None:
+        state.img_received.append(caption_of_image)
+
+    st.write("Caption text:")
+    for index, caption_text in enumerate(state.img_received):
+        st.write(f"{index + 1}. {caption_text}")
+    
+    if state.img_received:
+        st.header("Select Text")
+        selected_text = st.selectbox("Select caption:", state.img_received)
+        
     st.divider()
-
-
-
 
 
 # Braille conversion
