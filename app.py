@@ -12,7 +12,7 @@ from PIL import Image
 caption = None
 
 @st.cache(allow_output_mutation=True)
-def load_model_caption():
+def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
 
@@ -170,7 +170,6 @@ st.divider()
 
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
-selected_text = None
 tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1:
@@ -204,7 +203,7 @@ with tab1:
 
 with tab2:
     if caption is None:
-        caption = load_model_caption()
+        caption = load_model()
     # Recorder and Transcriber
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
