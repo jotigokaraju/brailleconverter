@@ -241,7 +241,7 @@ st.divider()
 st.header("Send to Device")
 st.write("Send Translation Instructions to Device")
 
-if st.button("Send", type="primary") and if selected_text is not None:
+if st.button("Send", type="primary") and selected_text is not None:
     send_braille_commands = word_to_braille(selected_text)
     instructions_list = braille_to_instructions(send_braille_commands)
 
