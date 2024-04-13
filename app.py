@@ -221,7 +221,7 @@ with tab1:
         label = max_score_label['label']
         st.success(label)
         selected_text = f"{stext} /{label[:2]}"
-        st.success(selected_text)
+        st.success(f"Transcribed word: {selected_text}")
         state.selected_text = selected_text
         
     st.divider()
