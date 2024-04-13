@@ -221,11 +221,11 @@ with tab2:
     if photo is not None:
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
-        #if st.button("Generate Caption"):
-            #captions = predict(image)
-            #selected_text = captions
-            #st.write("The AI generated caption is: ")
-            #st.write(selected_text) 
+        if st.button("Generate Caption"):
+            captions = predict(image)
+            selected_text = captions
+            st.write("The AI generated caption is: ")
+            st.write(selected_text) 
     
     st.divider()
 
