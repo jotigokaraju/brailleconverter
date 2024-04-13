@@ -10,7 +10,7 @@ from PIL import Image
 
 # Load the pipeline outside Streamlit script
 caption = None
-
+s_text = ''
 @st.cache_resource
 def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
