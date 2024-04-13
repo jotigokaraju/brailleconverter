@@ -220,7 +220,7 @@ with tab1:
             max_score_label = max(model_outputs[0], key=lambda x: x['score'])
             label = max_score_label['label']
             label_cap = label[0].upper() + label[1:]
-            st.success(f"Detected Sentiment: label_cap")
+            st.success(f"Detected Sentiment: {label_cap}")
             selected_text = f"{stext} /{label[:2]}"
             st.success(f"Transcribed word: {selected_text}")
             state.selected_text = selected_text
