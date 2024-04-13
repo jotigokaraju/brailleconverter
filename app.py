@@ -200,7 +200,7 @@ with tab1:
     
     if state.text_received:
         st.header("Select Text")
-        s_text = st.selectbox("Select recorded text:", state.text_received)
+        selected_text = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
 
@@ -242,7 +242,6 @@ with tab2:
 st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
 
-selected_text = s_text
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
     with st.spinner('Processing...'):
