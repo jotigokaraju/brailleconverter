@@ -11,7 +11,6 @@ from PIL import Image
 # Load the pipeline outside Streamlit script
 caption = None
 sentiment = None
-selected_text = None
 
 @st.cache_resource
 def load_model():
@@ -43,7 +42,8 @@ if 'text_received' not in state:
 if 'img_received' not in state:
     state.img_received = []
 
-
+if 'selected_text' not in state:
+    state.selected_text = None
 
 word = []
 global braille_instructions
@@ -222,6 +222,7 @@ with tab1:
         st.success(label)
         selected_text = f"{stext} /{label[:2]}"
         st.success(selected_text)
+        state.selected_text = selected_text
         
     st.divider()
 
@@ -259,6 +260,7 @@ with tab2:
     if state.img_received:
         st.header("Select Caption")
         selected_text = st.selectbox("Select Caption:", state.img_received)
+        state.selected_text = selected_text
         
         
     st.divider()
@@ -273,10 +275,10 @@ st.write("Convert selected text to Braille.")
 
     
 # Convert to Braille button
-if st.button("Convert to Braille"):
+if st.button("Convert to Braille") and state.selected_text:
     
     with st.spinner('Processing...'):
-
+        selected_text = state.selected_text
         braille_instructions = word_to_braille(selected_text)
         time.sleep(0.5)
         
@@ -288,7 +290,8 @@ st.divider()
 st.header("Send to Device")
 st.write("Send Translation Instructions to Device")
 
-if st.button("Send", type="primary") and selected_text is not None:
+if st.button("Send", type="primary") and state.selected_text is not None:
+    selected_text = state.selected_text
     send_braille_commands = word_to_braille(selected_text)
     instructions_list = braille_to_instructions(send_braille_commands)
 
