@@ -176,6 +176,8 @@ tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1:
     
+    selected_text1 = None
+    
    # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
     st.write("Record and transcribe your speech.")
@@ -200,13 +202,16 @@ with tab1:
     
     if state.text_received:
         st.header("Select Text")
-        selected_text = st.selectbox("Select recorded text:", state.text_received)
+        selected_text1 = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
 
 
 with tab2:
+    
+    selected_text2 = None
     caption_of_image = None
+    
     if caption is None:
         caption = load_model()
         
@@ -232,8 +237,8 @@ with tab2:
         st.write(f"{index + 1}. {caption_text}")
     
     if state.img_received:
-        st.header("Select Text")
-        selected_text = st.selectbox("Select caption:", state.img_received)
+        st.header("Select Caption")
+        selected_text2 = st.selectbox("Select Caption:", state.img_received)
         
     st.divider()
 
@@ -242,6 +247,11 @@ with tab2:
 st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
 
+if st.session_state.selected_tab == "AI Speech Transcription":
+    selected_text = selected_text1
+elif st.session_state.selected_tab == "AI Image Captioning":
+    selected_text = selected_text2
+    
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
     with st.spinner('Processing...'):
