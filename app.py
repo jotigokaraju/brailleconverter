@@ -262,7 +262,7 @@ st.write("Convert selected text to Braille.")
     
 # Convert to Braille button
 if st.button("Convert to Braille"):
-    if tracker[-1] == 2:
+    if tracker[-1] == 1:
         selected_text = selected_text1
     else:
         selected_text = selected_text2
