@@ -198,7 +198,7 @@ with tab1:
     
     if state.text_received:
         st.header("Select Recorded Text")
-        selected_text = st.selectbox("Select recorded text:", state.text_received)
+        s_text = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
 
@@ -214,10 +214,9 @@ with tab2:
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
         if st.button("Generate Caption") and image is not None:
-            captions = caption(image)
-            selected_text = str(captions[0]['generated_text'])
+            captions = caption(image) 
             st.write(captions[0]['generated_text'])
-    
+            s_text = str(captions[0]['generated_text'])
     st.divider()
 
 
@@ -228,11 +227,12 @@ with tab2:
 st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
 
+selected_text = s_text
 # Convert to Braille button
 if st.button("Convert to Braille") and selected_text:
     with st.spinner('Processing...'):
         braille_instructions = word_to_braille(selected_text)
-        time.sleep(1)
+        time.sleep(0.5)
     st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
 
 st.divider()
