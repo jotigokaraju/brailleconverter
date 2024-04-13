@@ -7,3 +7,6 @@ gTTS
 pandas
 Pillow
 transformers
+tensorflow==2.0.0
+torch
+torchvision
