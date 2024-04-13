@@ -10,10 +10,16 @@ from PIL import Image
 
 # Load the pipeline outside Streamlit script
 caption = None
+sentiment = None
 
 @st.cache_resource
 def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
+
+@st.cache_resource
+@st.cache_resources
+def sentiment_model():
+    return pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", top_k=None)
 
 #Repo Details
 repo_owner = "jotigokaraju"
@@ -179,6 +185,8 @@ tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1: 
 
+    if sentiment is None:
+        classifier = sentiment_model()
     
    # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
@@ -200,13 +208,19 @@ with tab1:
     # Display success message if text is recognized
     if text:
         st.success("Speech recognized successfully!")
-        tracker = 1
     
     if state.text_received:
         st.header("Select Text")
         selected_text = st.selectbox("Select recorded text:", state.text_received)
         
-
+    if st.button("Sentiment Analysis", type="primary"):
+        sentences = []
+        sentences.append(selected_text)
+        model_outputs = classifier(sentences)
+        max_score_label = max(model_outputs[0], key=lambda x: x['score'])
+        st.success(max_score_label)
+        selected_text += f" /{max_score_label[:2]}"
+        
     st.divider()
 
 
