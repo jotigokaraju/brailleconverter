@@ -19,15 +19,11 @@ model.eval()
 
 
 def predict(image):
-
     pixel_values = feature_extractor(images=image, return_tensors="pt").pixel_values
-
     with torch.no_grad():
         output_ids = model.generate(pixel_values, max_length=16, num_beams=4, return_dict_in_generate=True).sequences
-
     preds = tokenizer.batch_decode(output_ids, skip_special_tokens=True)
     preds = [pred.strip() for pred in preds]
-
     return preds
 
 #Repo Details
@@ -183,12 +179,11 @@ st.divider()
 
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
-genre = st.radio("Select Type", ["AI Speech Transcription", "AI Image Captioning"])
-st.divider()
 
-if genre == 'AI Speech Transcription':
+tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
-    # Recorder and Transcriber
+with tab1:
+   # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
     st.write("Record and transcribe your speech.")
     
@@ -215,8 +210,8 @@ if genre == 'AI Speech Transcription':
         selected_text = st.selectbox("Select recorded text:", state.text_received)
 
     st.divider()
-    
-elif genre == 'AI Image Captioning':
+
+with tab2:
 
     # Recorder and Transcriber
     st.header("Image Captioning")
@@ -226,11 +221,11 @@ elif genre == 'AI Image Captioning':
     if photo is not None:
         image = Image.open(photo)
         st.image(image, caption="Uploaded Image", use_column_width=True)
-        if st.button("Generate Caption"):
-            captions = predict(image)
-            selected_text = captions
-            st.write("The AI generated caption is: ")
-            st.write(selected_text) 
+        #if st.button("Generate Caption"):
+            #captions = predict(image)
+            #selected_text = captions
+            #st.write("The AI generated caption is: ")
+            #st.write(selected_text) 
     
     st.divider()
 
