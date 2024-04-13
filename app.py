@@ -202,13 +202,13 @@ with tab1:
     # Display success message if text is recognized
     if text:
         st.success("Speech recognized successfully!")
-    
+        tracker.append(1)
     
     if state.text_received:
         st.header("Select Text")
         global selected_text1
         selected_text1 = st.selectbox("Select recorded text:", state.text_received)
-        tracker.append(1)
+        
 
     st.divider()
 
@@ -232,6 +232,7 @@ with tab2:
         st.image(image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("Generate Caption") and image is not None:
+            tracker.append(2)
             captions = caption(image) 
             caption_of_image = str(captions[0]['generated_text'])
             st.success(caption_of_image)
@@ -247,7 +248,7 @@ with tab2:
         st.header("Select Caption")
         global selected_text2
         selected_text2 = st.selectbox("Select Caption:", state.img_received)
-        tracker.append(2)
+        
         
     st.divider()
 
