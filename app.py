@@ -210,16 +210,17 @@ with tab1:
     
     if state.text_received:
         st.header("Select Text")
-        selected_text = st.selectbox("Select recorded text:", state.text_received)
+        stext = st.selectbox("Select recorded text:", state.text_received)
         
     if st.button("Sentiment Analysis", type="primary"):
         sentences = []
-        sentences.append(selected_text)
+        sentences.append(stext)
         model_outputs = classifier(sentences)
         max_score_label = max(model_outputs[0], key=lambda x: x['score'])
         label = max_score_label['label']
         st.success(label)
-        selected_text += f" /{label[:2]}"
+        selected_text += f"{stext} /{label[:2]}"
+        st.write(selected_text)
         
     st.divider()
 
