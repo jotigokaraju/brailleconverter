@@ -6,6 +6,7 @@ requests
 gTTS
 pandas
 Pillow
+tf-keras
 transformers
 tensorflow
 torch
