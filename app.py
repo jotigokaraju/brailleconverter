@@ -206,7 +206,7 @@ with tab1:
 
 
 with tab2:
-    
+    caption_of_image = None
     if caption is None:
         caption = load_model()
         
