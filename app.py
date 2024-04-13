@@ -39,8 +39,8 @@ if 'text_received' not in state:
 if 'img_received' not in state:
     state.img_received = []
 
-if "selected_tab" not in st.session_state:
-    st.session_state.selected_tab = "AI Speech Transcription"
+if 'selected_tab' not in st.session_state:
+    st.session_state.selected_tab = None
 
 
 word = []
@@ -256,16 +256,22 @@ with tab2:
 st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
 
-if st.session_state.selected_tab == "AI Speech Transcription":
-    selected_text = selected_text1
-elif st.session_state.selected_tab == "AI Image Captioning":
-    selected_text = selected_text2
+
     
 # Convert to Braille button
-if st.button("Convert to Braille") and selected_text:
+if st.button("Convert to Braille"):
+    
     with st.spinner('Processing...'):
+        
+        if st.session_state.selected_tab == "AI Speech Transcription":
+            selected_text = selected_text1
+            
+        elif st.session_state.selected_tab == "AI Image Captioning":
+            selected_text = selected_text2
+            
         braille_instructions = word_to_braille(selected_text)
         time.sleep(0.5)
+        
     st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
 
 st.divider()
