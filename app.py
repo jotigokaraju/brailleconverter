@@ -15,7 +15,7 @@ caption = None
 def load_model():
     return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
-
+tracker = []
 
 #Repo Details
 repo_owner = "jotigokaraju"
@@ -39,8 +39,6 @@ if 'text_received' not in state:
 if 'img_received' not in state:
     state.img_received = []
 
-if 'selected_tab' not in st.session_state:
-    st.session_state.selected_tab = []
 
 
 word = []
@@ -174,11 +172,6 @@ with st.expander("***Instructions***"):
 
 st.divider()
 
-global selected_text1
-selected_text1 = None
-
-global selected_text2
-selected_text2 = None
 
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
@@ -186,10 +179,8 @@ selected_text = None
 tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
 
 with tab1: 
-    
-    st.session_state.selected_tab = "AI Speech Transcription"
-    
-    
+
+    tracker.append(1)
     
    # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
@@ -223,9 +214,8 @@ with tab1:
 
 with tab2:
 
-    st.session_state.selected_tab = "AI Image Captioning"
+    tracker.append(2)
     
-
     caption_of_image = None
     
     if caption is None:
@@ -265,20 +255,17 @@ st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
 
 
+
+
     
 # Convert to Braille button
 if st.button("Convert to Braille"):
-   
+    if tracker[-1] == 2:
+        selected_text = selected_text1
+    else:
+        selected_text = selected_text2
     with st.spinner('Processing...'):
-        global selected_text1
-        global selected_text2
-        st.write(st.session_state.selected_tab)
-        if st.session_state.selected_tab == "AI Speech Transcription":
-            selected_text = selected_text1
-            
-        elif st.session_state.selected_tab == "AI Image Captioning":
-            selected_text = selected_text2
-            
+
         braille_instructions = word_to_braille(selected_text)
         time.sleep(0.5)
         
