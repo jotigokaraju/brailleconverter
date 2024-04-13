@@ -40,7 +40,7 @@ if 'img_received' not in state:
     state.img_received = []
 
 if 'selected_tab' not in st.session_state:
-    st.session_state.selected_tab = None
+    st.session_state.selected_tab = []
 
 
 word = []
@@ -174,6 +174,12 @@ with st.expander("***Instructions***"):
 
 st.divider()
 
+global selected_text1
+selected_text1 = None
+
+global selected_text2
+selected_text2 = None
+
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
 selected_text = None
@@ -183,7 +189,7 @@ with tab1:
     
     st.session_state.selected_tab = "AI Speech Transcription"
     
-    selected_text1 = None
+    
     
    # Recorder and Transcriber
     st.header("Speech-to-Text Converter")
@@ -218,7 +224,7 @@ with tab2:
 
     st.session_state.selected_tab = "AI Image Captioning"
     
-    selected_text2 = None
+
     caption_of_image = None
     
     if caption is None:
@@ -262,7 +268,7 @@ st.write("Convert selected text to Braille.")
 if st.button("Convert to Braille"):
     
     with st.spinner('Processing...'):
-        
+        st.write(st.session_state.selected_tab)
         if st.session_state.selected_tab == "AI Speech Transcription":
             selected_text = selected_text1
             
