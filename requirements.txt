@@ -4,7 +4,6 @@ pybraille
 streamlit-mic-recorder
 requests
 gTTS
-Pillow
+pillow
 transformers
-torch
-torchvision
+
