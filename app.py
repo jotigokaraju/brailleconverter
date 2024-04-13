@@ -217,8 +217,9 @@ with tab1:
         sentences.append(selected_text)
         model_outputs = classifier(sentences)
         max_score_label = max(model_outputs[0], key=lambda x: x['score'])
-        st.success(max_score_label)
-        selected_text += f" /{max_score_label[:2]}"
+        label = max_score_label['label']
+        st.success(label)
+        selected_text += f" /{label[:2]}"
         
     st.divider()
 
