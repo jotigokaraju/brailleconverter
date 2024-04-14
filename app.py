@@ -7,10 +7,12 @@ import base64
 from gtts import gTTS
 from transformers import pipeline
 from PIL import Image
+from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 
 # Load the pipeline outside Streamlit script
 caption = None
 sentiment = None
+OCR = None
 
 @st.cache_resource
 def load_model():
@@ -20,6 +22,14 @@ def load_model():
 def sentiment_model():
     return pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", top_k=None)
 
+@st.cache_resource
+def ocr_processor():
+    return TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
+
+@st.cache_resource
+def ocr_model():
+    return VisionEncoderDecoderModel.from_pretrained('microsoft/trocr-large-printed')
+    
 #Repo Details
 repo_owner = "jotigokaraju"
 repo_name = "brailleconverter"
@@ -42,6 +52,9 @@ if 'text_received' not in state:
 if 'img_received' not in state:
     state.img_received = []
 
+if 'ocr_received' not in state:
+    state.ocr_received = []
+    
 if 'selected_text' not in state:
     state.selected_text = None
 
@@ -181,7 +194,7 @@ st.divider()
 st.header("Select Type of Communication")
 st.write("Speech-to-Braille or Image-to-Braille")
 selected_text = None
-tab1, tab2 = st.tabs(["AI Speech Transcription", "AI Image Captioning"])
+tab1, tab2, tab3 = st.tabs(["AI Speech Transcription", "AI Image Captioning", "Optical Character Recognition"])
 
 with tab1: 
 
@@ -230,8 +243,6 @@ with tab1:
 
 with tab2:
 
-    
-    
     caption_of_image = None
     
     if caption is None:
@@ -266,7 +277,43 @@ with tab2:
         
     st.divider()
 
+with tab3:
 
+    if OCR is None:
+        model_ocr = ocr_model()
+        process_ocr = ocr_processor()
+
+    st.header("OCR")
+    st.write("Extract Text from Image")
+    
+    ocr_photo = st.camera_input("Take a Photo")
+    
+    if ocr_photo is not None:
+        image = Image.open(ocr_photo)
+        st.image(image, caption="Uploaded Image", use_column_width=True)
+        
+        if st.button("Extract Text") and image is not None:
+            
+            image = image.convert("RGB")
+            pixel_values = process_ocr(image, return_tensors="pt").pixel_values
+            generated_ids = model_ocr.generate(pixel_values)
+            generated_text = process_ocr.batch_decode(generated_ids, skip_special_tokens=True)[0]
+            st.success(generated_text)
+
+    if caption_of_image is not None:
+        state.img_received.append(caption_of_image)
+
+    st.write("Caption text:")
+    for index, caption_text in enumerate(state.img_received):
+        st.write(f"{index + 1}. {caption_text}")
+    
+    if state.img_received:
+        st.header("Select Caption")
+        selected_text = st.selectbox("Select Caption:", state.img_received)
+        state.selected_text = selected_text
+        
+    
+    
 # Braille conversion
 st.header("Braille Conversion")
 st.write("Convert selected text to Braille.")
