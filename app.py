@@ -247,7 +247,7 @@ with tab2:
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
     
-    photo = st.camera_input("Take a Photo")
+    photo = st.camera_input("Take a Phot")
     
     if photo is not None:
         image = Image.open(photo)
