@@ -7,7 +7,7 @@ import base64
 from gtts import gTTS
 from transformers import pipeline
 from PIL import Image
-from transformers import TrOCRProcessor, VisionEncoderDecoderModel
+import easyocr
 
 # Load the pipeline outside Streamlit script
 caption = None
@@ -23,12 +23,8 @@ def sentiment_model():
     return pipeline(task="text-classification", model="SamLowe/roberta-base-go_emotions", top_k=None)
 
 @st.cache_resource
-def ocr_processor():
-    return TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-
-@st.cache_resource
 def ocr_model():
-    return VisionEncoderDecoderModel.from_pretrained('microsoft/trocr-large-printed')
+    return easyocr.Reader(['en'])
     
 #Repo Details
 repo_owner = "jotigokaraju"
@@ -280,8 +276,7 @@ with tab2:
 with tab3:
 
     if OCR is None:
-        model_ocr = ocr_model()
-        process_ocr = ocr_processor()
+        reader = ocr_model()
 
     st.header("OCR")
     st.write("Extract Text from Image")
@@ -293,12 +288,9 @@ with tab3:
         st.image(image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("Extract Text") and image is not None:
-            
-            image = image.convert("RGB")
-            pixel_values = process_ocr(image, return_tensors="pt").pixel_values
-            generated_ids = model_ocr.generate(pixel_values)
-            generated_text = process_ocr.batch_decode(generated_ids, skip_special_tokens=True)[0]
-            st.success(generated_text)
+    
+            extract_info = reader.readtext(image)
+            st.write(extract_info)
 
     if caption_of_image is not None:
         state.img_received.append(caption_of_image)
