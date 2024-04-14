@@ -274,7 +274,7 @@ with tab2:
     st.divider()
 
 with tab3:
-
+    done = None
     if OCR is None:
         reader = ocr_model()
 
@@ -291,17 +291,18 @@ with tab3:
     
             extract_info = reader.readtext(image)
             st.write(extract_info)
+            done = extract_info
 
-    if caption_of_image is not None:
-        state.img_received.append(caption_of_image)
+    if done is not None:
+        state.ocr_received.append(done)
 
     st.write("Caption text:")
-    for index, caption_text in enumerate(state.img_received):
-        st.write(f"{index + 1}. {caption_text}")
+    for index, text in enumerate(state.ocr_received):
+        st.write(f"{index + 1}. {text}")
     
-    if state.img_received:
+    if state.ocr_received:
         st.header("Select Caption")
-        selected_text = st.selectbox("Select Caption:", state.img_received)
+        selected_text = st.selectbox("Select Caption:", state.ocr_received)
         state.selected_text = selected_text
         
     
