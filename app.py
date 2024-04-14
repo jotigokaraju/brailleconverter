@@ -247,7 +247,7 @@ with tab2:
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
     
-    photo = st.camera_input("Take a Phot")
+    photo = st.camera_input("Capture a Photo")
     
     if photo is not None:
         image = Image.open(photo)
@@ -268,7 +268,7 @@ with tab2:
     if state.img_received:
         st.header("Select Caption")
         selected_text = st.selectbox("Select Caption:", state.img_received)
-        state.selected_text = selected_text
+        state.selected_text = f"{selected_text} /cap"
         
         
     st.divider()
@@ -290,8 +290,9 @@ with tab3:
         if st.button("Extract Text") and imager is not None:
     
             extract_info = reader.readtext(imager)
-            st.write(extract_info)
-            done = extract_info
+            extracted_text = ' '.join([text for _, text, _ in extract_info])
+            st.success(extracted_text)
+            done = extracted_text
 
     if done is not None:
         state.ocr_received.append(done)
@@ -303,7 +304,7 @@ with tab3:
     if state.ocr_received:
         st.header("Select Caption")
         selected_text = st.selectbox("Select Caption:", state.ocr_received)
-        state.selected_text = selected_text
+        state.selected_text = f"{selected_text} /ocr"
         
     
     
