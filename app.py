@@ -287,7 +287,7 @@ with tab3:
         imager = Image.open(ocr_photo)
         st.image(imager, caption="Uploaded Image", use_column_width=True)
         
-        if st.button("Extract Text") and image is not None:
+        if st.button("Extract Text") and imager is not None:
     
             extract_info = reader.readtext(imager)
             st.write(extract_info)
