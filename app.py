@@ -274,7 +274,9 @@ with tab2:
     st.divider()
 
 with tab3:
+    
     done = None
+    
     if OCR is None:
         reader = ocr_model()
 
@@ -297,13 +299,13 @@ with tab3:
     if done is not None:
         state.ocr_received.append(done)
 
-    st.write("Caption text:")
+    st.write("Extracted Text:")
     for index, text in enumerate(state.ocr_received):
         st.write(f"{index + 1}. {text}")
     
     if state.ocr_received:
-        st.header("Select Caption")
-        selected_text = st.selectbox("Select Caption:", state.ocr_received)
+        st.header("Select OCR Text")
+        selected_text = st.selectbox("Select Text:", state.ocr_received)
         state.selected_text = f"{selected_text} /ocr"
         
     
