@@ -284,12 +284,12 @@ with tab3:
     ocr_photo = st.camera_input("Take a Photo")
     
     if ocr_photo is not None:
-        image = Image.open(ocr_photo)
-        st.image(image, caption="Uploaded Image", use_column_width=True)
+        imager = Image.open(ocr_photo)
+        st.image(imager, caption="Uploaded Image", use_column_width=True)
         
         if st.button("Extract Text") and image is not None:
     
-            extract_info = reader.readtext(image)
+            extract_info = reader.readtext(imager)
             st.write(extract_info)
             done = extract_info
 
