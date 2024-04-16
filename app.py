@@ -5,10 +5,10 @@ import time
 import requests
 import base64
 from gtts import gTTS
-from transformers import pipeline
+from transformers import pipeline, BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 import easyocr
-from transformers import BlipProcessor, BlipForConditionalGeneration
+
 
 # Load the pipeline outside Streamlit script
 caption = None
