@@ -8,6 +8,7 @@ from gtts import gTTS
 from transformers import pipeline
 from PIL import Image
 import easyocr
+from transformers import Blip2Processor, Blip2ForConditionalGeneration
 
 # Load the pipeline outside Streamlit script
 caption = None
@@ -25,7 +26,16 @@ def sentiment_model():
 @st.cache_resource
 def ocr_model():
     return easyocr.Reader(['en'])
+
+@st.cache_resource
+def process_caption():
+    return Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
     
+@st.cache_resource
+def model_caption():
+    return Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b")
+
+
 #Repo Details
 repo_owner = "jotigokaraju"
 repo_name = "brailleconverter"
@@ -242,7 +252,8 @@ with tab2:
     caption_of_image = None
     
     if caption is None:
-        caption = load_model()
+        processvis = process_caption()
+        modelvis = model_caption()
         
     st.header("Image Captioning")
     st.write("Take an Image to Create an AI Generated Caption")
@@ -254,8 +265,13 @@ with tab2:
         st.image(image, caption="Uploaded Image", use_column_width=True)
         
         if st.button("Generate Caption") and image is not None:
-            captions = caption(image) 
-            caption_of_image = str(captions[0]['generated_text'])
+            raw_image = Image.open(photo).convert('RGB')
+
+            question = "describe this image?"
+            inputs = processvis(raw_image, question, return_tensors="pt")
+
+            out = modelvis.generate(**inputs)
+            caption_of_image = processvis.decode(out[0], skip_special_tokens=True).strip()
             st.success(caption_of_image)
 
     if caption_of_image is not None:
