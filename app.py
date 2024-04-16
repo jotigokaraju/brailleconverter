@@ -33,7 +33,7 @@ def process_caption():
     
 @st.cache_resource
 def model_caption():
-    return BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")7b")
+    return BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
 
 
 #Repo Details
