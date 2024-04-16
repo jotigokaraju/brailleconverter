@@ -160,7 +160,7 @@ with st.expander("***About***"):
         - Make everyday communication easier, less invasive, and universal.
         - Eliminate cost and knowledge barriers associated with current methods. 
 
-        This innovative approach aims to empower the DeafBlind community, offering a more accessible and inclusive means of communication.
+        This innovative approach aims to empower the Deafblind community, offering a more accessible and inclusive means of communication.
         Made by Joti Gokaraju
     """)
     
