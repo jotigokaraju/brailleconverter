@@ -15,9 +15,9 @@ caption = None
 sentiment = None
 OCR = None
 
-@st.cache_resource
-def load_model():
-    return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
+#@st.cache_resource
+#def load_model():
+    #return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
 
 @st.cache_resource
 def sentiment_model():
