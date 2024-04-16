@@ -8,7 +8,7 @@ from gtts import gTTS
 from transformers import pipeline
 from PIL import Image
 import easyocr
-from transformers import Blip2Processor, Blip2ForConditionalGeneration
+from transformers import BlipProcessor, BlipForConditionalGeneration
 
 # Load the pipeline outside Streamlit script
 caption = None
@@ -29,11 +29,11 @@ def ocr_model():
 
 @st.cache_resource
 def process_caption():
-    return Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
+    return BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
     
 @st.cache_resource
 def model_caption():
-    return Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b")
+    return BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")7b")
 
 
 #Repo Details
@@ -267,11 +267,11 @@ with tab2:
         if st.button("Generate Caption") and image is not None:
             raw_image = Image.open(photo).convert('RGB')
 
-            question = "describe this image?"
-            inputs = processvis(raw_image, question, return_tensors="pt")
+            inputs = processvis(raw_image, return_tensors="pt")
 
             out = modelvis.generate(**inputs)
-            caption_of_image = processvis.decode(out[0], skip_special_tokens=True).strip()
+            caption_of_image = processvis.decode(out[0], skip_special_tokens=True)
+            
             st.success(caption_of_image)
 
     if caption_of_image is not None:
