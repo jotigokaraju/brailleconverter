@@ -516,11 +516,15 @@ def french():
     
         if current_content_decoded != "Nothing to see here for now!":
             sound_file = BytesIO()
-            tts = gTTS(current_content_decoded, lang='en')
+            tts = gTTS(current_content_decoded, lang='fr')
             tts.write_to_fp(sound_file)
             st.audio(sound_file)
             st.success(current_content_decoded)
         else:
+            sound_file = BytesIO()
+            tts = gTTS("Rien à voir ici pour le moment!", lang='fr')
+            tts.write_to_fp(sound_file)
+            st.audio(sound_file)
             st.success("Rien à voir ici pour le moment!")
     
         
