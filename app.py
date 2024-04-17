@@ -664,6 +664,9 @@ def french():
                 translating = translator(capin)
                 caption_of_img = str(translating[0]['translation_text'])
                 st.success(caption_of_image)
+                st.success("hello")
+                st.success(capin)
+                st.success(translating)
     
         if caption_of_image is not None:
             state.img_received.append(caption_of_image)
