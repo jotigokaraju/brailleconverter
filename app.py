@@ -562,8 +562,8 @@ def french():
         return instructions_list
     
     
-    st.title("TouchTalk")
-    st.header("Une plateforme de communication exhaustive de la parole au braille pour les sourds-aveugles")
+    st.title("ToucherParler")
+    st.header("Une Plateforme Complète de Communication Cocale en Braille Pour les Sourds-aveugles")
     st.divider()
     
     
@@ -604,15 +604,15 @@ def french():
     st.divider()
     
     
-    st.header("Sélectionnez le type de communication")
-    st.write("De la parole au braille ou de l'image au braille")
+    st.header("Sélectionnez le Type de Communication")
+    st.write("De la Parole au Braille ou de L'image au Braille")
     selected_text = None
     tab1, tab2, tab3 = st.tabs(["Transcription automatique de la parole par IA", "Légende d'image générée par IA", "Reconnaissance optique de caractères"])
     
     with tab1: 
 
         # Enregistreur et transcripteur
-        st.header("Convertisseur de parole en texte")
+        st.header("Convertisseur de Parole en Texte")
         st.write("Enregistrez et transcrivez votre discours.")
         
         # Enregistreur de parole en texte
@@ -686,7 +686,7 @@ def french():
         if OCR is None:
             reader = ocr_modelfr()
     
-        st.header("OCR")
+        st.header("Reconnaissance Optique de Caractères")
         st.write("Extraire du texte à partir d'une image")
         
         ocr_photo = st.camera_input("Prendre une photo")
