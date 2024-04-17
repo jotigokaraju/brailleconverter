@@ -797,7 +797,8 @@ def french():
         
         with st.spinner('Traitement...'):
             selected_text = state.selected_text
-            braille_instructions = word_to_braille(selected_text)
+            words = selected_text.split()  # Split the selected text into words
+            braille_instructions = word_to_braille(words)  # Pass the list of words to the conversion function
             time.sleep(0.5)
             
         st.success(f"Les instructions en Braille pour {selected_text} sont : {braille_instructions}")
