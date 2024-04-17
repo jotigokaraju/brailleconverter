@@ -506,7 +506,6 @@ def french():
     }
     
     def convert_the_list(text):
-    
         conversion_list = {
             '⠁': 'a',    # Braille Letter A
             '⠷': 'à',    # Braille Letter À
@@ -572,7 +571,6 @@ def french():
         for letter in text:
             braille_instructions.append(conversion_list.get(letter, ''))
         return braille_instructions
-        
 
     
     def check_for_items():
