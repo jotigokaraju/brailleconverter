@@ -245,7 +245,7 @@ with tab2:
         caption = load_model()
         
     st.header("Image Captioning")
-    st.write("Take an Image to Create an AI Generated Caption")
+    st.write("Take an Image to Return an AI Generated Caption")
     
     photo = st.camera_input("Capture a Photo")
     
