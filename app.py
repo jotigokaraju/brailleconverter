@@ -505,73 +505,73 @@ def french():
         '⠵': [3, 2],  # Braille Letter Z
     }
     
-def convert_the_list(text):
+    def convert_the_list(text):
     
-    conversion_list = {
-        '⠁': 'a',    # Braille Letter A
-        '⠷': 'à',    # Braille Letter À
-        '⠡': 'â',    # Braille Letter Â
-        '⠃': 'b',    # Braille Letter B
-        '⠉': 'c',    # Braille Letter C
-        '⠙': 'd',    # Braille Letter D
-        '⠑': 'e',    # Braille Letter E
-        '⠿': 'é',    # Braille Letter É
-        '⠮': 'è',    # Braille Letter È
-        '⠣': 'ê',    # Braille Letter Ê
-        '⠫': 'ë',    # Braille Letter Ë
-        '⠋': 'f',    # Braille Letter F
-        '⠛': 'g',    # Braille Letter G
-        '⠓': 'h',    # Braille Letter H
-        '⠊': 'i',    # Braille Letter I
-        '⠩': 'î',    # Braille Letter Î
-        '⠻': 'ï',    # Braille Letter Ï
-        '⠚': 'j',    # Braille Letter J
-        '⠅': 'k',    # Braille Letter K
-        '⠇': 'l',    # Braille Letter L
-        '⠍': 'm',    # Braille Letter M
-        '⠝': 'n',    # Braille Letter N
-        '⠕': 'o',    # Braille Letter O
-        '⠹': 'ô',    # Braille Letter Ô
-        '⠏': 'p',    # Braille Letter P
-        '⠟': 'q',    # Braille Letter Q
-        '⠗': 'r',    # Braille Letter R
-        '⠎': 's',    # Braille Letter S
-        '⠞': 't',    # Braille Letter T
-        '⠥': 'u',    # Braille Letter U
-        '⠾': 'ù',    # Braille Letter Ù
-        '⠱': 'û',    # Braille Letter Û
-        '⠳': 'ü',    # Braille Letter Ü
-        '⠧': 'v',    # Braille Letter V
-        '⠺': 'w',    # Braille Letter W
-        '⠭': 'x',    # Braille Letter X
-        '⠽': 'y',    # Braille Letter Y
-        '⠵': 'z',    # Braille Letter Z
-        '⠪': 'œ',    # Braille Letter Œ
-        '⠂': ',',    # Braille Comma
-        '⠆': ';',    # Braille Semicolon
-        '⠒': ':',    # Braille Colon
-        '⠲': '.',    # Braille Full Stop
-        '⠦…⠴': '(...) ',    # Braille Ellipsis
-        '⠌': '/',    # Braille Slash
-        '⠤': '–',    # Braille Dash
-        '⠐⠬': '%',    # Braille Percent
-        '⠐⠬⠬': '‰',    # Braille Per Mille
-        '⠠⠡': '1',    # Braille Number 1
-        '⠠⠣': '2',    # Braille Number 2
-        '⠠⠩': '3',    # Braille Number 3
-        '⠠⠹': '4',    # Braille Number 4
-        '⠠⠱': '5',    # Braille Number 5
-        '⠠⠫': '6',    # Braille Number 6
-        '⠠⠻': '7',    # Braille Number 7
-        '⠠⠳': '8',    # Braille Number 8
-        '⠠⠪': '9',    # Braille Number 9
-        '⠠⠼': '0'    # Braille Number 0
-    }
-    
-    braille_instructions = []
-    for letter in text:
-        braille_instructions.append(conversion_list.get(letter, ''))
-    return braille_instructions
+        conversion_list = {
+            '⠁': 'a',    # Braille Letter A
+            '⠷': 'à',    # Braille Letter À
+            '⠡': 'â',    # Braille Letter Â
+            '⠃': 'b',    # Braille Letter B
+            '⠉': 'c',    # Braille Letter C
+            '⠙': 'd',    # Braille Letter D
+            '⠑': 'e',    # Braille Letter E
+            '⠿': 'é',    # Braille Letter É
+            '⠮': 'è',    # Braille Letter È
+            '⠣': 'ê',    # Braille Letter Ê
+            '⠫': 'ë',    # Braille Letter Ë
+            '⠋': 'f',    # Braille Letter F
+            '⠛': 'g',    # Braille Letter G
+            '⠓': 'h',    # Braille Letter H
+            '⠊': 'i',    # Braille Letter I
+            '⠩': 'î',    # Braille Letter Î
+            '⠻': 'ï',    # Braille Letter Ï
+            '⠚': 'j',    # Braille Letter J
+            '⠅': 'k',    # Braille Letter K
+            '⠇': 'l',    # Braille Letter L
+            '⠍': 'm',    # Braille Letter M
+            '⠝': 'n',    # Braille Letter N
+            '⠕': 'o',    # Braille Letter O
+            '⠹': 'ô',    # Braille Letter Ô
+            '⠏': 'p',    # Braille Letter P
+            '⠟': 'q',    # Braille Letter Q
+            '⠗': 'r',    # Braille Letter R
+            '⠎': 's',    # Braille Letter S
+            '⠞': 't',    # Braille Letter T
+            '⠥': 'u',    # Braille Letter U
+            '⠾': 'ù',    # Braille Letter Ù
+            '⠱': 'û',    # Braille Letter Û
+            '⠳': 'ü',    # Braille Letter Ü
+            '⠧': 'v',    # Braille Letter V
+            '⠺': 'w',    # Braille Letter W
+            '⠭': 'x',    # Braille Letter X
+            '⠽': 'y',    # Braille Letter Y
+            '⠵': 'z',    # Braille Letter Z
+            '⠪': 'œ',    # Braille Letter Œ
+            '⠂': ',',    # Braille Comma
+            '⠆': ';',    # Braille Semicolon
+            '⠒': ':',    # Braille Colon
+            '⠲': '.',    # Braille Full Stop
+            '⠦…⠴': '(...) ',    # Braille Ellipsis
+            '⠌': '/',    # Braille Slash
+            '⠤': '–',    # Braille Dash
+            '⠐⠬': '%',    # Braille Percent
+            '⠐⠬⠬': '‰',    # Braille Per Mille
+            '⠠⠡': '1',    # Braille Number 1
+            '⠠⠣': '2',    # Braille Number 2
+            '⠠⠩': '3',    # Braille Number 3
+            '⠠⠹': '4',    # Braille Number 4
+            '⠠⠱': '5',    # Braille Number 5
+            '⠠⠫': '6',    # Braille Number 6
+            '⠠⠻': '7',    # Braille Number 7
+            '⠠⠳': '8',    # Braille Number 8
+            '⠠⠪': '9',    # Braille Number 9
+            '⠠⠼': '0'    # Braille Number 0
+        }
+        
+        braille_instructions = []
+        for letter in text:
+            braille_instructions.append(conversion_list.get(letter, ''))
+        return braille_instructions
         
 
     
