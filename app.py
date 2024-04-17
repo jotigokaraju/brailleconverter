@@ -643,6 +643,10 @@ def french():
     with tab2:
     
         caption_of_image = None
+        capin = None
+        translating = None
+        captionimg = None
+        caption = None
         
         if caption is None:
             caption = load_modelfr()
@@ -662,11 +666,8 @@ def french():
                 captionimg = str(captions[0]['generated_text'])
                 capin = f"translate English to French: {captionimg}"
                 translating = translator(capin)
-                caption_of_img = str(translating[0]['translation_text'])
+                caption_of_image = str(translating[0]['translation_text'])
                 st.success(caption_of_image)
-                st.success("hello")
-                st.success(capin)
-                st.success(translating)
     
         if caption_of_image is not None:
             state.img_received.append(caption_of_image)
