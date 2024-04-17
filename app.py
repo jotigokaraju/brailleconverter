@@ -16,7 +16,7 @@ OCR = None
 
 @st.cache_resource
 def load_model():
-    return pipeline('image-to-text', model="ydshieh/vit-gpt2-coco-en")
+    return pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
 
 @st.cache_resource
 def sentiment_model():
