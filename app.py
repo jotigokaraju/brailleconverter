@@ -801,15 +801,10 @@ def french():
 
 
 
-
-
-
-
-
 page_names_to_funcs = {
     "English": english,
     "Français": french
 }
 
-demo_name = st.sidebar.selectbox("Select Language/Choisir la Langue", page_names_to_funcs.keys())
+demo_name = st.sidebar.selectbox("Select Language \n Choisir la langue", page_names_to_funcs.keys())
 page_names_to_funcs[demo_name]()
