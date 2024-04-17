@@ -684,7 +684,7 @@ def french():
         done = None
         
         if OCR is None:
-            reader = ocr_model()
+            reader = ocr_modelfr()
     
         st.header("OCR")
         st.write("Extraire du texte à partir d'une image")
