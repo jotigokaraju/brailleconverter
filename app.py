@@ -660,7 +660,8 @@ def french():
             if st.button("Générer une légende") and image is not None:
                 captions = caption(image) 
                 captionimg = str(captions[0]['generated_text'])
-                translating = translator(caption_of_image)
+                capin = f"translate English to French: {captionimg}"
+                translating = translator(capin)
                 caption_of_img = str(translating[0]['translation_text'])
                 st.success(caption_of_image)
     
