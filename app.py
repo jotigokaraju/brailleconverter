@@ -505,7 +505,7 @@ def french():
         '⠵': [3, 2],  # Braille Letter Z
     }
     
-    def convert_the_list(text):
+    def word_to_braille(text):
         conversion_list = {
             '⠁': 'a',    # Braille Letter A
             '⠷': 'à',    # Braille Letter À
@@ -619,11 +619,6 @@ def french():
     
         return current_content_decoded
         
-    # Braille conversion function
-    def word_to_braille(text):
-        converted_phrase = []
-        converted_phrase = convert_the_list(text)
-        return converted_phrase
     
     # Function to convert braille_instructions to instructions list
     def braille_to_instructions(commands):
