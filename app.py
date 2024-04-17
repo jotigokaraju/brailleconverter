@@ -567,10 +567,11 @@ def french():
             '⠠⠼': '0'    # Braille Number 0
         }
         
-        braille_instructions = []
-        for letter in text:
-            braille_instructions.append(conversion_list.get(letter, ''))
-        return braille_instructions
+        instructions_list = []
+        for word in text:
+            if word in conversion_list:
+                instructions_list.append(conversion_list[word])
+        return instructions_list
 
     
     def check_for_items():
