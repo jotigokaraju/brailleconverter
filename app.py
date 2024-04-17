@@ -11,6 +11,7 @@ def english():
     from transformers import pipeline
     from PIL import Image
     import easyocr
+    from io import BytesIO
     
     # Load the pipeline outside Streamlit script
     caption = None
@@ -425,6 +426,7 @@ def french():
     from transformers import pipeline
     from PIL import Image
     import easyocr
+    from io import BytesIO
     
     # Load the pipeline outside Streamlit script
     caption = None
