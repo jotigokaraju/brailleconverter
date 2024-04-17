@@ -689,7 +689,7 @@ def french():
         st.header("Reconnaissance Optique de Caractères")
         st.write("Extraire du texte à partir d'une image")
         
-        ocr_photo = st.camera_input("Prendre une photo")
+        ocr_photo = st.camera_input("Prendre une Photo")
         
         if ocr_photo is not None:
             imager = Image.open(ocr_photo)
