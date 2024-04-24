@@ -225,6 +225,7 @@ def english():
         if state.text_received:
             st.header("Select Text")
             stext = st.selectbox("Select recorded text:", state.text_received)
+            state.selected_text = stext
             
             if st.button("Sentiment Analysis", type="primary"):
                 sentences = []
@@ -236,7 +237,7 @@ def english():
                 st.success(f"Detected Sentiment: {label_cap}")
                 selected_text = f"{stext} /{label[:2]}"
                 st.success(f"Transcribed word: {selected_text}")
-                state.selected_text = selected_text
+                
             
         st.divider()
     
