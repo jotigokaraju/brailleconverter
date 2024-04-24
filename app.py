@@ -273,7 +273,7 @@ def english():
         if state.img_received:
             st.header("Select Caption")
             selected_text = st.selectbox("Select Caption:", state.img_received)
-            state.selected_text = f"{selected_text} /cap"
+            state.selected_text = f"{selected_text} /c"
             
             
         st.divider()
@@ -311,7 +311,7 @@ def english():
         if state.ocr_received:
             st.header("Select OCR Text")
             selected_text = st.selectbox("Select Text:", state.ocr_received)
-            state.selected_text = f"{selected_text} /ocr"
+            state.selected_text = f"{selected_text} /o"
             
         
         
