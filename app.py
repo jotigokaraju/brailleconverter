@@ -720,16 +720,16 @@ def french():
     
         
     # Bouton Convertir en Braille
-    if st.button("Convertir en Braille") and state.selected_text:
+    #if st.button("Convertir en Braille") and state.selected_text:
         
-        with st.spinner('Traitement...'):
-            selected_text = state.selected_text
-            words = selected_text.strip()  # Split the selected text into words
-            st.write(words)
-            braille_instructions = word_to_braille(words)  # Pass the list of words to the conversion function
-            time.sleep(0.5)
+        #with st.spinner('Traitement...'):
+            #selected_text = state.selected_text
+            #words = selected_text.strip()  # Split the selected text into words
+            #st.write(words)
+            #braille_instructions = word_to_braille(words)  # Pass the list of words to the conversion function
+            #time.sleep(0.5)
             
-        st.success(f"Les instructions en Braille pour {selected_text} sont : {braille_instructions}")
+        #st.success(f"Les instructions en Braille pour {selected_text} sont : {braille_instructions}")
     
     st.divider()
     
