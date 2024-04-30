@@ -289,7 +289,7 @@ def english():
     if st.button("Convert to Braille") and state.selected_text:
         
         with st.spinner('Processing...'):
-            selected_text = state.selected_text
+            selected_text = "hello"
             braille_instructions = word_to_braille(selected_text)
             time.sleep(0.5)
             
@@ -302,7 +302,7 @@ def english():
     st.write("Send Translation Instructions to Device")
     
     if st.button("Send", type="primary") and state.selected_text is not None:
-        selected_text = state.selected_text
+        selected_text = "hello"
         send_braille_commands = word_to_braille(selected_text)
         instructions_list = braille_to_instructions(send_braille_commands)
     
