@@ -336,9 +336,7 @@ def english():
         else:
             st.error(f"Error updating file. Status code: {update_response.status_code}")
     
-    
-    #Divider
-    st.divider()
+
     st.header("Recieve from Device")
     st.write("Any Translations Sent from the Device to the App will be Displayed Here")
     
@@ -774,9 +772,7 @@ def french():
         else:
             st.error(f"Erreur lors de la mise à jour du fichier. Code d'état : {update_response.status_code}")
     
-    
-    # Ligne de démarcation
-    st.divider()
+
     st.header("Recevoir de l'appareil")
     st.write("Toutes les traductions envoyées de l'appareil à l'application seront affichées ici")
     
