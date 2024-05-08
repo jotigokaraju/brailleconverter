@@ -41,7 +41,7 @@ def english():
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
     #HIDE
-    access_token = "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"
+    access_token = "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"
     
     
     state = st.session_state
