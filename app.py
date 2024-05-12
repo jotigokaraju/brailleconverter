@@ -153,6 +153,41 @@ def english():
     st.header("A Comprehensive Speech to Braille Platform for the DeafBlind")
     st.divider()
        
+    with st.expander("***About***"):
+        st.markdown("""
+            This app is designed to assist the DeafBlind community, a traditionally underserved demographic. 
+            The app translates live speech into Braille instructions that are read out by the TouchTalk device.
+            
+            **Goals:**
+            - Provide a low-cost novel method for traditional communication used by the DeafBlind.
+            - Make everyday communication easier, less invasive, and universal.
+            - Eliminate cost and knowledge barriers associated with current methods. 
+    
+            This innovative approach aims to empower the Deafblind community, offering a more accessible and inclusive means of communication.
+            Made by Joti Gokaraju
+        """)
+
+    with st.expander("***Instructions***"):
+        st.markdown("""
+            Please view the following instructions before you attempt to use the app. 
+            
+            **Sending information to the device.**
+    
+            1. Press Start and Begin Recording Yourself. When You Finish, Press Stop. The App Will Automatically Return a Transcription of Your Speech 
+            2. Select the Convert to Braille Button to Translate Your Speech into Braille Letters
+            3. Select the Send to Device Button to Have the App Turn the Letters into Instructions and Have the Device Execute
+    
+            **Receiving information from the device.**
+    
+            1. Scroll to the Bottom of the Page
+            2. Click on the Check Button to See If There Is Any Text
+            3. If There is Any Text, It Will be Displayed in a Greenbox. If There is No Text, or No New Text, it Will Display An Error Message
+            4. Repeat the Process If You Are Confident That Text Has Been Sent from the Device
+            
+        """)
+
+
+    st.divider()
     
     st.header("Select Type of Communication")
     selected_text = None
@@ -198,7 +233,8 @@ def english():
                 label_cap = label[0].upper() + label[1:]
                 st.success(f"Detected Sentiment: {label_cap}")
                 selected_text = f"{stext} /{label[:2]}"
-                st.success(f"Transcribed word: {selected_text}")
+                state.selected_text = selected_text
+                st.success(f"Transcribed word: {state.selected_text}")
                 
             
         st.divider()
@@ -289,7 +325,7 @@ def english():
     if st.button("Convert to Braille") and state.selected_text:
         
         with st.spinner('Processing...'):
-            selected_text = "hello"
+            selected_text = state.selected_text
             braille_instructions = word_to_braille(selected_text)
             time.sleep(0.5)
             
@@ -302,7 +338,7 @@ def english():
     st.write("Send Translation Instructions to Device")
     
     if st.button("Send", type="primary") and state.selected_text is not None:
-        selected_text = "hello"
+        selected_text = state.selected_text
         send_braille_commands = word_to_braille(selected_text)
         instructions_list = braille_to_instructions(send_braille_commands)
     
@@ -597,8 +633,44 @@ def french():
     st.header("Une plateforme complète de communication vocale en braille pour les sourds-aveugles")
     st.divider()
     
+    with st.expander("***À propos***"):
+        st.markdown("""
+            Cette application est conçue pour aider la communauté sourde-aveugle, une population traditionnellement mal desservie.
+            L'application traduit la parole en direct en instructions en braille qui sont lues par l'appareil ToucherParler.
+            
+            **Objectifs :**
+            - Fournir une méthode novatrice à faible coût pour la communication traditionnelle utilisée par les sourds-aveugles.
+            - Faciliter la communication quotidienne, moins invasive et universelle.
+            - Éliminer les barrières de coût et de connaissance associées aux méthodes actuelles. 
+    
+            Cette approche innovante vise à autonomiser la communauté sourde-aveugle, en offrant un moyen de communication plus accessible et inclusif.
+            Fabriqué par Joti Gokaraju
+        """)
+
+    with st.expander("***Instructions***"):
+        st.markdown("""
+            Veuillez consulter les instructions suivantes avant d'essayer d'utiliser l'application. 
+            
+            **Envoi d'informations à l'appareil.**
+    
+            1. Appuyez sur Démarrer et commencez à vous enregistrer. Lorsque vous avez terminé, appuyez sur Arrêter. L'application retournera automatiquement une transcription de votre discours 
+            2. Sélectionnez le bouton Convertir en braille pour traduire votre discours en lettres braille
+            3. Sélectionnez le bouton Envoyer à l'appareil pour que l'application transforme les lettres en instructions et que l'appareil les exécute
+        
+            **Réception d'informations de l'appareil.**
+    
+            1. Faites défiler jusqu'au bas de la page
+            2. Cliquez sur le bouton Vérifier pour voir s'il y a du texte
+            3. S'il y a du texte, il sera affiché dans un cadre vert. S'il n'y a pas de texte, ou aucun nouveau texte, un message d'erreur sera affiché
+            4. Répétez le processus si vous êtes sûr que du texte a été envoyé depuis l'appareil
+            
+        """)
+
+
+    st.divider()
     
     st.header("Sélectionnez le type de communication")
+    st.write("De la parole au braille ou de l'image au braille")
 
     selected_text = None
     tab1, tab2, tab3 = st.tabs(["Transcription automatique de la parole par IA", "Légende d'image générée par IA", "Reconnaissance optique de caractères"])
