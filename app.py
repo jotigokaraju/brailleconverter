@@ -248,7 +248,7 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille") and state.selected_text:
+        if st.button("Convert to Braille ") and state.selected_text:
             with st.spinner('Processing...'):
                 selected_text = state.selected_text
                 braille_instructions = word_to_braille(selected_text)
@@ -262,7 +262,7 @@ def english():
         st.header("Send to Device")
         st.write("Send Translation Instructions to Device")
         
-        if st.button("Send", type="primary") and state.selected_text is not None:
+        if st.button("Send ", type="primary") and state.selected_text is not None:
             selected_text = state.selected_text
             send_braille_commands = word_to_braille(selected_text)
             instructions_list = braille_to_instructions(send_braille_commands)
@@ -339,7 +339,7 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille") and state.selected_text and state.img_received:
+        if st.button("Convert to Braille  ") and state.selected_text and state.img_received:
             with st.spinner('Processing...'):
                 selected_text = state.selected_text
                 braille_instructions = word_to_braille(selected_text)
@@ -350,7 +350,7 @@ def english():
         st.divider()
         
         # Send to Github File
-        st.header("Send to Device")
+        st.header("Send to Device  ")
         st.write("Send Translation Instructions to Device")
         
         if st.button("Send", type="primary") and state.selected_text is not None and state.img_received is not None:
@@ -429,7 +429,7 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille") and state.selected_text and state.ocr_received:
+        if st.button("Convert to Braille    ") and state.selected_text and state.ocr_received:
             with st.spinner('Processing...'):
                 selected_text = state.selected_text
                 braille_instructions = word_to_braille(selected_text)
@@ -443,7 +443,7 @@ def english():
         st.header("Send to Device")
         st.write("Send Translation Instructions to Device")
         
-        if st.button("Send", type="primary") and state.selected_text is not None and state.ocr_received is not None:
+        if st.button("Send    ", type="primary") and state.selected_text is not None and state.ocr_received is not None:
             selected_text = state.selected_text
             send_braille_commands = word_to_braille(selected_text)
             instructions_list = braille_to_instructions(send_braille_commands)
