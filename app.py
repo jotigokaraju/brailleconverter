@@ -12,7 +12,7 @@ def english():
     from PIL import Image
     import easyocr
     from io import BytesIO
-    
+    global ftext
     # Load the pipeline outside Streamlit script
     caption = None
     sentiment = None
@@ -322,9 +322,9 @@ def english():
             
     # Convert to Braille button
     
-    if st.button("Convert to Braille"):
+    if st.button("Convert to Braille") and ftext:
+        st.write(ftext)
         with st.spinner('Processing...'):
-            global ftext
             selected_text = ftext
             braille_instructions = word_to_braille(selected_text)
             time.sleep(0.5)
