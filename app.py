@@ -194,6 +194,7 @@ def english():
     tab1, tab2, tab3 = st.tabs(["AI Speech Transcription", "AI Image Captioning", "Optical Character Recognition"])
     
     with tab1: 
+        state.selected_text = None
         if sentiment is None:
             classifier = sentiment_model()
         
@@ -240,6 +241,7 @@ def english():
     
     
     with tab2:
+        state.selected_text = None
         caption_of_image = None
         
         if caption is None:
@@ -275,6 +277,7 @@ def english():
         st.divider()
     
     with tab3:
+        state.selected_text = None
         done = None
         
         if OCR is None:
@@ -306,21 +309,14 @@ def english():
         if state.ocr_received:
             st.header("Select OCR Text")
             selected_text = st.selectbox("Select Text:", state.ocr_received)
-            state.selected_text = f"{selected_text} /o"
-            
-        
+            state.selected_text = f"{selected_text} /o"       
         
     # Braille conversion
     st.header("Braille Conversion")
     st.write("Convert selected text to Braille.")
-    
-    
-    
-    
-        
+            
     # Convert to Braille button
     if st.button("Convert to Braille") and state.selected_text:
-        st.write(state.selected_text)
         with st.spinner('Processing...'):
             selected_text = state.selected_text
             braille_instructions = word_to_braille(selected_text)
