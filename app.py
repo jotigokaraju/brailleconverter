@@ -29,7 +29,9 @@ def english():
     @st.cache_resource
     def ocr_model():
         return easyocr.Reader(['en'])
-        
+
+    ftext = None
+    
     #Repo Details
     repo_owner = "jotigokaraju"
     repo_name = "brailleconverter"
@@ -234,6 +236,7 @@ def english():
                 st.success(f"Detected Sentiment: {label_cap}")
                 selected_text = f"{stext} /{label[:2]}"
                 state.selected_text = selected_text
+                ftext = selected_text
                 st.success(f"Transcribed word: {state.selected_text}")
                 
             
@@ -271,6 +274,7 @@ def english():
         if state.img_received:
             st.header("Select Caption")
             selected_text = st.selectbox("Select Caption:", state.img_received)
+            ftext = f"{selected_text} /c"
             state.selected_text = f"{selected_text} /c"
             
             
@@ -310,6 +314,7 @@ def english():
             st.header("Select OCR Text")
             selected_text = st.selectbox("Select Text:", state.ocr_received)
             state.selected_text = f"{selected_text} /o"       
+            ftext = f"{selected_text} /o" 
         
     # Braille conversion
     st.header("Braille Conversion")
@@ -318,7 +323,7 @@ def english():
     # Convert to Braille button
     if st.button("Convert to Braille") and state.selected_text:
         with st.spinner('Processing...'):
-            selected_text = state.selected_text
+            selected_text = ftext
             braille_instructions = word_to_braille(selected_text)
             time.sleep(0.5)
             
