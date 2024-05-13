@@ -558,7 +558,7 @@ def french():
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
     #HIDE
-    access_token = "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"
+    access_token = "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"
     
     
     state = st.session_state
@@ -836,7 +836,7 @@ def french():
             with st.spinner('Traitement...'):
                 selected_text = state.selected_text
                 words = selected_text  # Split the selected text into words
-                st.write(words)
+
                 braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
                 time.sleep(0.5)
                     
@@ -851,9 +851,9 @@ def french():
         if st.button("Envoyer", type="primary") and state.selected_text is not None:
             selected_text = state.selected_text
             send_braille_commands = wordbraille(selected_text)
-            st.write(send_braille_commands)
+
             instructions_list = braille_to_instructions(send_braille_commands)
-            st.write(instructions_list)
+
         
             # Obtenir le contenu
             response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
@@ -936,7 +936,7 @@ def french():
             with st.spinner('Traitement...'):
                 selected_text = state.selected_text
                 words = selected_text  # Split the selected text into words
-                st.write(words)
+
                 braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
                 time.sleep(0.5)
                     
@@ -951,7 +951,7 @@ def french():
         if st.button("Envoyer  ", type="primary") and state.selected_text is not None:
             selected_text = state.selected_text
             send_braille_commands = wordbraille(selected_text)
-            st.write(send_braille_commands)
+
             instructions_list = braille_to_instructions(send_braille_commands)
         
             # Obtenir le contenu
@@ -1027,7 +1027,7 @@ def french():
             with st.spinner('Traitement...'):
                 selected_text = state.selected_text
                 words = selected_text  # Split the selected text into words
-                st.write(words)
+
                 braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
                 time.sleep(0.5)
                 
@@ -1042,7 +1042,7 @@ def french():
         if st.button("Envoyer    ", type="primary") and state.selected_text is not None:
             selected_text = state.selected_text
             send_braille_commands = wordbraille(selected_text)
-            st.write(send_braille_commands)
+
             instructions_list = braille_to_instructions(send_braille_commands)
         
             # Obtenir le contenu
