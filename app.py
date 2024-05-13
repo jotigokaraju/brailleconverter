@@ -502,7 +502,8 @@ def english():
             if st.button("Extract OCR Text") and imagers is not None:
         
                 extract_info = readers(imagers)
-                extracted_text = ' '.join([text for _, text, _ in extract_info])
+                extracted_text = extract_info
+                st.write(extract_info)
                 st.success(extracted_text)
                 doner = extracted_text
     
