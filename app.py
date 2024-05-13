@@ -230,17 +230,17 @@ def english():
             stext = st.selectbox("Select recorded text:", state.text_received)
             state.selected_text = stext
             
-            if st.button("Sentiment Analysis", type="primary"):
-                sentences = []
-                sentences.append(stext)
-                model_outputs = classifier(sentences)
-                max_score_label = max(model_outputs[0], key=lambda x: x['score'])
-                label = max_score_label['label']
-                label_cap = label[0].upper() + label[1:]
-                st.success(f"Detected Sentiment: {label_cap}")
-                selected_text = f"{stext} /{label[:2]}"
-                state.selected_text = selected_text
-                st.success(f"Transcribed word: {state.selected_text}")
+            # if st.button("Sentiment Analysis", type="primary"):
+            #     sentences = []
+            #     sentences.append(stext)
+            #     model_outputs = classifier(sentences)
+            #     max_score_label = max(model_outputs[0], key=lambda x: x['score'])
+            #     label = max_score_label['label']
+            #     label_cap = label[0].upper() + label[1:]
+            #     st.success(f"Detected Sentiment: {label_cap}")
+            #     selected_text = f"{stext} /{label[:2]}"
+            #     state.selected_text = selected_text
+            #     st.success(f"Transcribed word: {state.selected_text}")
                 
             
         st.divider()
