@@ -322,7 +322,7 @@ def english():
             
     # Convert to Braille button
     
-    if st.button("Convert to Braille") and ftext:
+    if st.button("Convert to Braille"):
         st.write(ftext)
         with st.spinner('Processing...'):
             selected_text = ftext
