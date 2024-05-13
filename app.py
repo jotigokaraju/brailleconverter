@@ -493,7 +493,7 @@ def english():
         st.header("OCR")
         st.write("Extract Text from Image")
         
-        ocr_photos = st.camera_input("Take a Photo")
+        ocr_photos = st.camera_input("Take Photo of Handwritten Text")
         
         if ocr_photos is not None:
             imagers = Image.open(ocr_photos)
