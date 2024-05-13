@@ -30,8 +30,6 @@ def english():
     def ocr_model():
         return easyocr.Reader(['en'])
 
-    def ocr_handwritten():
-        return pipeline('image-to-text', model = "microsoft/trocr-base-handwritten")
 
     
     #Repo Details
@@ -198,7 +196,7 @@ def english():
     
     st.header("Select Type of Communication")
     selected_text = None
-    tab1, tab2, tab3, tab4 = st.tabs(["AI Speech Transcription", "AI Image Captioning", "Optical Character Recognition", "Handwritten OCR"])
+    tab1, tab2, tab3 = st.tabs(["AI Speech Transcription", "AI Image Captioning", "Optical Character Recognition"])
     
     with tab1: 
         
@@ -483,41 +481,7 @@ def english():
             else:
                 st.error(f"Error updating file. Status code: {update_response.status_code}")
     
-    with tab4:
-        state.selected_text = None
-        doner = None
-        
-        if OCR is None:
-            readers = ocr_handwritten()
     
-        st.header("OCR")
-        st.write("Extract Text from Image")
-        
-        ocr_photos = st.camera_input("Take Photo of Handwritten Text")
-        
-        if ocr_photos is not None:
-            imagers = Image.open(ocr_photos)
-            st.image(imagers, caption="Uploaded Image", use_column_width=True)
-            
-            if st.button("Extract OCR Text") and imagers is not None:
-        
-                extract_info = readers(imagers)
-                extracted_text = extract_info
-                st.write(extract_info)
-                st.success(extracted_text)
-                doner = extracted_text
-    
-        if doner is not None:
-            state.handocr_received.append(done)
-    
-        st.write("Extracted Text:")
-        for index, text in enumerate(state.handocr_received):
-            st.write(f"{index + 1}. {text}")
-        
-        if state.handocr_received:
-            st.header("Select OCR Text")
-            selected_text = st.selectbox("Select Text:", state.handocr_received)
-            state.selected_text = f"{selected_text} /o"     
             
         
 
