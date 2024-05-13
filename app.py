@@ -581,32 +581,54 @@ def french():
     
     braille_mapping = {
         '⠁': [6, 4],  # Braille Letter A
+        '⠷': [0, 2],  # Braille Letter À
+        '⠡': [6, 6],  # Braille Letter Â
         '⠃': [2, 4],  # Braille Letter B
         '⠉': [6, 5],  # Braille Letter C
         '⠙': [6, 7],  # Braille Letter D
         '⠑': [6, 1],  # Braille Letter E
+        '⠿': [0, 0],  # Braille Letter É
+        '⠮': [7, 3],  # Braille Letter È
+        '⠣': [2, 6],  # Braille Letter Ê
+        '⠫': [2, 3],  # Braille Letter Ë
         '⠋': [2, 5],  # Braille Letter F
         '⠛': [2, 7],  # Braille Letter G
         '⠓': [2, 1],  # Braille Letter H
         '⠊': [1, 5],  # Braille Letter I
+        '⠩': [6, 3],  # Braille Letter Î
+        '⠻': [2, 0],  # Braille Letter Ï
         '⠚': [1, 7],  # Braille Letter J
         '⠅': [3, 4],  # Braille Letter K
         '⠇': [0, 4],  # Braille Letter L
         '⠍': [3, 5],  # Braille Letter M
         '⠝': [3, 7],  # Braille Letter N
         '⠕': [3, 1],  # Braille Letter O
+        '⠹': [6, 0],  # Braille Letter Ô
         '⠏': [0, 5],  # Braille Letter P
         '⠟': [0, 7],  # Braille Letter Q
         '⠗': [0, 1],  # Braille Letter R
         '⠎': [7, 5],  # Braille Letter S
         '⠞': [7, 7],  # Braille Letter T
         '⠥': [3, 6],  # Braille Letter U
-        '⠧': [0, 6],  # Braille Letter V
-        '⠺': [1, 0],  # Braille Letter W
+        '⠧': [0, 6],  # Braille Letter Ù
+        '⠺': [1, 0],  # Braille Letter Û
+        '⠭': [3, 3],  # Braille Letter Ü
+        '⠽': [3, 0],  # Braille Letter V
+        '⠵': [3, 2],  # Braille Letter W
         '⠭': [3, 3],  # Braille Letter X
         '⠽': [3, 0],  # Braille Letter Y
         '⠵': [3, 2],  # Braille Letter Z
+        '⠪': [1, 3],  # Braille Letter Œ
+        '⠂': [1, 4],  # Braille Comma
+        '⠆': [7, 4],  # Braille Semicolon
+        '⠒': [1, 1],  # Braille Colon
+        '⠲': [1, 2],  # Braille Full Stop
+        '⠌': [5, 5],  # Braille Slash
+        '⠤': [5, 6],  # Braille Dash
     }
+
+
+
 
     conversion_list = {
         'a': '⠁',    # Braille Letter A
@@ -666,8 +688,8 @@ def french():
         '7': '⠠⠻',    # Braille Number 7
         '8': '⠠⠳',    # Braille Number 8
         '9': '⠠⠪',    # Braille Number 9
-        '0': '⠠⠼'    # Braille Number 0
-        ' ': ' ' #Space
+        '0': '⠠⠼',    # Braille Number 0
+        ' ': ' ', #Space
     }
 
     def word_to_braille(text):
