@@ -339,7 +339,7 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille  ") and state.selected_text and state.img_received:
+        if st.button("Convert to Braille  ") and state.selected_text:
             with st.spinner('Processing...'):
                 selected_text = state.selected_text
                 braille_instructions = word_to_braille(selected_text)
@@ -353,7 +353,7 @@ def english():
         st.header("Send to Device  ")
         st.write("Send Translation Instructions to Device")
         
-        if st.button("Send", type="primary") and state.selected_text is not None and state.img_received is not None:
+        if st.button("Send", type="primary") and state.selected_text is not None:
             selected_text = state.selected_text
             send_braille_commands = word_to_braille(selected_text)
             instructions_list = braille_to_instructions(send_braille_commands)
@@ -429,7 +429,7 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille    ") and state.selected_text and state.ocr_received:
+        if st.button("Convert to Braille    ") and state.selected_text:
             with st.spinner('Processing...'):
                 selected_text = state.selected_text
                 braille_instructions = word_to_braille(selected_text)
@@ -443,7 +443,7 @@ def english():
         st.header("Send to Device")
         st.write("Send Translation Instructions to Device")
         
-        if st.button("Send    ", type="primary") and state.selected_text is not None and state.ocr_received is not None:
+        if st.button("Send    ", type="primary") and state.selected_text is not None:
             selected_text = state.selected_text
             send_braille_commands = word_to_braille(selected_text)
             instructions_list = braille_to_instructions(send_braille_commands)
@@ -607,77 +607,76 @@ def french():
         '⠽': [3, 0],  # Braille Letter Y
         '⠵': [3, 2],  # Braille Letter Z
     }
-    
-    def word_to_braille(text):
-        text = str(text)
-        
-        conversion_list = {
-            '⠁': 'a',    # Braille Letter A
-            '⠷': 'à',    # Braille Letter À
-            '⠡': 'â',    # Braille Letter Â
-            '⠃': 'b',    # Braille Letter B
-            '⠉': 'c',    # Braille Letter C
-            '⠙': 'd',    # Braille Letter D
-            '⠑': 'e',    # Braille Letter E
-            '⠿': 'é',    # Braille Letter É
-            '⠮': 'è',    # Braille Letter È
-            '⠣': 'ê',    # Braille Letter Ê
-            '⠫': 'ë',    # Braille Letter Ë
-            '⠋': 'f',    # Braille Letter F
-            '⠛': 'g',    # Braille Letter G
-            '⠓': 'h',    # Braille Letter H
-            '⠊': 'i',    # Braille Letter I
-            '⠩': 'î',    # Braille Letter Î
-            '⠻': 'ï',    # Braille Letter Ï
-            '⠚': 'j',    # Braille Letter J
-            '⠅': 'k',    # Braille Letter K
-            '⠇': 'l',    # Braille Letter L
-            '⠍': 'm',    # Braille Letter M
-            '⠝': 'n',    # Braille Letter N
-            '⠕': 'o',    # Braille Letter O
-            '⠹': 'ô',    # Braille Letter Ô
-            '⠏': 'p',    # Braille Letter P
-            '⠟': 'q',    # Braille Letter Q
-            '⠗': 'r',    # Braille Letter R
-            '⠎': 's',    # Braille Letter S
-            '⠞': 't',    # Braille Letter T
-            '⠥': 'u',    # Braille Letter U
-            '⠾': 'ù',    # Braille Letter Ù
-            '⠱': 'û',    # Braille Letter Û
-            '⠳': 'ü',    # Braille Letter Ü
-            '⠧': 'v',    # Braille Letter V
-            '⠺': 'w',    # Braille Letter W
-            '⠭': 'x',    # Braille Letter X
-            '⠽': 'y',    # Braille Letter Y
-            '⠵': 'z',    # Braille Letter Z
-            '⠪': 'œ',    # Braille Letter Œ
-            '⠂': ',',    # Braille Comma
-            '⠆': ';',    # Braille Semicolon
-            '⠒': ':',    # Braille Colon
-            '⠲': '.',    # Braille Full Stop
-            '⠦…⠴': '(...) ',    # Braille Ellipsis
-            '⠌': '/',    # Braille Slash
-            '⠤': '–',    # Braille Dash
-            '⠐⠬': '%',    # Braille Percent
-            '⠐⠬⠬': '‰',    # Braille Per Mille
-            '⠠⠡': '1',    # Braille Number 1
-            '⠠⠣': '2',    # Braille Number 2
-            '⠠⠩': '3',    # Braille Number 3
-            '⠠⠹': '4',    # Braille Number 4
-            '⠠⠱': '5',    # Braille Number 5
-            '⠠⠫': '6',    # Braille Number 6
-            '⠠⠻': '7',    # Braille Number 7
-            '⠠⠳': '8',    # Braille Number 8
-            '⠠⠪': '9',    # Braille Number 9
-            '⠠⠼': '0'    # Braille Number 0
-        }
 
-        
-        instructions_list = []
-        for word in text:
-            if word in conversion_list:
-                instructions_list.append(conversion_list[word])
-        return instructions_list
+    conversion_list = {
+        'a': '⠁',    # Braille Letter A
+        'à': '⠷',    # Braille Letter À
+        'â': '⠡',    # Braille Letter Â
+        'b': '⠃',    # Braille Letter B
+        'c': '⠉',    # Braille Letter C
+        'd': '⠙',    # Braille Letter D
+        'e': '⠑',    # Braille Letter E
+        'é': '⠿',    # Braille Letter É
+        'è': '⠮',    # Braille Letter È
+        'ê': '⠣',    # Braille Letter Ê
+        'ë': '⠫',    # Braille Letter Ë
+        'f': '⠋',    # Braille Letter F
+        'g': '⠛',    # Braille Letter G
+        'h': '⠓',    # Braille Letter H
+        'i': '⠊',    # Braille Letter I
+        'î': '⠩',    # Braille Letter Î
+        'ï': '⠻',    # Braille Letter Ï
+        'j': '⠚',    # Braille Letter J
+        'k': '⠅',    # Braille Letter K
+        'l': '⠇',    # Braille Letter L
+        'm': '⠍',    # Braille Letter M
+        'n': '⠝',    # Braille Letter N
+        'o': '⠕',    # Braille Letter O
+        'ô': '⠹',    # Braille Letter Ô
+        'p': '⠏',    # Braille Letter P
+        'q': '⠟',    # Braille Letter Q
+        'r': '⠗',    # Braille Letter R
+        's': '⠎',    # Braille Letter S
+        't': '⠞',    # Braille Letter T
+        'u': '⠥',    # Braille Letter U
+        'ù': '⠾',    # Braille Letter Ù
+        'û': '⠱',    # Braille Letter Û
+        'ü': '⠳',    # Braille Letter Ü
+        'v': '⠧',    # Braille Letter V
+        'w': '⠺',    # Braille Letter W
+        'x': '⠭',    # Braille Letter X
+        'y': '⠽',    # Braille Letter Y
+        'z': '⠵',    # Braille Letter Z
+        'œ': '⠪',    # Braille Letter Œ
+        ',': '⠂',    # Braille Comma
+        ';': '⠆',    # Braille Semicolon
+        ':': '⠒',    # Braille Colon
+        '.': '⠲',    # Braille Full Stop
+        '(...) ': '⠦…⠴',    # Braille Ellipsis
+        '/': '⠌',    # Braille Slash
+        '–': '⠤',    # Braille Dash
+        '%': '⠐⠬',    # Braille Percent
+        '‰': '⠐⠬⠬',    # Braille Per Mille
+        '1': '⠠⠡',    # Braille Number 1
+        '2': '⠠⠣',    # Braille Number 2
+        '3': '⠠⠩',    # Braille Number 3
+        '4': '⠠⠹',    # Braille Number 4
+        '5': '⠠⠱',    # Braille Number 5
+        '6': '⠠⠫',    # Braille Number 6
+        '7': '⠠⠻',    # Braille Number 7
+        '8': '⠠⠳',    # Braille Number 8
+        '9': '⠠⠪',    # Braille Number 9
+        '0': '⠠⠼'    # Braille Number 0
+        ' ': ' ' #Space
+    }
+
+    def word_to_braille(text):
+        braille_text = ""
+        for char in text:
+            if char.lower() in conversion_list:
+                braille_text += conversion_list[char.lower()]
+        return braille_text
+    
 
     
     def check_for_items():
@@ -900,7 +899,7 @@ def french():
         
         with st.spinner('Traitement...'):
             selected_text = state.selected_text
-            words = selected_text.strip()  # Split the selected text into words
+            words = selected_text  # Split the selected text into words
             st.write(words)
             braille_instructions = word_to_braille(words)  # Pass the list of words to the conversion function
             time.sleep(0.5)
