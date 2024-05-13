@@ -20,7 +20,7 @@ def english():
     
     @st.cache_resource
     def load_model():
-        return pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
+        return pipeline('image-to-text')
     
     @st.cache_resource
     def sentiment_model():
