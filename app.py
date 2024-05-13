@@ -833,60 +833,59 @@ def french():
         st.divider()
 
         if st.button("Convertir en Braille") and state.selected_text:
-                
-                with st.spinner('Traitement...'):
-                    selected_text = state.selected_text
-                    words = selected_text  # Split the selected text into words
-                    st.write(words)
-                    braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
-                    time.sleep(0.5)
+            with st.spinner('Traitement...'):
+                selected_text = state.selected_text
+                words = selected_text  # Split the selected text into words
+                st.write(words)
+                braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
+                time.sleep(0.5)
                     
                 st.success(f"Les instructions en Braille pour {selected_text} sont : {braille_instructions}")
             
-            st.divider()
+        st.divider()
             
-            # Envoyer au fichier Github
-            st.header("Envoyer à l'appareil")
-            st.write("Envoyer les instructions de traduction à l'appareil")
+        # Envoyer au fichier Github
+        st.header("Envoyer à l'appareil")
+        st.write("Envoyer les instructions de traduction à l'appareil")
+        
+        if st.button("Envoyer", type="primary") and state.selected_text is not None:
+            selected_text = state.selected_text
+            send_braille_commands = wordbraille(selected_text)
+            st.write(send_braille_commands)
+            instructions_list = braille_to_instructions(send_braille_commands)
+            st.write(instructions_list)
+        
+            # Obtenir le contenu
+            response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
+            response_data = response.json()
+        
+            # Extraire le contenu
+            current_content = response_data["content"]
+            current_content_decoded = current_content.encode("utf-8")
+            current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
             
-            if st.button("Envoyer", type="primary") and state.selected_text is not None:
-                selected_text = state.selected_text
-                send_braille_commands = wordbraille(selected_text)
-                st.write(send_braille_commands)
-                instructions_list = braille_to_instructions(send_braille_commands)
-                st.write(instructions_list)
+            # Mettre à jour le contenu
+            new_content = f"{instructions_list}"
+        
+            # Encoder le nouveau contenu
+            new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+        
+            # Préparer les données
+            data = {
+                "message": "Update instructions.txt",
+                "content": new_content_encoded,
+                "sha": response_data["sha"]
+            }
+        
+            # Mettre à jour
+            update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+        
+            if update_response.status_code == 200:
+                st.success("Envoyé!")
+            else:
+                st.error(f"Erreur lors de la mise à jour du fichier. Code d'état : {update_response.status_code}")
             
-                # Obtenir le contenu
-                response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
-                response_data = response.json()
-            
-                # Extraire le contenu
-                current_content = response_data["content"]
-                current_content_decoded = current_content.encode("utf-8")
-                current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-                
-                # Mettre à jour le contenu
-                new_content = f"{instructions_list}"
-            
-                # Encoder le nouveau contenu
-                new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-            
-                # Préparer les données
-                data = {
-                    "message": "Update instructions.txt",
-                    "content": new_content_encoded,
-                    "sha": response_data["sha"]
-                }
-            
-                # Mettre à jour
-                update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-            
-                if update_response.status_code == 200:
-                    st.success("Envoyé!")
-                else:
-                    st.error(f"Erreur lors de la mise à jour du fichier. Code d'état : {update_response.status_code}")
-                
-            # Conversion Braill
+        # Conversion Braill
     
     
     with tab2:
@@ -934,59 +933,58 @@ def french():
         st.divider()
 
         if st.button("Convertir en Braille  ") and state.selected_text:
-                
-                with st.spinner('Traitement...'):
-                    selected_text = state.selected_text
-                    words = selected_text  # Split the selected text into words
-                    st.write(words)
-                    braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
-                    time.sleep(0.5)
+            with st.spinner('Traitement...'):
+                selected_text = state.selected_text
+                words = selected_text  # Split the selected text into words
+                st.write(words)
+                braille_instructions = wordbraille(words)  # Pass the list of words to the conversion function
+                time.sleep(0.5)
                     
                 st.success(f"Les instructions en Braille pour {selected_text} sont : {braille_instructions}")
             
-            st.divider()
+        st.divider()
+        
+        # Envoyer au fichier Github
+        st.header("Envoyer à l'appareil")
+        st.write("Envoyer les instructions de traduction à l'appareil")
+        
+        if st.button("Envoyer  ", type="primary") and state.selected_text is not None:
+            selected_text = state.selected_text
+            send_braille_commands = wordbraille(selected_text)
+            st.write(send_braille_commands)
+            instructions_list = braille_to_instructions(send_braille_commands)
+        
+            # Obtenir le contenu
+            response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
+            response_data = response.json()
+        
+            # Extraire le contenu
+            current_content = response_data["content"]
+            current_content_decoded = current_content.encode("utf-8")
+            current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
             
-            # Envoyer au fichier Github
-            st.header("Envoyer à l'appareil")
-            st.write("Envoyer les instructions de traduction à l'appareil")
+            # Mettre à jour le contenu
+            new_content = f"{instructions_list}"
+        
+            # Encoder le nouveau contenu
+            new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
+        
+            # Préparer les données
+            data = {
+                "message": "Update instructions.txt",
+                "content": new_content_encoded,
+                "sha": response_data["sha"]
+            }
+        
+            # Mettre à jour
+            update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
+        
+            if update_response.status_code == 200:
+                st.success("Envoyé!")
+            else:
+                st.error(f"Erreur lors de la mise à jour du fichier. Code d'état : {update_response.status_code}")
             
-            if st.button("Envoyer  ", type="primary") and state.selected_text is not None:
-                selected_text = state.selected_text
-                send_braille_commands = wordbraille(selected_text)
-                st.write(send_braille_commands)
-                instructions_list = braille_to_instructions(send_braille_commands)
-            
-                # Obtenir le contenu
-                response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
-                response_data = response.json()
-            
-                # Extraire le contenu
-                current_content = response_data["content"]
-                current_content_decoded = current_content.encode("utf-8")
-                current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-                
-                # Mettre à jour le contenu
-                new_content = f"{instructions_list}"
-            
-                # Encoder le nouveau contenu
-                new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-            
-                # Préparer les données
-                data = {
-                    "message": "Update instructions.txt",
-                    "content": new_content_encoded,
-                    "sha": response_data["sha"]
-                }
-            
-                # Mettre à jour
-                update_response = requests.put(api_url, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-            
-                if update_response.status_code == 200:
-                    st.success("Envoyé!")
-                else:
-                    st.error(f"Erreur lors de la mise à jour du fichier. Code d'état : {update_response.status_code}")
-                
-            # Conversion Braill
+        # Conversion Braill
     
     with tab3:
         
