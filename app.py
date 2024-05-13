@@ -321,8 +321,10 @@ def english():
     st.write("Convert selected text to Braille.")
             
     # Convert to Braille button
-    if st.button("Convert to Braille") and state.selected_text:
+    
+    if st.button("Convert to Braille"):
         with st.spinner('Processing...'):
+            global ftext
             selected_text = ftext
             braille_instructions = word_to_braille(selected_text)
             time.sleep(0.5)
