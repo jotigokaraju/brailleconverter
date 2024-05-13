@@ -937,6 +937,7 @@ def french():
     if st.button("Envoyer", type="primary") and state.selected_text is not None:
         selected_text = state.selected_text
         send_braille_commands = word_to_braille(selected_text)
+        st.write(send_braille_commands)
         instructions_list = braille_to_instructions(send_braille_commands)
     
         # Obtenir le contenu
