@@ -1100,7 +1100,7 @@ def french():
     st.header("Recevoir de l'appareil")
     st.write("Toutes les traductions envoyées de l'appareil à l'application seront affichées ici")
     
-    if st.button("Vérifier", type="primary"):
+    if st.button("Vérif", type="primary"):
         check_for_items()
     
     
