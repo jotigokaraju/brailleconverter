@@ -725,12 +725,12 @@ def french():
     
         if current_content_decoded != "Nothing to see here for now!":
             if current_content_decoded[-2:] == " f":
-                current_content_decoded = current_content_decoded[:-1]
+                new_decoded = current_content_decoded[:-1]
                 sound_file = BytesIO()
-                tts = gTTS(current_content_decoded, lang='fr')
+                tts = gTTS(new_decoded, lang='fr')
                 tts.write_to_fp(sound_file)
                 st.audio(sound_file)
-                st.success(current_content_decoded)
+                st.success(new_decoded)
             else:
                 sound_file = BytesIO()
                 tts = gTTS(current_content_decoded, lang='fr')
