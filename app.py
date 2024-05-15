@@ -725,7 +725,7 @@ def french():
     
         if current_content_decoded != "Nothing to see here for now!":
             if current_content_decoded[-2:] == " f":
-                current_content_decoded = current_content_decoded
+                current_content_decoded = current_content_decoded[:-1]
                 sound_file = BytesIO()
                 tts = gTTS(current_content_decoded, lang='fr')
                 tts.write_to_fp(sound_file)
@@ -733,7 +733,7 @@ def french():
                 st.success(current_content_decoded)
             else:
                 sound_file = BytesIO()
-                tts = gTTS(current_content_decoded[:-3], lang='fr')
+                tts = gTTS(current_content_decoded, lang='fr')
                 tts.write_to_fp(sound_file)
                 st.audio(sound_file)
                 st.success(current_content_decoded)
@@ -1100,7 +1100,7 @@ def french():
     st.header("Recevoir de l'appareil")
     st.write("Toutes les traductions envoyées de l'appareil à l'application seront affichées ici")
     
-    if st.button("Examiner", type="primary"):
+    if st.button("Examier", type="primary"):
         check_for_items()
     
     
