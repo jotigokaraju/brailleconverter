@@ -722,21 +722,21 @@ def french():
         current_content = response_data["content"]
         current_content_decoded = current_content.encode("utf-8")
         current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
+        current_content_decoded = current_content_decoded.strip()
+        
         if current_content_decoded != "Nothing to see here for now!":
-            stripped_text = current_content_decoded.strip()
-            if stripped_text[-2:] == ' f':
-                modified_f_decoded = stripped_text[:-1]
-                sound_file = BytesIO()
-                tts = gTTS(modified_f_decoded, lang='fr')
-                tts.write_to_fp(sound_file)
-                st.audio(sound_file)
-                st.success(modified_f_decoded)
+            
+            if current_content_decoded[-2:] == ' f':
+                current_content_decoded = current_content_decoded[:-1]
             else:
-                sound_file = BytesIO()
-                tts = gTTS(current_content_decoded, lang='fr')
-                tts.write_to_fp(sound_file)
-                st.audio(sound_file)
-                st.success(current_content_decoded)
+                current_content_decoded = current_content_decoded
+                
+            sound_file = BytesIO() 
+            tts = gTTS(current_content_decoded, lang='fr')
+            tts.write_to_fp(sound_file)
+            st.audio(sound_file)
+            st.success(current_content_decoded)
+            
         else:
             st.success("Rien à voir ici pour le moment!")
     
