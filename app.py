@@ -94,6 +94,12 @@ def english():
         '⠭': [3, 3],  # Braille Letter X
         '⠽': [3, 0],  # Braille Letter Y
         '⠵': [3, 2],  # Braille Letter Z
+        '⠂': [1, 4],  # Braille Comma
+        '⠆': [7, 4],  # Braille Semicolon
+        '⠒': [1, 1],  # Braille Colon
+        '⠲': [1, 2],  # Braille Full Stop
+        '⠌': [5, 5],  # Braille Slash
+        '⠤': [5, 6],  # Braille Dash
     }
     
     
