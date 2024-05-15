@@ -722,9 +722,9 @@ def french():
         current_content = response_data["content"]
         current_content_decoded = current_content.encode("utf-8")
         current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-    
+        st.success(current_content_decoded[-1])
         if current_content_decoded != "Nothing to see here for now!":
-            if current_content_decoded[-2:] == " f":
+            if current_content_decoded[-1] == 'f':
                 new_decoded = current_content_decoded[:-1]
                 sound_file = BytesIO()
                 tts = gTTS(new_decoded, lang='fr')
