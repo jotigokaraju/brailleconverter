@@ -724,14 +724,13 @@ def french():
         current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
         if current_content_decoded != "Nothing to see here for now!":
             stripped_text = current_content_decoded.strip()
-            st.success(stripped_text[-1])
             if stripped_text[-2:] == ' f':
-                new_decoded = stripped_text[:-1]
+                modified_f_decoded = stripped_text[:-1]
                 sound_file = BytesIO()
-                tts = gTTS(new_decoded, lang='fr')
+                tts = gTTS(modified_f_decoded, lang='fr')
                 tts.write_to_fp(sound_file)
                 st.audio(sound_file)
-                st.success(new_decoded)
+                st.success(modified_f_decoded)
             else:
                 sound_file = BytesIO()
                 tts = gTTS(current_content_decoded, lang='fr')
