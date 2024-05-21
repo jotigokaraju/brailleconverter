@@ -312,10 +312,10 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille ") and (converting_text or stext):
+        if st.button("Convert to Braille "):
             with st.spinner('Processing...'):
                 braille_instructions = word_to_braille(converting_text)
-                time.sleep(0.1)
+                time.sleep(0.5)
                 
             st.success(f"Braille instructions for {converting_text} are: {braille_instructions}")
     
@@ -325,7 +325,7 @@ def english():
         st.header("Send to Device")
         st.write("Send Translation Instructions to Device")
         
-        if st.button("Send ", type="primary") and state.selected_text is not None:
+        if st.button("Send ", type="primary"):
             instructions_list = braille_to_instructions(converting_text)
         
             # Get content
