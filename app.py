@@ -199,7 +199,7 @@ def english():
         for char in text:
             if char.lower() in english_braille_list:
                 braille_text = english_braille_list[char.lower()]
-                converted_phrase.append(braille_instruction)
+                converted_phrase.append(braille_text)
         return converted_phrase
 
     
