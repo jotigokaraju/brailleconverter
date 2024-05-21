@@ -142,12 +142,66 @@ def english():
         return current_content_decoded
         
     # Braille conversion function
+    english_braille_list = {
+        'a': '⠁',    # Braille Letter A
+        'b': '⠃',    # Braille Letter B
+        'c': '⠉',    # Braille Letter C
+        'd': '⠙',    # Braille Letter D
+        'e': '⠑',    # Braille Letter E
+        'f': '⠋',    # Braille Letter F
+        'g': '⠛',    # Braille Letter G
+        'h': '⠓',    # Braille Letter H
+        'i': '⠊',    # Braille Letter I
+        'j': '⠚',    # Braille Letter J
+        'k': '⠅',    # Braille Letter K
+        'l': '⠇',    # Braille Letter L
+        'm': '⠍',    # Braille Letter M
+        'n': '⠝',    # Braille Letter N
+        'o': '⠕',    # Braille Letter O
+        'p': '⠏',    # Braille Letter P
+        'q': '⠟',    # Braille Letter Q
+        'r': '⠗',    # Braille Letter R
+        's': '⠎',    # Braille Letter S
+        't': '⠞',    # Braille Letter T
+        'u': '⠥',    # Braille Letter U
+        'v': '⠧',    # Braille Letter V
+        'w': '⠺',    # Braille Letter W
+        'x': '⠭',    # Braille Letter X
+        'y': '⠽',    # Braille Letter Y
+        'z': '⠵',    # Braille Letter Z
+        '1': '⠼⠁',  # Braille Number 1
+        '2': '⠼⠃',  # Braille Number 2
+        '3': '⠼⠉',  # Braille Number 3
+        '4': '⠼⠙',  # Braille Number 4
+        '5': '⠼⠑',  # Braille Number 5
+        '6': '⠼⠋',  # Braille Number 6
+        '7': '⠼⠛',  # Braille Number 7
+        '8': '⠼⠓',  # Braille Number 8
+        '9': '⠼⠊',  # Braille Number 9
+        '0': '⠼⠚',  # Braille Number 0
+        ',': '⠂',    # Braille Comma
+        ';': '⠆',    # Braille Semicolon
+        ':': '⠒',    # Braille Colon
+        '.': '⠲',    # Braille Full Stop
+        '/': '⠌',  # Braille Slash
+        '!': '⠮',    # Braille Exclamation Mark
+        '?': '⠦',    # Braille Question Mark
+        "'": '⠄',    # Braille Apostrophe
+        '"': '⠐⠄',  # Braille Quotation Mark
+        '-': '⠤',    # Braille Dash
+        '(': '⠐⠣',  # Braille Opening Parenthesis
+        ')': '⠐⠜',  # Braille Closing Parenthesis
+        ' ': ' ',    # Space
+    }
+    
     def word_to_braille(text):
         converted_phrase = []
-        for words in text:
-            braille_instruction = pybraille.convertText(words)
-            converted_phrase.append(braille_instruction)
+        for char in text:
+            if char.lower() in english_braille_list:
+                braille_text = english_braille_list[char.lower()]
+                converted_phrase.append(braille_instruction)
         return converted_phrase
+
     
     # Function to convert braille_instructions to instructions list
     def braille_to_instructions(commands):
@@ -234,19 +288,20 @@ def english():
         if state.text_received:
             st.header("Select Text")
             stext = st.selectbox("Select recorded text:", state.text_received)
+            converting_text = stext
             
-            if st.button("Sentiment Analysis", type="primary"):
-                sentences = []
-                sentences.append(stext)
-                model_outputs = classifier(sentences)
-                max_score_label = max(model_outputs[0], key=lambda x: x['score'])
-                label = max_score_label['label']
-                label_cap = label[0].upper() + label[1:]
-                
-                selected_text = f"{stext} /{label[:2]}"
-                state.selected_text = selected_text
-                st.success(f"Detected Sentiment: {label_cap}")
-                st.success(f"Transcribed word: {state.selected_text}")
+        if st.button("Sentiment Analysis", type="primary") and stext:
+            sentences = []
+            sentences.append(stext)
+            model_outputs = classifier(sentences)
+            max_score_label = max(model_outputs[0], key=lambda x: x['score'])
+            label = max_score_label['label']
+            label_cap = label[0].upper() + label[1:]
+            
+            converting_text = f"{stext} /{label[:2]}"
+            
+            st.success(f"Detected Sentiment: {label_cap}")
+            st.success(f"Transcribed word: {converting_text}")
                 
             
         st.divider()
@@ -257,13 +312,12 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille ") and state.selected_text is not None:
-            st.write(state.selected_text)
+        if st.button("Convert to Braille ") and (converting_text or stext):
             with st.spinner('Processing...'):
-                braille_instructions = word_to_braille(state.selected_text)
+                braille_instructions = word_to_braille(converting_text)
                 time.sleep(0.1)
                 
-            st.success(f"Braille instructions for {state.selected_text} are: {braille_instructions}")
+            st.success(f"Braille instructions for {converting_text} are: {braille_instructions}")
     
         st.divider()
         
@@ -272,9 +326,7 @@ def english():
         st.write("Send Translation Instructions to Device")
         
         if st.button("Send ", type="primary") and state.selected_text is not None:
-            selected_text = state.selected_text
-            send_braille_commands = word_to_braille(selected_text)
-            instructions_list = braille_to_instructions(send_braille_commands)
+            instructions_list = braille_to_instructions(converting_text)
         
             # Get content
             response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
