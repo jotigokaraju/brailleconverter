@@ -257,10 +257,11 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille ") and state.selected_text:
+        if st.button("Convert to Braille ") and state.selected_text is not None:
+            st.write(state.selected_text)
             with st.spinner('Processing...'):
                 braille_instructions = word_to_braille(state.selected_text)
-                time.sleep(0.5)
+                time.sleep(0.1)
                 
             st.success(f"Braille instructions for {state.selected_text} are: {braille_instructions}")
     
