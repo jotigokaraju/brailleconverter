@@ -242,9 +242,10 @@ def english():
                 max_score_label = max(model_outputs[0], key=lambda x: x['score'])
                 label = max_score_label['label']
                 label_cap = label[0].upper() + label[1:]
-                st.success(f"Detected Sentiment: {label_cap}")
+                
                 selected_text = f"{stext} /{label[:2]}"
                 state.selected_text = selected_text
+                st.success(f"Detected Sentiment: {label_cap}")
                 st.success(f"Transcribed word: {state.selected_text}")
                 
             
@@ -258,11 +259,10 @@ def english():
         
         if st.button("Convert to Braille ") and state.selected_text:
             with st.spinner('Processing...'):
-                selected_text = state.selected_text
-                braille_instructions = word_to_braille(selected_text)
+                braille_instructions = word_to_braille(state.selected_text)
                 time.sleep(0.5)
                 
-            st.success(f"Braille instructions for {selected_text} are: {braille_instructions}")
+            st.success(f"Braille instructions for {state.selected_text} are: {braille_instructions}")
     
         st.divider()
         
