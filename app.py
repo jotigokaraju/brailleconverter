@@ -61,7 +61,9 @@ def english():
         state.handocr_received = []
         
     if 'selected_text' not in state:
-        state.selected_text = None
+        state.selected_text = []
+
+    converting_text = []
     
     word = []
     global braille_instructions
