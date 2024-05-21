@@ -288,7 +288,6 @@ def english():
         if state.text_received:
             st.header("Select Text")
             stext = st.selectbox("Select recorded text:", state.text_received)
-            converting_text = stext
             
         if st.button("Sentiment Analysis", type="primary") and stext:
             sentences = []
