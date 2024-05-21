@@ -298,12 +298,14 @@ def english():
             label_cap = label[0].upper() + label[1:]
             
             converting_text = f"{stext} /{label[:2]}"
+            state.selected_text = converting_text
             
             st.success(f"Detected Sentiment: {label_cap}")
             st.success(f"Transcribed word: {converting_text}")
-                
             
-        st.divider()
+        if converting_text:
+            state.selected_text = converting_text
+                
 
         # Braille conversion
         st.header("Braille Conversion")
@@ -311,12 +313,11 @@ def english():
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille "):
-            with st.spinner('Processing...'):
-                braille_instructions = word_to_braille(converting_text)
-                time.sleep(0.5)
+        if st.button("Convert to Braille ") and state.selected_text:
+            braille_instructions = word_to_braille(state.selected_text)
+
                 
-            st.success(f"Braille instructions for {converting_text} are: {braille_instructions}")
+            st.success(f"Braille instructions for {state.selected_text} are: {braille_instructions}")
     
         st.divider()
         
@@ -325,7 +326,7 @@ def english():
         st.write("Send Translation Instructions to Device")
         
         if st.button("Send ", type="primary"):
-            instructions_list = braille_to_instructions(converting_text)
+            instructions_list = braille_to_instructions(braille_instructions)
         
             # Get content
             response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
