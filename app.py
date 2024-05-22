@@ -292,31 +292,26 @@ def english():
             st.header("Select Text")
             stext = st.selectbox("Select recorded text:", state.text_received)
             
-            if st.button("Sentiment Analysis", type="primary"):
-                sentences = []
-                sentences.append(stext)
-                model_outputs = classifier(sentences)
-                max_score_label = max(model_outputs[0], key=lambda x: x['score'])
-                label = max_score_label['label']
-                label_cap = label[0].upper() + label[1:]
-                
-                converting_text = f"{stext} /{label[:2]}"
+        if st.button("Sentiment Analysis", type="primary"):
+            sentences = []
+            sentences.append(stext)
+            model_outputs = classifier(sentences)
+            max_score_label = max(model_outputs[0], key=lambda x: x['score'])
+            label = max_score_label['label']
+            label_cap = label[0].upper() + label[1:]
+            
+            converting_text = f"{stext} /{label[:2]}"
 
-                st.success(f"Detected Sentiment: {label_cap}")
-                st.success(f"Transcribed word: {converting_text}")
-                
-        if converting_text is not None:
-            state.selected_text = converting_text
+            st.success(f"Detected Sentiment: {label_cap}")
+            st.success(f"Transcribed word: {converting_text}")
 
         # Braille conversion
         st.header("Braille Conversion")
         st.write("Convert selected text to Braille.")
         
         if st.button("Convert to Braille "):
-            braille_instructions = word_to_braille(state.selected_text)
-
-                
-            st.success(f"Braille instructions for {state.selected_text} are: {braille_instructions}")
+            braille_instructions = word_to_braille(converting_text)     
+            st.success(f"Braille instructions for {converting_text} are: {braille_instructions}")
     
         st.divider()
         
