@@ -310,7 +310,7 @@ def english():
         st.write("Convert selected text to Braille.")
         
         if st.button("Convert to Braille "):
-            braille_instructions = word_to_braille(state.converting_text)     
+            state.braille_instructions = word_to_braille(state.converting_text)     
             st.success(f"Braille instructions for {state.converting_text} are: {braille_instructions}")
     
         st.divider()
@@ -320,7 +320,7 @@ def english():
         st.write("Send Translation Instructions to Device")
         
         if st.button("Send ", type="primary"):
-            instructions_list = braille_to_instructions(braille_instructions)
+            instructions_list = braille_to_instructions(state.braille_instructions)
         
             # Get content
             response = requests.get(api_url, headers={"Authorization": f"Bearer {access_token}"})
