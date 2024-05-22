@@ -311,7 +311,7 @@ def english():
         
         if st.button("Convert to Braille "):
             state.braille_instructions = word_to_braille(state.converting_text)     
-            st.success(f"Braille instructions for {state.converting_text} are: {braille_instructions}")
+            st.success(f"Braille instructions for {state.converting_text} are: {state.braille_instructions}")
     
         st.divider()
         
