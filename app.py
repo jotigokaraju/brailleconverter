@@ -197,6 +197,7 @@ def english():
     }
     
     def word_to_braille(text):
+        text = str(text)
         converted_phrase = []
         for char in text:
             if char.lower() in english_braille_list:
