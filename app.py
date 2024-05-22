@@ -20,7 +20,7 @@ def english():
     
     @st.cache_resource
     def load_model():
-        return pipeline('image-to-text')
+        return pipeline(model="ydshieh/vit-gpt2-coco-en")
     
     @st.cache_resource
     def sentiment_model():
