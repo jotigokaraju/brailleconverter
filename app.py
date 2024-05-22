@@ -60,8 +60,8 @@ def english():
     if 'handocr_reveived' not in state:
         state.handocr_received = []
         
-    if 'selected_text' not in state:
-        state.selected_text = None
+    
+    state.selected_text = None
 
     converting_text = None
     
