@@ -276,38 +276,35 @@ def english():
         # Always render the speech_to_text component
         if text is not None:
             state.text_received.append(text)
-        
+
+        # Display success message if text is recognized
+        if text:
+            st.success("Speech recognized successfully!")
+            
         # Display recognition status and translated text
         st.write("Translated text:")
         for index, translated_text in enumerate(state.text_received):
             st.write(f"{index + 1}. {translated_text}")
             word.append(translated_text)
-        
-        # Display success message if text is recognized
-        if text:
-            st.success("Speech recognized successfully!")
-        
+
         if state.text_received:
             st.header("Select Text")
             stext = st.selectbox("Select recorded text:", state.text_received)
             
-        if st.button("Sentiment Analysis", type="primary") and stext:
-            sentences = []
-            sentences.append(stext)
-            model_outputs = classifier(sentences)
-            max_score_label = max(model_outputs[0], key=lambda x: x['score'])
-            label = max_score_label['label']
-            label_cap = label[0].upper() + label[1:]
-            
-            converting_text = f"{stext} /{label[:2]}"
-            state.selected_text = converting_text
-            
-            st.success(f"Detected Sentiment: {label_cap}")
-            st.success(f"Transcribed word: {converting_text}")
-            
-        if converting_text:
-            state.selected_text = converting_text
+            if st.button("Sentiment Analysis", type="primary"):
+                sentences = []
+                sentences.append(stext)
+                model_outputs = classifier(sentences)
+                max_score_label = max(model_outputs[0], key=lambda x: x['score'])
+                label = max_score_label['label']
+                label_cap = label[0].upper() + label[1:]
                 
+                converting_text = f"{stext} /{label[:2]}"
+                state.selected_text = converting_text
+                
+                st.success(f"Detected Sentiment: {label_cap}")
+                st.success(f"Transcribed word: {state.selected_text}")
+               
 
         # Braille conversion
         st.header("Braille Conversion")
