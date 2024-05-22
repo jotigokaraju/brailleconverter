@@ -61,9 +61,9 @@ def english():
         state.handocr_received = []
         
     if 'selected_text' not in state:
-        state.selected_text = []
+        state.selected_text = None
 
-    converting_text = []
+    converting_text = None
     
     word = []
     global braille_instructions
@@ -300,19 +300,21 @@ def english():
                 label_cap = label[0].upper() + label[1:]
                 
                 converting_text = f"{stext} /{label[:2]}"
-                state.selected_text = converting_text
-                
+
                 st.success(f"Detected Sentiment: {label_cap}")
-                st.success(f"Transcribed word: {state.selected_text}")
-               
+                st.success(f"Transcribed word: {converting_text}")
+                
+        if converting_text is not None:
+            state.selected_text = converting_text
 
         # Braille conversion
         st.header("Braille Conversion")
         st.write("Convert selected text to Braille.")
+        st.write(state.selected_text)
                 
         # Convert to Braille button
         
-        if st.button("Convert to Braille ") and state.selected_text:
+        if st.button("Convert to Braille ") and state.selected_text is not None:
             braille_instructions = word_to_braille(state.selected_text)
 
                 
