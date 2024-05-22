@@ -310,11 +310,8 @@ def english():
         # Braille conversion
         st.header("Braille Conversion")
         st.write("Convert selected text to Braille.")
-        st.write(state.selected_text)
-                
-        # Convert to Braille button
         
-        if st.button("Convert to Braille ") and state.selected_text is not None:
+        if st.button("Convert to Braille "):
             braille_instructions = word_to_braille(state.selected_text)
 
                 
