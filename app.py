@@ -218,7 +218,7 @@ def english():
     
     # Title Formatting with banner blue background
     st.title("TouchTalk")
-    st.header("A Comprehensive Speech to Braille Platform for the DeafBlind")
+    st.header("A Comprehensive Speech to Braille Platform for the Deafblind")
     st.divider()
        
     with st.expander("***About***"):
