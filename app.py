@@ -30,17 +30,6 @@ def english():
     def ocr_model():
         return easyocr.Reader(['en'])
 
-    from transformers import pipeline
-
-    # Load the text-generation pipeline with the specified model
-    pipe = pipeline("text-generation", model="masonbarnes/open-llm-search", trust_remote_code=True)
-    
-    # Use the pipeline to generate text
-    prompt = "Once upon a time"
-    generated_text = pipe(prompt, max_length=50)
-    
-    # Print the generated text
-    st.write(generated_text)
 
     
     #Repo Details
