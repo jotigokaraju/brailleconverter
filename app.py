@@ -110,6 +110,7 @@ def english():
         sound_file = BytesIO()
         tts = gTTS("Hello!", lang='en')
         tts.write_to_fp(sound_file)
+        st.success("Hello")
         st.audio(sound_file)
     
 
