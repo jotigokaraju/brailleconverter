@@ -1,10 +1,5 @@
 # TouchTalk Live Speech to Braille Converter
 
-## Used Libraries
-Google Speech-to-Text API
-PyBraille Text-to-Braille Converter
-Streamlit-Speech-Recognition
-
 ## App Process
 # Process Explanation
 The TouchTalk platform integrates a web application with a physical device to facilitate communication for Deafblind individuals. A logic diagram is provided in Figure 10, and a simple video description is attached at the end.
