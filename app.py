@@ -107,42 +107,12 @@ def english():
     
     
     def check_for_items():
-        # Get content
-        response = requests.get(api_url_commands, headers={"Authorization": f"Bearer {access_token}"})
-        response_data = response.json()
+        sound_file = BytesIO()
+        tts = gTTS("Hello!", lang='en')
+        tts.write_to_fp(sound_file)
+        st.audio(sound_file)
     
-        # Extract content
-        current_content = response_data["content"]
-        current_content_decoded = current_content.encode("utf-8")
-        current_content_decoded = base64.b64decode(current_content_decoded).decode("utf-8")
-    
-        if current_content_decoded != "Nothing to see here for now!":
-            sound_file = BytesIO()
-            tts = gTTS(current_content_decoded, lang='en')
-            tts.write_to_fp(sound_file)
-            st.audio(sound_file)
-    
-        
-        st.success(current_content_decoded)
-        
-        
-        # Update content
-        new_content = "Nothing to see here for now!"
-        
-        # Encode new content
-        new_content_encoded = base64.b64encode(new_content.encode("utf-8")).decode("utf-8")
-        
-        # Prepare data
-        data = {
-            "message": "Update instructions.txt with instructions",
-            "content": new_content_encoded,
-            "sha": response_data["sha"]
-        }
-    
-        # Update
-        update_response = requests.put(api_url_commands, headers={"Authorization": f"Bearer {access_token}"}, json=data)
-    
-        return current_content_decoded
+
         
     # Braille conversion function
     english_braille_list = {
