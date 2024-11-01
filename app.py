@@ -12,6 +12,7 @@ def english():
     from PIL import Image
     import easyocr
     from io import BytesIO
+    import os
 
     # Load the pipeline outside Streamlit script
     caption = None
@@ -42,8 +43,8 @@ def english():
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_instructions}"
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
-    #HIDE
-    access_token = "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"
+    # Access the secret as an environment variable
+    access_token = str(os.getenv("ACCESSTOKEN"))
     
     
     state = st.session_state
@@ -588,6 +589,7 @@ def french():
     from PIL import Image
     import easyocr
     from io import BytesIO
+    import os
     
     # Load the pipeline outside Streamlit script
     caption = None
@@ -616,7 +618,7 @@ def french():
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
     #HIDE
-    access_token = "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"
+    access_token = str(os.getenv("ACCESSTOKEN"))
     
     
     state = st.session_state
