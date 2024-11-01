@@ -6,10 +6,31 @@ PyBraille Text-to-Braille Converter
 Streamlit-Speech-Recognition
 
 ## App Process
-1. Use Streamlit-Speech-Recognition to capture audio as a streamlit state
-2. Use Google Speech-to-Text API to Convert .wav audio recording into text and return the text
-3. Functionality for user to decide if the text is accurate or if they want to rerecord and then select the most accurate transcription
-4. Run the text through PyBraille to return a series of braille for each character in the text
-5. Let the user press a button to send the braille to the device to display
-6. Convert the braille into a series of instructions in a list with the numbers 0 to 7 representing a different configuration on each column.
-7. Write the list instructions to a private Github txt file
+# Process Explanation
+The TouchTalk platform integrates a web application with a physical device to facilitate communication for Deafblind individuals. A logic diagram is provided in Figure 10, and a simple video description is attached at the end.
+
+# Text Generation on the App
+1. Non-disabled users access the online app and record their voices using integrated microphones. The app transcribes the recording using speech-to-text models.
+2. The transcribed text undergoes sentiment analysis to detect tone and tags are appended accordingly.
+3. Users can also utilize image-to-text conversions. Image captioning models leverage built-in cameras to generate descriptions, while optical character recognition processes handwritten text.
+4. Conversion to Braille
+5. Upon completion of transcription, users can convert the text to Braille by clicking the "Convert" button.
+6. The "Send" button converts each Braille letter to [X, Y] instructions for motor movement.
+
+# Cloud File Communication
+1. The app writes the [X, Y] instructions onto a private file in a GitHub repository using Wi-Fi.
+2. The device checks for updates on the GitHub file every 1.5 seconds. If a change is detected, the JSON data is loaded as a list for use.
+
+# Braille on the Device
+1. Stepper motors move according to [X, Y] instructions to display Braille letters, pausing for three seconds after each movement.
+2. DeafBlind users respond using a Braille keyboard. The 2x3 array on the keyboard represents the braille cell. Users press the green button to set a new letter and enter the braille configuration on the array. Pressing the red button converts all the button arrangements into Braille and writes it to the GitHub cloud file. 
+
+# Translation and Output
+1. The app checks for updates on the GitHub cloud file and translates Braille input from the device into English/French. The text is displayed on the app, along with an audio recording of the translation.
+2. Deafblind users can press the black button on the keyboard to provide English/French audio output of the typed Braille directly from the device.
+
+## Hardware Specifications
+The TouchTalk device is controlled by a Raspberry Pi 3B+, two ULN2003 stepper motor drivers, two 28BYJ-48 stepper motors, and nine push buttons. Two 3D octagonal discs to represent the braille characters and a flat board to attach the buttons for the braille keyboard were fabricated. A mini USB speaker for audio output was also added to the device and connected to the Raspberry Pi. A 3D-printed case to house all the components was designed and created. The device operates independently and does not require peripherals. The total cost of TouchTalk is $97.70.
+
+## Software Specifications
+The app was built for free on the Streamlit web-hosting platform. Parallel software was developed for both English and French use cases. Machine learning models were uploaded using Hugging Face pipelines and cached to fit the 8 GiB server constraints. Communication between the app and the device was implemented by uploading commands onto two private GitHub files over Wi-Fi. All conversation logs are deleted after refreshing the app to ensure privacy and prevent data leaks.
