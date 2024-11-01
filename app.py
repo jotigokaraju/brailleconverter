@@ -45,7 +45,7 @@ def english():
     
     # Access the secret as an environment variable
     access_token = str(os.getenv("ACCESSTOKEN"))
-    
+    st.write(access_token)
     
     state = st.session_state
     
