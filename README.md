@@ -6,6 +6,9 @@ This project is currently in the process of being patented. The code shown here 
 
 This project was submitted to the 2024 Canada-wide Science Fair. The project won the Engineering Innovation Award (Best Engineering Project) from the Engineering Institute of Canada and the Canadian Society for Senior Engineers, a Senior Gold Medal, the Best Senior Health and Wellness Project Challenge Award, and a Youth Can Innovate Grand Award. 
 
+This project was developed independently with mentorship from the [Saskatchewan Alternate Format Materials Library](https://www.spsd.sk.ca/division/SAFM/Pages/default.aspx#/=), the [Canadian Deafblind Association](https://www.cdbanational.com/), the [Canadian National Institute for the Blind](https://www.cnib.ca/en?gad_source=1&gclid=Cj0KCQjwvpy5BhDTARIsAHSilynFJHknwidSajT9dd0suPEP1YpwvKr-0KZkfF9aY6pd9ZOTWRkIaZYaAp8pEALw_wcB&region=on), and teachers from [Walter Murray Collegiate](https://www.spsd.sk.ca/school/waltermurray/Pages/default.aspx#/=). 
+
+TouchTalk was featured on [CBC Saskatchewan](https://www.cbc.ca/listen/live-radio/1-88-saskatoon-morning/clip/16100153-saskatoon-high-school-student-creates-innovative-idea-help).
 ## Process Explanation
 The TouchTalk platform integrates a web application with a physical device to facilitate communication for Deafblind individuals. A logic diagram is provided in Figure 10, and a simple video description is attached at the end.
 
