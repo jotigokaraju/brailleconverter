@@ -44,7 +44,7 @@ def english():
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
     # Access the secret as an environment variable in streamlit
-    access_token = st.secrets("ACCESS_TOKEN")
+    access_token = st.secrets["ACCESS_TOKEN"]
     
     state = st.session_state
     
@@ -588,7 +588,7 @@ def french():
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
     # Access the secret as an environment variable in streamlit
-    access_token = st.secrets("ACCESS_TOKEN")
+    access_token = st.secrets["ACCESS_TOKEN"]
     
     
     state = st.session_state
