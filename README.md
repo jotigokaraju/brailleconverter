@@ -1,6 +1,6 @@
 # TouchTalk
 ## Notes to Viewers
-This project is currently in the process of being patented. The code shown here provides only the simplified functional code for the TouchTalk web app. If you are interested in collaboration, please contact [me](gokaraju07joti@gmail.com). A full project description can be found on [ProjectBoard](https://partner.projectboard.world/ysc/project/touchtalk-an-innovative-communication-platform-for-the-deafblind). 
+This project is currently in the process of being patented. The code shown here provides only the simplified functional code for the TouchTalk web app. If you are interested in collaboration, please contact [me](mailto:gokaraju07joti@gmail.com). A full project description can be found on [ProjectBoard](https://partner.projectboard.world/ysc/project/touchtalk-an-innovative-communication-platform-for-the-deafblind). 
 
 This project was submitted to the 2024 Canada-wide Science Fair. The project won the Engineering Innovation Award (Best Engineering Project) from the Engineering Institute of Canada and the Canadian Society for Senior Engineers, a Senior Gold Medal, the Best Senior Health and Wellness Project Challenge Award, and a Youth Can Innovate Grand Award. 
 
