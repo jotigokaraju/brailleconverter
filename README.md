@@ -1,5 +1,5 @@
 # TouchTalk
-![title](https://github.com/jotigokaraju/brailleconverter/images/title slide.png)
+![title](https://github.com/jotigokaraju/brailleconverter/images/title_image.png)
 ## Notes to Viewers
 This project is currently in the process of being patented. The code shown here provides only the simplified functional code for the TouchTalk web app. If you are interested in collaboration, please contact [me](mailto:gokaraju07joti@gmail.com). A full project description can be found on [ProjectBoard](https://partner.projectboard.world/ysc/project/touchtalk-an-innovative-communication-platform-for-the-deafblind). 
 
