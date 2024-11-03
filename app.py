@@ -43,9 +43,8 @@ def english():
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_instructions}"
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
-    # Access the secret as an environment variable
-    access_token = str(os.getenv("ACCESSTOKEN"))
-    st.write(access_token)
+    # Access the secret as an environment variable in streamlit
+    access_token = st.secrets("ACCESS_TOKEN")
     
     state = st.session_state
     
@@ -588,8 +587,8 @@ def french():
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_instructions}"
     api_url_commands = f"https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path_reciever}"
     
-    #HIDE
-    access_token = str(os.getenv("ACCESSTOKEN"))
+    # Access the secret as an environment variable in streamlit
+    access_token = st.secrets("ACCESS_TOKEN")
     
     
     state = st.session_state
