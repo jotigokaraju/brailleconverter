@@ -1,4 +1,4 @@
-# TouchTalk Live Speech to Braille Converter
+# TouchTalk
 ## Notes to Viewers
 This project is currently in the process of being patented. The code shown here provides only the functional code for the TouchTalk web app. A full project description can be found on [ProjectBoard](https://partner.projectboard.world/ysc/project/touchtalk-an-innovative-communication-platform-for-the-deafblind). 
 
