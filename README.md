@@ -1,6 +1,6 @@
 # TouchTalk Live Speech to Braille Converter
-
-## App Process
+## Notes to Viewers
+This project is currently in the process of being patented. The code shown here provides only the functional code for the TouchTalk web app. 
 # Process Explanation
 The TouchTalk platform integrates a web application with a physical device to facilitate communication for Deafblind individuals. A logic diagram is provided in Figure 10, and a simple video description is attached at the end.
 
@@ -29,3 +29,4 @@ The TouchTalk device is controlled by a Raspberry Pi 3B+, two ULN2003 stepper mo
 
 ## Software Specifications
 The app was built for free on the Streamlit web-hosting platform. Parallel software was developed for both English and French use cases. Machine learning models were uploaded using Hugging Face pipelines and cached to fit the 8 GiB server constraints. Communication between the app and the device was implemented by uploading commands onto two private GitHub files over Wi-Fi. All conversation logs are deleted after refreshing the app to ensure privacy and prevent data leaks.
+
