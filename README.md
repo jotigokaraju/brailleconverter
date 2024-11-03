@@ -1,10 +1,10 @@
 # TouchTalk Live Speech to Braille Converter
 ## Notes to Viewers
 This project is currently in the process of being patented. The code shown here provides only the functional code for the TouchTalk web app. 
-# Process Explanation
+## Process Explanation
 The TouchTalk platform integrates a web application with a physical device to facilitate communication for Deafblind individuals. A logic diagram is provided in Figure 10, and a simple video description is attached at the end.
 
-# Text Generation on the App
+### Text Generation on the App
 1. Non-disabled users access the online app and record their voices using integrated microphones. The app transcribes the recording using speech-to-text models.
 2. The transcribed text undergoes sentiment analysis to detect tone and tags are appended accordingly.
 3. Users can also utilize image-to-text conversions. Image captioning models leverage built-in cameras to generate descriptions, while optical character recognition processes handwritten text.
@@ -12,15 +12,15 @@ The TouchTalk platform integrates a web application with a physical device to fa
 5. Upon completion of transcription, users can convert the text to Braille by clicking the "Convert" button.
 6. The "Send" button converts each Braille letter to [X, Y] instructions for motor movement.
 
-# Cloud File Communication
+### Cloud File Communication
 1. The app writes the [X, Y] instructions onto a private file in a GitHub repository using Wi-Fi.
 2. The device checks for updates on the GitHub file every 1.5 seconds. If a change is detected, the JSON data is loaded as a list for use.
 
-# Braille on the Device
+### Braille on the Device
 1. Stepper motors move according to [X, Y] instructions to display Braille letters, pausing for three seconds after each movement.
 2. DeafBlind users respond using a Braille keyboard. The 2x3 array on the keyboard represents the braille cell. Users press the green button to set a new letter and enter the braille configuration on the array. Pressing the red button converts all the button arrangements into Braille and writes it to the GitHub cloud file. 
 
-# Translation and Output
+### Translation and Output
 1. The app checks for updates on the GitHub cloud file and translates Braille input from the device into English/French. The text is displayed on the app, along with an audio recording of the translation.
 2. Deafblind users can press the black button on the keyboard to provide English/French audio output of the typed Braille directly from the device.
 
